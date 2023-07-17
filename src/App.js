@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoutes from './utils/PrivateRoutes';
+import NotesForm from './pages/NotesForm';
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
           </Route>
           <Route element={<Login />} path="/login" />
           <Route element={<Register />} path="/register" />
+          <Route element={<NotesForm />} path="/addnotes" />
+
           <Route element={<Nviewer />} path="/nviewer" />
         </Routes>
 
