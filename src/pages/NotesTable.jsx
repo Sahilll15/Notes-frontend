@@ -4,7 +4,8 @@ import React from "react";
 const NotesTable = () => {
     return (
       <div className="overflow-x-auto">
-        <div className="bg-gray-900 min-w-screen min-h-screen flex items-center justify-center font-sans overflow-hidden">
+       
+        <div className="bg-gray-900 min-w-screen min-h-screen flex  justify-center font-sans overflow-hidden">
           <div className="w-full lg:w-5/6">
             <div className="bg-white shadow-md rounded my-6">
               <table className="min-w-max w-full table-auto">

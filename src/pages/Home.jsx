@@ -38,7 +38,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className='mt-16 bg-black dark:bg-gray-900  w-full z-20 top-0 left-0 border-b border border-solid border-gray-800 dark:border-gray-600 h-full'>
+      <div className=' bg-black dark:bg-gray-900  w-full z-20 top-0 left-0 border-b border border-solid border-gray-800 dark:border-gray-600 h-full'>
         <div className='text-white container mx-auto mt-5'>
           {/* <div className="lg:text-[2.5rem]  sm:text-[2.0rem] md:text-[2.0rem] font-bold text-center text-white my-10">
             Search for <span className="text-primary">All </span> Notes
