@@ -9,6 +9,7 @@ const Login = () => {
     const [seepassword,setseepassword]=useState(false)
     const navigate=useNavigate();
 
+
     const handleViewPassword=()=>{
         setseepassword(!seepassword);
         if(seepassword){
@@ -45,13 +46,14 @@ const Login = () => {
       
     const handleSubmit=(e)=>{
         e.preventDefault();
-      
-        login();
+
+       login();
     }
 
 
   return (
     <div>
+      <div></div>
         <section className="bg-gray-50 dark:bg-gray-900">
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
   <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-blue-900 dark:text-blue-500 text-4xl">
@@ -81,7 +83,7 @@ const Login = () => {
                             <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">View password</label>
                           </div>
                       </div>
-                      <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                      <NavLink to={'/OtpForm'} className="text-sm font-medium text-primary-600 hover:text-white   dark:text-primary-500">Forgot password?</NavLink>
                   </div>
                   <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:text-black dark:hover:bg-blue-700">Sign in</button>
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
