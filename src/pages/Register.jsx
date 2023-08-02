@@ -5,31 +5,7 @@ import axios from 'axios';
 import logo from '../logoOld.png'
 import { useState } from 'react';
 
-// ADITYA CODE STARTS
- const RegistrationForm = () => {
-  const [firstName, setFirstName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-}
-
-// ADITYA CODE ENDS
 
 const Register = () => {
   const [formdata, setFormdata] = useState({
@@ -89,11 +65,11 @@ const Register = () => {
 
   return (
     <div>
-      {/* <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-blue-900 dark:text-blue-500 text-4xl"> */}
-            {/* <img src={logo} alt="" style={{width:'250px',height:'130px'}}/> */}
-            {/* NotesBeta
+          <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-blue-900 dark:text-blue-500 text-4xl">
+            <img src={logo} alt="" style={{width:'250px',height:'130px'}}/>
+            NotesBeta
           </a>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -198,56 +174,10 @@ const Register = () => {
           </div>
         </div>
       </section>
-      <ToastContainer /> */}
+      <ToastContainer />
 
 
-<div>
-  
-  <center>
-    <div className="mt-9">
-      <img src={logo} style={{width: '20%'}} alt />
-      <h1 className="text-white">REGISTER NOW !</h1><br />
-      <form action="/register" className="text-left w-1/3" method="post">
-        <div className="form-group">
-          <label htmlFor="first-name" className="text-white"><h4>NAME</h4></label>
-          <input type="text" id="first-name" className="text-xl bg-slate-800 h-12 rounded-lg w-full border-2 border-violet-950" name="first-name" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email" className="text-white"><h4>Email ADDRESS</h4></label>
-          <input type="email" id="email" className="text-xl bg-slate-800 h-12 rounded-lg w-full border-2 border-violet-950" name="email" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password" className="text-white"><h4>PASSWORD</h4></label>
-          <input type="password" id="password" className="text-xl bg-slate-800 h-12 rounded-lg w-full border-2 border-violet-950" name="password" />
-        </div>
-        <br /><br />du
-        <center>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white w-full font-bold py-2 px-2 border border-blue-700 rounded">
-  REGISTER
-</button>
-        </center>
-      </form>
-      <h4 className="text-gray-500 mt-5">Already a member ? <NavLink to={'/login'} className="font-medium text-blue-600 hover:underline dark:text-blue-600 text-blue-500">LOG IN.</NavLink></h4>
-    </div>
-  </center>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
   );
 };
 
