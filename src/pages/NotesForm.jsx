@@ -1,6 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const NotesForm = () => {
+  const [formdata, setFormdata] = useState({
+    subject: '',
+    module: '',
+    type: '',
+    description: '',
+  });
+
+  const onChange = (e) => {
+    setFormdata({ ...formdata, [e.target.name]: e.target.value });
+  };
+
+  const handlesubmit = (e) =>{
+    e.preventDefault();
+    console.log(formdata)
+  }
+  
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 bg-no-repeat bg-cover relative items-center">
       {/* style="background-color: gray;"> */}
@@ -10,13 +26,15 @@ const NotesForm = () => {
           <h2 className="mt-5 text-3xl font-bold text-gray-900">Notes!</h2>
           <p className="mt-2 text-sm text-gray-400">hii</p>
         </div>
-        <form className="mt-8 space-y-3" action="#" method="POST">
+        <form className="mt-8 space-y-3" onSubmit={handlesubmit}>
           <div className="grid grid-cols-1 space-y-2">
             <label className="text-sm font-bold text-gray-500 tracking-wide">
               Subject
               <input
                 className="text-base w-3/4 p-2 ml-4 border-x border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
                 width="900px"
+                onChange={onChange}
+                name="subject"
                 placeholder="mail@gmail.com"
               />
             </label>
@@ -27,6 +45,8 @@ const NotesForm = () => {
               <input
                 className="text-base w-3/4 p-2 ml-4 border-x border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
                 width="900px"
+                onChange={onChange}
+                name="module"
                 placeholder="mail@gmail.com"
               />
             </label>
@@ -37,6 +57,8 @@ const NotesForm = () => {
               <input
                 className="text-base w-3/4 p-2 ml-9 border-x border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
                 width="900px"
+                onChange={onChange}
+                name="type"
                 placeholder="mail@gmail.com"
               />
             </label>
@@ -48,6 +70,8 @@ const NotesForm = () => {
             <input
               className="text-base h-20 p-2 border-x border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
               width="900px"
+              onChange={onChange}
+              name="description"
               placeholder="mail@gmail.com"
             />
             {/* </label>/ */}
