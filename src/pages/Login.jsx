@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import logo from '../logoOld.png'
-import { useState } from 'react';
+
 
 const Login = () => {
     const [formdata,setFormdata]=useState({email:'',password:''})
