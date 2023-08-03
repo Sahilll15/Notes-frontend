@@ -1,5 +1,9 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
+import BookCard from '../components/BookCard'
+import Search from '../components/search'
+import imgA from '../components/images/ADSA.png'
+
 
 
 const notes = [
@@ -37,106 +41,18 @@ const notes = [
 const Home = () => {
   return (
     <>
+    
       <Navbar />
-      <div className=' bg-black dark:bg-gray-900  w-full z-20 top-0 left-0 border-b border border-solid border-gray-800 dark:border-gray-600 h-full'>
-        <div className='text-white container mx-auto mt-5'>
-          {/* <div className="lg:text-[2.5rem]  sm:text-[2.0rem] md:text-[2.0rem] font-bold text-center text-white my-10">
-            Search for <span className="text-primary">All </span> Notes
-          </div> */}
-       
-          <form className=' mt-16'>   
-            <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
-              Search
-            </label>
-            <div className="flex justify-center">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <svg
-                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                    />
-                  </svg>
-                </div>
-                <input
-                  type="search"
-                  id="default-search"
-                  className="block w-96   p-4  pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" // Smaller input field
-                  placeholder="Search Notes.."
-                />
-                <button
-                  type="submit"
-                  className="text-white absolute right-2.5 bottom-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Search
-                </button>
-              </div>
-            </div>
-          </form>
+      
+      <div className=' bg-black dark:bg-gray-900  w-full z-20 top-0 left-0 border-b border border-solid border-gray-800 dark:border-gray-600 h-screen'>
+        <div className='text-white container mx-auto mt-3'>
+        
+        <Search/><br/>
+        
+      
+        <BookCard title="ADSA" type="Assigment" img= {imgA} />
 
-        {/* notes start here */}
-        <div className='mx-12 mt-10 mb-10 flex flex-wrap'>
-  {notes.map((note) => {
-    return (
-      <div
-        className='mt-10 mx-1'
-        style={{
-          transition: 'filter 0.3s',
-        }}
-      >
-        <div className='max-w-sm bg-white border border-gray-200  rounded-xl shadow dark:bg-gray-800 dark:border-gray-700 '>
-          <a href='#'>
-            <div
-              className='relative'
-              style={{
-                filter: 'brightness(100%)',
-              }}
-              onMouseEnter={(e) => (e.target.style.filter = 'brightness(80%)')}
-              onMouseLeave={(e) => (e.target.style.filter = 'brightness(100%)')}
-            >
-              <img
-                className='rounded-t-lg'
-                src={note.image}
-                alt='image'
-                style={{ width: '100vh', height: '35vh' }}
-              />
-              <div
-                className='absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300'
-                style={{ background: 'rgba(0, 0, 0, 0.5)' }}
-              >
-                <div className='text-white text-center'>
-                  <h5 className='mb-2 text-2xl font-bold tracking-tight'>
-                    {note.name}
-                  </h5>
-                  <p className='mb-3 text-xl font-normal'>
-                    {note.description}
-                  </p>
-                  <a
-                    href='#'
-                    className='inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
-                    onClick={() => handleBuyNote()}
-                  >
-                    Buy Note
-                  </a>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    );
-  })}
-</div>
-
+        
 
 
         </div>
