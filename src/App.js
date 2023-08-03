@@ -12,6 +12,7 @@ import NotesForm from './pages/NotesForm';
 import NotesTable from './pages/NotesTable';
 import OtpForm from './pages/OtpForm';
 import Navbar from './components/Navbar';
+import Profile from './pages/profile';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route element={<Register />} path="/register" />
             <Route element={<NotesForm />} path="/addnotes" />
             <Route element={<OtpForm />} path="/otpForm" />
+            <Route element={<Profile />} path="/profile" />
 
           </Routes>
 
