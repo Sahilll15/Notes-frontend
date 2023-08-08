@@ -3,11 +3,15 @@ import { NavLink ,useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
-import logo from '../logoOld.png'
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+import { useAuth } from '../context/authContext';
 
+const host=`https://notesbackend-biux.onrender.com/`;
 
 
 const Login = () => {
+    const { login } = useAuth();
     const [formdata,setFormdata]=useState({email:'',password:''})
     const [seepassword,setseepassword]=useState(false)
     const navigate=useNavigate();
@@ -27,31 +31,26 @@ const Login = () => {
         setFormdata({...formdata,[e.target.name]:e.target.value})
     }
 
-    const login = async () => {
-        try {
-          const response = await axios.post('http://localhost:8000/api/v1/users/login', {
-            email: formdata.email,
-            password: formdata.password,
-          });
-      
-          if (response.status === 200) {
-            localStorage.setItem('jwt_secret', response.data.token);
-            navigate('/');
-            toast.success('User logged in successfully!');
-            setFormdata({ email: '', password: '' });
-          }
-        } catch (error) {
-          console.log(error);
-          const errorMessage = error.response?.data?.message || 'User login failed!';
-          toast.error(errorMessage);
-        }
-      };
-      
-    const handleSubmit=(e)=>{
-        e.preventDefault();
+    
 
-       login();
-    }
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      
+      try {
+        const success = await login(formdata.email, formdata.password);
+        
+        if (success) {
+          toast.success('User logged in successfully!');
+          navigate('/');
+          setFormdata({ email: '', password: '' });
+        }
+      } catch (error) {
+        const errorMessage = error.response?.data?.message || 'User login failed!';
+        toast.error(errorMessage);
+      } 
+    };
+    
 
 
   return (
@@ -59,7 +58,7 @@ const Login = () => {
         <section className="bg-gray-50 dark:bg-gray-900">
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
   <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-blue-900 dark:text-blue-500 text-4xl">
-            <img src={logo} alt="" style={{width:'250px',height:'130px'}}/>
+            {/* <img src={logo} alt="" style={{width:'250px',height:'130px'}}/> */}
             NotesBeta
           </a>
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">

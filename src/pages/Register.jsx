@@ -3,11 +3,14 @@ import { NavLink } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import logo from '../logoOld.png'
+import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from '../context/authContext';
 
 
 
 
 const Register = () => {
+  const { register } = useAuth();
   const [formdata, setFormdata] = useState({
     username: '',
     email: '',
@@ -45,21 +48,16 @@ const Register = () => {
     if (!validation()) {
       return;
     }
-
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/users/register', {
-        username: formdata.username,
-        email: formdata.email,
-        password: formdata.password,
-      });
-
-      if (response.status === 200) {
-        console.log(response.data);
-        toast.success(response.data.message);
+      const success = await register(formdata.username, formdata.email, formdata.password);
+      if (success) {
+        toast.success('User registered successfully!');
+        setFormdata({ username: '', email: '', password: '', cpassword: '' });
       }
-    } catch (error) {
-      console.log(error);
-      toast.error('User creation failed!!');
+    }
+    catch (error) {
+      const errorMessage = error.response?.data?.message || 'User registration failed!';
+      toast.error(errorMessage);
     }
   };
 
