@@ -77,10 +77,14 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (error) {
             console.log(error);
+            console.log("nothing")
             throw error;
+
         }
 
     }
+
+
 
 
     const contextValue = {
