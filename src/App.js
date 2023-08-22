@@ -16,6 +16,7 @@ import Profile from './pages/profile';
 //AuthProvider
 import { AuthProvider, useAuth } from './context/authContext';
 
+
 function App() {
 
 
@@ -32,13 +33,15 @@ function App() {
             <Routes>
               <Route element={<PrivateRoutes />}>
 
-                <Route element={<NotesTable />} path="/notestable" />
-                <Route element={<Profile />} path="/profile" />
-                <Route element={<Nviewer />} path="/nviewer" />
-                <Route element={<NotesForm />} path="/addnotes" />
+
               </Route>
               <Route element={<Home />} path="/" />
+              <Route element={<index />} path="/hack" />
 
+              <Route element={<NotesTable />} path="/notestable" />
+              <Route element={<Profile />} path="/profile" />
+              <Route element={<Nviewer />} path="/nviewer" />
+              <Route element={<NotesForm />} path="/addnotes" />
               <Route element={<Login />} path="/login" />
               <Route element={<Register />} path="/register" />
               <Route element={<OtpForm />} path="/otpForm" />
