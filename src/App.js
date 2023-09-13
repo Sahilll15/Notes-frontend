@@ -32,21 +32,21 @@ function App() {
           <div className='mt-16  overflow-hidden'>
             <Routes>
               <Route element={<PrivateRoutes />}>
+                <Route element={<Home />} path="/" />
+                <Route element={<index />} path="/hack" />
 
+                <Route element={<NotesTable />} path="/notestable" />
+                <Route element={<Profile />} path="/profile" />
+                <Route element={<Nviewer />} path="/nviewer" />
+                <Route element={<NotesForm />} path="/addnotes" />
+
+                <Route element={<OtpForm />} path="/otpForm" />
 
               </Route>
-              <Route element={<Home />} path="/" />
-              <Route element={<index />} path="/hack" />
 
-              <Route element={<NotesTable />} path="/notestable" />
-              <Route element={<Profile />} path="/profile" />
-              <Route element={<Nviewer />} path="/nviewer" />
-              <Route element={<NotesForm />} path="/addnotes" />
+
               <Route element={<Login />} path="/login" />
               <Route element={<Register />} path="/register" />
-              <Route element={<OtpForm />} path="/otpForm" />
-
-
             </Routes>
 
 

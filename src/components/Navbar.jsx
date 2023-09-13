@@ -15,9 +15,9 @@ const Navbar = () => {
 
   const navItems = [
     { label: "Home", link: "/" },
-    { label: "Notes", link: "#" },
-    { label: "Dashboard", link: "#" },
-    { label: "Projects", link: "#" },
+    { label: "Notes", link: "/" },
+    { label: "Dashboard", link: "/dashboard" },
+    { label: "AddNotes", link: "/addnotes" },
   ];
 
   return (

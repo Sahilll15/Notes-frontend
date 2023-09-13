@@ -6,12 +6,12 @@ import axios from 'axios';
 
 const PrivateRoutes = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const authToken = localStorage.getItem('jwt_secret')
+  const authToken = localStorage.getItem('authtoken')
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/v1/users/get_user_info', {
+        const response = await axios.get('http://localhost:4000/api/v1/users/get_user_info', {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -26,7 +26,6 @@ const PrivateRoutes = () => {
       }
     };
 
- 
     checkAuth();
   }, []);
 

@@ -6,12 +6,15 @@ import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { useAuth } from '../context/authContext';
+import { useDispatch,useSelector } from "react-redux"
+import { login } from '../redux/auth/authActions';
 
 const host=`https://notesbackend-biux.onrender.com/`;
 
 
 const Login = () => {
-    const { login } = useAuth();
+    // const { login } = useAuth();
+    const dispatch = useDispatch();
     const [formdata,setFormdata]=useState({email:'',password:''})
     const [seepassword,setseepassword]=useState(false)
     const navigate=useNavigate();
@@ -32,14 +35,11 @@ const Login = () => {
     }
 
     
-
-
     const handleSubmit = async (e) => {
       e.preventDefault();
       
       try {
-        const success = await login(formdata.email, formdata.password);
-        
+        const success = dispatch(login(formdata))
         if (success) {
           toast.success('User logged in successfully!');
           navigate('/');

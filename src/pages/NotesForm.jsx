@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import {useNote} from '../context/notesContext'
+import {useDispatch,useSelector} from 'react-redux'
+import { getFormData,addNote } from '../redux/notes/noteActions';
+import { getNotes } from '../redux/notes/noteActions';
+
+
 
 const NotesForm = () => {
+  const dispatch = useDispatch();
+  const AddNoteFormData=useSelector((state)=>state?.note?.formdata)
+  const branches=useSelector((state)=>state?.note?.branches)
+  const subjects=useSelector((state)=>state?.note?.subjects)
+  
 
 
-  const {getFormDataAPI,AddNoteFormData,addNote} = useNote();
   const module=[1,2,3,4,5,6]
   const type=[
     "Assignment",
@@ -48,15 +57,17 @@ const NotesForm = () => {
 
   const handlesubmit =async (e) =>{
     e.preventDefault();
-    await addNote(formdata);
+    await dispatch(addNote(formdata));
     console.log(formdata)
  
   }
 
   useEffect(()=>{
-    getFormDataAPI();
-   console.log(AddNoteFormData)
-  },[])
+    dispatch(getFormData())
+    dispatch(getNotes())
+   
+
+  },[dispatch])
 
   if(!AddNoteFormData){
     return <div>Loading...</div>
@@ -96,7 +107,7 @@ const NotesForm = () => {
       name="subject"
     >
       <option value="">Select Subject</option>
-      {AddNoteFormData?.subject?.map((data, index) => (
+      {subjects?.map((data, index) => (
     <option key={index} value={data.name}>{data.name}</option>
   ))}
   
@@ -153,9 +164,12 @@ const NotesForm = () => {
   name="branch"
 >
   <option value="">Select Branch</option>
-  {AddNoteFormData?.branches?.map((data, index) => (
+  {branches?.map((data, index) => (
     <option key={index} value={data.name}>{data.name}</option>
   ))}
+
+
+
 </select>
 
   </label>
