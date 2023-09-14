@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getNotes, getFormData, addNote, getNotesAdmin } from "./noteActions";
+import { getNotes, getFormData, addNote, getNotesAdmin, AcceptRejectNotes } from "./noteActions";
 
 const initialState = {
     notes: [],
@@ -86,8 +86,26 @@ export const noteSlice = createSlice({
             state.success = false;
         }
         )
+
+        builder.addCase(AcceptRejectNotes.pending, (state, action) => {
+            state.loading = true
+
+        }
+        ).addCase(AcceptRejectNotes.fulfilled, (state, action) => {
+            state.loading = false
+            state.success = true
+            state.notesAdmin = action.payload.data;
+        }
+        ).addCase(AcceptRejectNotes.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+            state.success = false;
+        }
+        )
     }
 })
+
+
 
 export default noteSlice.reducer
 

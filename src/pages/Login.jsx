@@ -17,6 +17,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const [formdata,setFormdata]=useState({email:'',password:''})
     const [seepassword,setseepassword]=useState(false)
+    const loading=useSelector((state)=>state.user.loading)
     const navigate=useNavigate();
 
 
@@ -86,7 +87,9 @@ const Login = () => {
                       </div>
                       <NavLink to={'/OtpForm'} className="text-sm font-medium text-primary-600 hover:text-white   dark:text-primary-500">Forgot password?</NavLink>
                   </div>
-                  <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:text-black dark:hover:bg-blue-700">Sign in</button>
+                  <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:text-black dark:hover:bg-blue-700">
+                      {loading ? 'Loading...' : 'Login'}
+                  </button>
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                       Don’t have an account yet? <NavLink to={'/register'} className="font-medium text-blue-600 hover:underline dark:text-blue-600 text-blue-500">Sign up</NavLink>
                   </p>

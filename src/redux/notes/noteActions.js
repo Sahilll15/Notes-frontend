@@ -114,3 +114,36 @@ export const getNotesAdmin = createAsyncThunk(
         }
     }
 );
+
+
+//accept reject notes
+
+export const AcceptRejectNotes = createAsyncThunk(
+    'notes/AcceptRejectNotes',
+    async (NoteId, { rejectWithValue }) => {
+
+        try {
+            const response = await axios.put(`http://localhost:4000/api/v1/notes/acceptreject/${NoteId}`, {}, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                console.log(response.data);
+                toast.success(response.data.message);
+                return response.data;
+            } else {
+                console.log('error');
+                toast.error(response.data.message);
+                return rejectWithValue(response.data.message);
+            }
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message);
+        }
+
+    }
+)
+
+

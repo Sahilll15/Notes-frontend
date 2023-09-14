@@ -11,7 +11,7 @@ const NotesForm = () => {
   const AddNoteFormData=useSelector((state)=>state?.note?.formdata)
   const branches=useSelector((state)=>state?.note?.branches)
   const subjects=useSelector((state)=>state?.note?.subjects)
-  
+
 
 
   const module=[1,2,3,4,5,6]

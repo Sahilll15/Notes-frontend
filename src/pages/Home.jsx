@@ -11,6 +11,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const notes = useSelector((state) => state?.note?.notes)
   const noteLoading=useSelector((state)=>state.note.noteLoading)
+  const user=useSelector((state)=>state?.user?.user)
 
   useEffect(() => {
     dispatch(getNotes())
@@ -19,7 +20,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className=' bg-black dark:bg-gray-900  w-full z-20 top-0 left-0 border-b border border-solid border-gray-800 dark:border-gray-600 h-screen'>
+      <div className=' bg-black dark:bg-gray-900  w-full  z-20 top-0 left-0 border-b border border-solid border-gray-800 dark:border-gray-600 h-screen'>
         <div className=' text-white container mx-auto mt-3'>
           <Search /><br />
           <div className='flex flex-wrap justify-center'>

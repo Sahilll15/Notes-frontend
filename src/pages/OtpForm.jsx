@@ -6,28 +6,34 @@ import PasswordResetForm from '../components/PasswordResetForm';
 import { NavLink } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useAuth } from '../context/authContext';
+import {resetPassword} from '../redux/auth/authActions'
+import { useDispatch,useSelector } from 'react-redux';
+
+
 
 const OtpForm = () => {
   const { sendOtp } = useAuth();
+  const dispatch=useDispatch();
+  
   const [formdata, setFormdata] = useState({ email: '' });
-  const [otpSent, setOtpSent] = useState(false); // State to track OTP sending
-
+  const [otpSent, setOtpSent] = useState(false); 
   const onChange = (e) => {
     setFormdata({ ...formdata, [e.target.name]: e.target.value });
   };
 
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const success=await sendOtp(formdata.email);
+    dispatch(resetPassword);
     if(success){
       setOtpSent(true);
     }
     else{
       toast.error('OTP sending failed!');
-
     }
   };
+
 
   return (
     <div>
