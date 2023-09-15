@@ -59,16 +59,20 @@ export const authSlice = createSlice({
         }
         )
 
-        // builder.addCase(getLogedinUser.pending, (state, action) => {
-        //     state.loading = true
-        // }).addCase(getLogedinUser.fulfilled, (state, action) => {
-        //     state.loading = false,
-        //         state.success = true
-        //     toast.success(action.payload.message)
-        // }).addCase(getLogedinUser.rejected, (state, action) => {
-        //     state.loading = false,
-
-        // })
+        //get logedin user
+        builder.addCase(getLogedinUser.pending, (state, action) => {
+            state.loading = true
+        }
+        ).addCase(getLogedinUser.fulfilled, (state, action) => {
+            state.loading = false
+            state.success = true
+            state.user = action.payload
+        }
+        ).addCase(getLogedinUser.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload
+        }
+        )
 
     }
 })
