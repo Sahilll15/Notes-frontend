@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getNotes, getFormData, addNote, getNotesAdmin, AcceptRejectNotes } from "./noteActions";
+import { getNotes, getFormData, addNote, getNotesAdmin, AcceptRejectNotes, getSingleNote } from "./noteActions";
 
 const initialState = {
     notes: [],
@@ -13,7 +13,9 @@ const initialState = {
     formData: null,
     branches: [],
     subjects: [],
-    notesAdmin: []
+    notesAdmin: [],
+    singlenote: null,
+    noteAcceptStatusLoading: false
 }
 
 
@@ -57,7 +59,6 @@ export const noteSlice = createSlice({
 
         builder.addCase(addNote.pending, (state, action) => {
             state.noteLoading = true
-
         }
         ).addCase(addNote.fulfilled, (state, action) => {
             state.noteLoading = false
@@ -88,20 +89,38 @@ export const noteSlice = createSlice({
         )
 
         builder.addCase(AcceptRejectNotes.pending, (state, action) => {
-            state.loading = true
+            state.noteAcceptStatusLoading = true
 
         }
         ).addCase(AcceptRejectNotes.fulfilled, (state, action) => {
-            state.loading = false
+            state.noteAcceptStatusLoading = false
             state.success = true
             state.notesAdmin = action.payload.data;
         }
         ).addCase(AcceptRejectNotes.rejected, (state, action) => {
-            state.loading = false;
+            state.noteAcceptStatusLoading = false;
             state.error = action.payload;
             state.success = false;
         }
         )
+
+
+        builder.addCase(getSingleNote.pending, (state, action) => {
+            state.noteLoading = true
+
+        }
+        ).addCase(getSingleNote.fulfilled, (state, action) => {
+            state.noteLoading = false
+            state.noteSuccess = true
+            state.singlenote = action.payload.data;
+        }
+        ).addCase(getSingleNote.rejected, (state, action) => {
+            state.noteLoading = false;
+            state.noteError = action.payload;
+            state.noteSuccess = false;
+        }
+        )
+
     }
 })
 

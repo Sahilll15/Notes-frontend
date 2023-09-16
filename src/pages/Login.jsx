@@ -38,22 +38,22 @@ const Login = () => {
     
     const handleSubmit = async (e) => {
       e.preventDefault();
+      console.log('Dispatching loginUser action');
       
       try {
-        const success = dispatch(login(formdata))
-        if (success) {
-          toast.success('User logged in successfully!');
+        const response = await dispatch(login(formdata));
+        
+        if (response.meta.requestStatus === "fulfilled") {
           navigate('/');
-          setFormdata({ email: '', password: '' });
-        }
+          window.location.reload();
+       
+        } 
       } catch (error) {
-        const errorMessage = error.response?.data?.message || 'User login failed!';
-        toast.error(errorMessage);
-      } 
+        console.error('An error occurred:', error);
+        toast.error('An error occurred while logging in');
+      }
     };
     
-
-
   return (
     <div>
         <section className="bg-gray-50 dark:bg-gray-900">

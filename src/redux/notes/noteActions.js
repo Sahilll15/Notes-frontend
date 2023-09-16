@@ -29,6 +29,34 @@ export const getNotes = createAsyncThunk(
 );
 
 
+//get the single note
+export const getSingleNote = createAsyncThunk(
+    'notes/getSingleNote',
+    async (noteId, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`http://localhost:4000/api/v1/notes/getSingleNote/${noteId}`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                console.log(response.data);
+                return response.data;
+            } else {
+                console.log('error');
+                return rejectWithValue(response.data.message);
+            }
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+);
+
+
+
+
 
 export const getFormData = createAsyncThunk(
     'notes/getFormData',
@@ -145,5 +173,6 @@ export const AcceptRejectNotes = createAsyncThunk(
 
     }
 )
+
 
 

@@ -6,11 +6,13 @@ import { getNotes } from '../redux/notes/noteActions';
 
 
 
+
 const NotesForm = () => {
   const dispatch = useDispatch();
   const AddNoteFormData=useSelector((state)=>state?.note?.formdata)
   const branches=useSelector((state)=>state?.note?.branches)
   const subjects=useSelector((state)=>state?.note?.subjects)
+  const noteAddLoading=useSelector((state)=>state?.note?.noteLoading)
 
 
 
@@ -53,8 +55,6 @@ const NotesForm = () => {
 
 
 
-
-
   const handlesubmit =async (e) =>{
     e.preventDefault();
     await dispatch(addNote(formdata));
@@ -65,15 +65,9 @@ const NotesForm = () => {
   useEffect(()=>{
     dispatch(getFormData())
     dispatch(getNotes())
-   
-
   },[dispatch])
 
-  if(!AddNoteFormData){
-    return <div>Loading...</div>
-  }
 
-  
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 bg-no-repeat bg-cover relative items-center">
      
@@ -232,7 +226,7 @@ const NotesForm = () => {
               className="my-5 w-full flex justify-center bg-blue-500 text-gray-100 p-4  rounded-full tracking-wide
                                     font-semibold  focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300"
             >
-              Upload
+              {noteAddLoading ? 'Loading...' : 'Add Note'}
             </button>
           </div>
         </form>

@@ -1,6 +1,6 @@
 import React from "react";
 import "./rhome.css";
-
+import { NavLink } from "react-router-dom";
 import ADSA from "./images/ADSA.png";
 import DEVEOPS from "./images/DEVEOPS.png"
 import SE from './images/SE.png'
@@ -41,8 +41,18 @@ const BookCard = ({ note }) => {
               note?.likes?.length || 0
             }
           </span>
+       
           <span>
             <i className="fa-regular fa-comment fa-xl mx-2"></i> 4
+          </span>
+          <span>
+          <NavLink to={`/nviewer/${note._id}`}>
+          <button 
+        className="border border-black px-4 py-1 rounded-lg bg-white text-black hover:bg-black hover:text-white hover:border-white">
+          BUY
+        </button>
+          </NavLink>
+         
           </span>
         </div>
       </div>

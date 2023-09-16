@@ -29,9 +29,10 @@ const PrivateRoutes = () => {
     checkAuth();
   }, []);
 
-  return (<>
+  return (<div className='mt-10'>
+
   {isAuthenticated ? <Outlet /> : <Navigate to="/login" />}
-  </>
+  </div>
    
     )
 };

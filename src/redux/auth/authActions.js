@@ -4,12 +4,15 @@ import { toast } from 'react-toastify'
 
 
 
+const host = process.env.REACT_APP_API_HOST;
+
+
 export const register = createAsyncThunk(
     'auth/register',
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                'http://localhost:4000/api/v1/users/register',
+                `${host}/api/v1/users/register`,
                 {
                     username: data.username,
                     email: data.email,
@@ -37,7 +40,7 @@ export const login = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                'https://notesbackend-biux.onrender.com/api/v1/users/login',
+                `${host}/api/v1/users/login`,
                 {
                     email: data.email,
                     password: data.password,
@@ -51,7 +54,8 @@ export const login = createAsyncThunk(
 
             } else {
                 console.log('error');
-                toast.error(response.data.message);
+                console.log(response)
+                toast.error(response.message);
                 return rejectWithValue(response.data.message);
             }
         } catch (error) {
@@ -67,7 +71,7 @@ export const resetPassword = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                'http://localhost:4000/api/v1/users/reset_password',
+                `${host}/api/v1/users/reset_password`,
                 {
                     email: data.email,
                 }
@@ -90,11 +94,13 @@ export const resetPassword = createAsyncThunk(
 
 
 
+
+
 export const getLogedinUser = createAsyncThunk(
     'user/getLoggeginUser',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get('http://localhost:4000/api/v1/users/get_user_info', {
+            const response = await axios.get(`${host}/api/v1/users/get_user_info`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
                 }
@@ -102,14 +108,19 @@ export const getLogedinUser = createAsyncThunk(
 
             if (response.status === 200) {
                 console.log(response.data);
-                return response.data;
+                return response.data.user;
             } else {
+                console.log('error');
+
                 return rejectWithValue(response.data.message)
             }
         } catch (error) {
+            console.log(error);
             toast.error(error.response?.data?.message);
             return rejectWithValue(error.response?.data?.message);
 
         }
     }
 )
+
+

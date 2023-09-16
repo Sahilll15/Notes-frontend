@@ -29,7 +29,9 @@ const Home = () => {
             [1,2,3,4,5,6,7,8,9,10].map((n)=>(
               <BookCardSkeletion key={n}/>
             )):
-            
+              
+            notes.length === 0 ? <h1 className='text-white text-2xl'>No Notes To Display</h1> : 
+
             notes?.map((note, index) => (
               <BookCard note={note} key={index} />
             ))
