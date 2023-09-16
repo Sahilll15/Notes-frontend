@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Nviewer from './pages/nviewer'
+import Nviewer from './pages/Nviewer'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Register from './pages/Register';
 import { ToastContainer } from 'react-toastify';
@@ -13,38 +13,47 @@ import NotesTable from './pages/NotesTable';
 import OtpForm from './pages/OtpForm';
 import Navbar from './components/Navbar';
 import Profile from './pages/profile';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLogedinUser } from './redux/auth/authActions';
 
-function App() {
+
+const App = () => {
+  const dispatch = useDispatch();
+  const userLoggedIn = useSelector((state) => state?.user?.isAuthenticated)
+  useEffect(() => {
+    dispatch(getLogedinUser())
+
+  }, [])
+
+
   return (
     <>
 
       <Router>
-
         <ToastContainer />
-        <Navbar />
-        <div className='mt-16  overflow-hidden'>
+        //show navbar only if the user is logged initialState
+        {
+          userLoggedIn && <Navbar />
+        }
+        <div >
           <Routes>
+            //loggedinuser routes
             <Route element={<PrivateRoutes />}>
-             
+              <Route element={<Home />} path="/" />
+              <Route element={<NotesTable />} path="/notesTable" />
+              <Route element={<Profile />} path="/profile" />
+              <Route element={<Nviewer />} path="/nviewer/:noteId" />
+              <Route element={<NotesForm />} path="/addnotes" />
+              <Route element={<OtpForm />} path="/otpForm" />
             </Route>
-            <Route element={<Home />} path="/" />
-              <Route element={<NotesTable />} path="/notestable" />
 
-              <Route element={<Nviewer />} path="/nviewer" />
+            //authetication routes
             <Route element={<Login />} path="/login" />
             <Route element={<Register />} path="/register" />
-            <Route element={<NotesForm />} path="/addnotes" />
-            <Route element={<OtpForm />} path="/otpForm" />
-            <Route element={<Profile />} path="/profile" />
-
           </Routes>
-
-
-
         </div>
-
-      </Router>
-
+      </Router >
     </>
   );
 }

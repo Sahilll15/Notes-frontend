@@ -5,37 +5,35 @@ import axios from 'axios';
 import PasswordResetForm from '../components/PasswordResetForm';
 import { NavLink } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
+import { useAuth } from '../context/authContext';
+import {resetPassword} from '../redux/auth/authActions'
+import { useDispatch,useSelector } from 'react-redux';
+
+
 
 const OtpForm = () => {
+  const { sendOtp } = useAuth();
+  const dispatch=useDispatch();
+  
   const [formdata, setFormdata] = useState({ email: '' });
-  const [otpSent, setOtpSent] = useState(false); // State to track OTP sending
-
+  const [otpSent, setOtpSent] = useState(false); 
   const onChange = (e) => {
     setFormdata({ ...formdata, [e.target.name]: e.target.value });
   };
 
-  const SendOtp = async () => {
-    try {
-      const response = await axios.post('http://localhost:8000/api/v1/users/reset_email', {
-        email: formdata.email,
-      });
 
-      if (response.status === 200) {
-        toast.success('Otp Sent Succesfully!');
-        setOtpSent(true); // Set the state to true when OTP is sent successfully
-    
-      }
-    } catch (error) {
-      console.log(error);
-      const errorMessage = error.response?.data?.mssg || 'Error in sending the otp!';
-      toast.error(errorMessage);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const success=await sendOtp(formdata.email);
+    dispatch(resetPassword);
+    if(success){
+      setOtpSent(true);
+    }
+    else{
+      toast.error('OTP sending failed!');
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    SendOtp();
-  };
 
   return (
     <div>

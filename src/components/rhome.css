@@ -6,14 +6,21 @@ body{
     background: lightgrey;
    
     background-color: rgb(24 27 32);
-    border: 1px solid rgb(84 90 106);
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 20px;
     color: white;
     display: flex;
     flex-direction: column;
     padding: 10px 20px;
+    
   }
   
+  .post-card:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+    border:solid ;
+  }
+
   .avatar {
     height: 35px;
     width: 35px;
@@ -32,6 +39,10 @@ body{
     transition: all .35s ease-in;
   }
   
+  .title:hover {
+    color: rgb(168 179 207);
+    transform: scale(1.1);
+  }
   
   
   .datetime {
@@ -42,11 +53,11 @@ body{
   
   .image-preview {
     flex: 1;
-    min-height: 150px;
+   height: 100%;
     width: 100%;
-    border-radius: 20px;
-   
+    border-radius: 0px;
     margin-bottom: 4px;
+    /* border:white solid */
   }
   
   .comment-like {

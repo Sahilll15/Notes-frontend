@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../nviewer.css';
+import { useParams } from 'react-router-dom';
+import {useSelector,useDispatch} from 'react-redux'
+import { getSingleNote } from '../redux/notes/noteActions';
 
-function nviewer() {
+const Nviewer=()=> {
+
+  const dispatch=useDispatch();
+  const {noteId}=useParams();
+  const singlenote=useSelector((state)=>state?.note?.singlenote)
+  useEffect(()=>{
+    dispatch(getSingleNote(
+      noteId
+    ))
+    console.log(singlenote)
+  },[dispatch])
+
+  
+
+  
+    if(!singlenote){
+      return <h1>Loading...</h1>
+    }
+  
+      
   return (
     <>
       <div className="lg:flex md:flex-row" style={{ color: 'white' }}>
         <div className="lg:w-2/3 md:w-full bg-lightgray p-4">
-          {/* Content for the left part */}
           <iframe
-            src="https://drive.google.com/file/d/1TokJiIMWzJFX4NacHEWLTSjRsOg7JeVT/preview"
+            className="iframe"
+            src={singlenote?.file+`#toolbar=0`}
             width="100%"
             height="800"
-            allow="autoplay"
+        
           ></iframe>
         </div>
         <div className="lg:w-1/3 md:w-full bg-darkgray p-4">
@@ -28,17 +50,17 @@ function nviewer() {
                 fill="currentColor"
                 viewBox="0 0 18 18"
               >
-               <path d="M13 20a1 1 0 0 1-.64-.231L7 15.3l-5.36 4.469A1 1 0 0 1 0 19V2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v17a1 1 0 0 1-1 1Z" />
+                <path d="M13 20a1 1 0 0 1-.64-.231L7 15.3l-5.36 4.469A1 1 0 0 1 0 19V2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v17a1 1 0 0 1-1 1Z" />
               </svg>
               <span className="sr-only">Icon description</span>
             </button>
-        
+
             <br />
             <br />
             <br />
             <h1 className="text-2xl font-bold">ADD COMMENTS</h1>
             <br />
-                    <div className="relative flex h-10 w-full min-w-[200px] max-w-[34rem]">
+            <div className="relative flex h-10 w-full min-w-[200px] max-w-[34rem]">
               <input
                 type="email"
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 pr-20 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-white-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -59,15 +81,15 @@ function nviewer() {
               </label>
             </div>
           </div>
-            <br />
-            <div className="relative flex h-80 w-full min-w-[200px] max-w-[34rem] rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 pr-20 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2">
-              Comments appear here
-            </div>
+          <br />
+          <div className="relative flex h-80 w-full min-w-[200px] max-w-[34rem] rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 pr-20 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2">
+            Comments appear here
           </div>
         </div>
-     
+      </div>
+
     </>
   );
 }
 
-export default nviewer;
+export default Nviewer;
