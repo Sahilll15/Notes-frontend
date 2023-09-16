@@ -175,4 +175,61 @@ export const AcceptRejectNotes = createAsyncThunk(
 )
 
 
+//delet note
+
+export const deleteNote = createAsyncThunk(
+    'notes/deleteNote',
+    async (NoteId, { rejectWithValue }) => {
+        try {
+            const response = await axios.delete(`http://localhost:4000/api/v1/notes/deleteNote/${NoteId}`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                console.log(response.data);
+                toast.success(response.data.message);
+                return response.data;
+            } else {
+                console.log('error');
+                toast.error(response.data.message);
+                return rejectWithValue(response.data.message);
+            }
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+)
+
+
+//buy note
+
+export const buyNote = createAsyncThunk(
+    'notes/buyNote',
+    async (NoteId, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(`http://localhost:4000/api/v1/notes/buyNote/${NoteId}`, {}, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                console.log(response.data);
+                toast.success(response.data.message);
+                return response.data;
+            } else {
+                console.log('error');
+                toast.error(response.data.message);
+                return rejectWithValue(response.data.message);
+            }
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+
+)
 

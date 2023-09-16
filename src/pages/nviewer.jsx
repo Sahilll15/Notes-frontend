@@ -16,18 +16,21 @@ const Nviewer=()=> {
     console.log(singlenote)
   },[dispatch])
 
-  if(!singlenote){
-    return <h1>Loading...</h1>
-  }
+  
 
-
-
+  
+    if(!singlenote){
+      return <h1>Loading...</h1>
+    }
+  
+      
   return (
     <>
       <div className="lg:flex md:flex-row" style={{ color: 'white' }}>
         <div className="lg:w-2/3 md:w-full bg-lightgray p-4">
           <iframe
-            src={singlenote?.file}
+            className="iframe"
+            src={singlenote?.file+`#toolbar=0`}
             width="100%"
             height="800"
         

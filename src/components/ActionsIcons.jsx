@@ -1,12 +1,12 @@
 import {GrView } from 'react-icons/gr'
 import {AiFillDelete} from 'react-icons/ai'
 import { useDispatch,useSelector } from 'react-redux';
-import { AcceptRejectNotes ,getNotesAdmin} from '../redux/notes/noteActions';
+import { AcceptRejectNotes ,getNotesAdmin,deleteNote} from '../redux/notes/noteActions';
 
 
 const ActionIcon=({ icon, note })=> {
     const dispatch = useDispatch();
-  
+    const noteAcceptStatusLoading=useSelector((state)=>state.note.noteAcceptStatusLoading)
 
     const HandleAcceptRejectNotes = (id) => async () => {
         await dispatch(AcceptRejectNotes(id));
@@ -18,11 +18,17 @@ const ActionIcon=({ icon, note })=> {
       <div className="flex items-center space-x-2 cursor-pointer hover:text-purple-500 hover:scale-110">
         {icon === 'edit' && <GrView  onClick={
             ()=>{
-                console.log(note)
+                window.open(`http://localhost:4000/`+note.file)
             }
 
         } />}
-        {icon === 'delete' && <AiFillDelete />}
+        {icon === 'delete' && <AiFillDelete
+            onClick={async () => {
+                await dispatch(deleteNote (note._id));
+                await dispatch(getNotesAdmin());
+            }}
+
+        />}
         {icon === 'accept' && (
           <button
             onClick={HandleAcceptRejectNotes(note._id)}
@@ -30,7 +36,10 @@ const ActionIcon=({ icon, note })=> {
               !note?.acceptedStatus ? 'bg-green-500 text-white' : 'bg-red-600 text-white '
             } rounded font-bold`}
           >
-            {note?.acceptedStatus ? 'Reject' : 'Accept'}
+            {note?.acceptedStatus ? 
+            noteAcceptStatusLoading?
+            'Loading...':
+            'Reject' : 'Accept'}
           </button>
         )}
       </div>

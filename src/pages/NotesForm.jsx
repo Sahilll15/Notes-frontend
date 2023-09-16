@@ -52,7 +52,13 @@ const NotesForm = () => {
       [name]: files[0],
     }));
   };
+  const maxDescLength = 20;
 
+  const handleDescChange = (e) => {
+    if (e.target.value.length <= maxDescLength) {
+      onChange(e);
+    }
+  };
 
 
   const handlesubmit =async (e) =>{
@@ -88,6 +94,7 @@ const NotesForm = () => {
     placeholder='Name the note..'
       onChange={onChange}
       name="name"
+      required
     />
   </label>
 </div>
@@ -99,6 +106,7 @@ const NotesForm = () => {
       value={formdata.subject}
       onChange={onChange}
       name="subject"
+      required
     >
       <option value="">Select Subject</option>
       {subjects?.map((data, index) => (
@@ -118,6 +126,7 @@ const NotesForm = () => {
       value={formdata.module}
       onChange={onChange}
       name="module"
+      required
     >
       <option value="">Select Module</option>
       {module.map((data, index) => (
@@ -136,6 +145,7 @@ const NotesForm = () => {
       value={formdata.type}
       onChange={onChange}
       name="type"
+      required
     >
       <option value="">Select Type</option>
       {type.map((data, index) => (
@@ -156,6 +166,7 @@ const NotesForm = () => {
   value={formdata.branch}
   onChange={onChange}
   name="branch"
+  required
 >
   <option value="">Select Branch</option>
   {branches?.map((data, index) => (
@@ -169,18 +180,23 @@ const NotesForm = () => {
   </label>
 </div>
 
-<div className="grid grid-cols-1 space-y-2">
-  <label className="text-sm font-bold text-gray-500 tracking-wide">
-    desc
-    <input
-      type="text"
-      className="text-base w-3/4 p-2 ml-16 border-x border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-      value={formdata.desc}
-      onChange={onChange}
-      name="desc"
-    />
-  </label>
-</div>
+<div className="  w-full space-y-2">
+      <label className="text-sm font-bold text-gray-500 tracking-wide">
+        Desc:
+        <input
+          type="text"
+          className="text-base w-3/4 p-2 ml-16 border-x border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+          value={formdata.desc}
+          onChange={handleDescChange}
+          name="desc"
+          maxLength={maxDescLength} 
+          required
+        />
+        <span className="text-gray-400 text-sm">
+          {formdata.desc.length}/{maxDescLength}
+        </span>
+      </label>
+    </div>
 
 
           <div className="grid grid-cols-1 space-y-2">

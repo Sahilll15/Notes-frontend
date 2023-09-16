@@ -12,6 +12,7 @@ const initialState = {
     error: "",
     success: false,
     token: "",
+
 }
 
 export const authSlice = createSlice({

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getNotes, getFormData, addNote, getNotesAdmin, AcceptRejectNotes, getSingleNote } from "./noteActions";
+import { getNotes, getFormData, addNote, getNotesAdmin, AcceptRejectNotes, getSingleNote, deleteNote, buyNote } from "./noteActions";
 
 const initialState = {
     notes: [],
@@ -15,7 +15,8 @@ const initialState = {
     subjects: [],
     notesAdmin: [],
     singlenote: null,
-    noteAcceptStatusLoading: false
+    noteAcceptStatusLoading: false,
+
 }
 
 
@@ -115,6 +116,39 @@ export const noteSlice = createSlice({
             state.singlenote = action.payload.data;
         }
         ).addCase(getSingleNote.rejected, (state, action) => {
+            state.noteLoading = false;
+            state.noteError = action.payload;
+            state.noteSuccess = false;
+        }
+        )
+
+        builder.addCase(deleteNote.pending, (state, action) => {
+            state.noteLoading = true
+
+        }
+        ).addCase(deleteNote.fulfilled, (state, action) => {
+            state.noteLoading = false
+            state.noteSuccess = true
+            state.singlenote = action.payload.data;
+        }
+        ).addCase(deleteNote.rejected, (state, action) => {
+            state.noteLoading = false;
+            state.noteError = action.payload;
+            state.noteSuccess = false;
+        }
+        )
+
+        //for buying the note
+        builder.addCase(buyNote.pending, (state, action) => {
+            state.noteLoading = true
+
+        }
+        ).addCase(buyNote.fulfilled, (state, action) => {
+            state.noteLoading = false
+            state.noteSuccess = true
+            state.singlenote = action.payload.data;
+        }
+        ).addCase(buyNote.rejected, (state, action) => {
             state.noteLoading = false;
             state.noteError = action.payload;
             state.noteSuccess = false;
