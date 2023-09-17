@@ -2,14 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Nviewer from './pages/Nviewer'
+import Nviewer from './pages/NoteViewer'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Register from './pages/Register';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoutes from './utils/PrivateRoutes';
 import NotesForm from './pages/NotesForm';
-import NotesTable from './pages/NotesTable';
+import AdminPanel from './pages/AdminPanel';
 import OtpForm from './pages/OtpForm';
 import Navbar from './components/Navbar';
 import Profile from './pages/profile';
@@ -41,13 +41,12 @@ const App = () => {
             //loggedinuser routes
             <Route element={<PrivateRoutes />}>
               <Route element={<Home />} path="/" />
-              <Route element={<NotesTable />} path="/notesTable" />
+              <Route element={<AdminPanel />} path="/AdminPanel" />
               <Route element={<Profile />} path="/profile" />
               <Route element={<Nviewer />} path="/nviewer/:noteId" />
               <Route element={<NotesForm />} path="/addnotes" />
               <Route element={<OtpForm />} path="/otpForm" />
             </Route>
-
             //authetication routes
             <Route element={<Login />} path="/login" />
             <Route element={<Register />} path="/register" />

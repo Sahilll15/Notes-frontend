@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { AcceptRejectNotes ,getNotesAdmin,deleteNote} from '../redux/notes/noteActions';
 
 
-const ActionIcon=({ icon, note })=> {
+const ActionIcon=({ icon, note,noteloading })=> {
     const dispatch = useDispatch();
     const noteAcceptStatusLoading=useSelector((state)=>state.note.noteAcceptStatusLoading)
 
@@ -37,7 +37,7 @@ const ActionIcon=({ icon, note })=> {
             } rounded font-bold`}
           >
             {note?.acceptedStatus ? 
-            noteAcceptStatusLoading?
+            noteloading?
             'Loading...':
             'Reject' : 'Accept'}
           </button>

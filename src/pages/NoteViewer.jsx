@@ -18,12 +18,12 @@ const Nviewer=()=> {
 
   
 
-  
     if(!singlenote){
       return <h1>Loading...</h1>
     }
+
+
   
-      
   return (
     <>
       <div className="lg:flex md:flex-row" style={{ color: 'white' }}>

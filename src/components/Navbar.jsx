@@ -21,7 +21,7 @@ const Navbar = () => {
     { label: "Notes", link: "/" },
     { label: "Dashboard", link: "/dashboard" },
     { label: "AddNotes", link: "/addnotes" },
-    { label: "Admin", link: "/notestable" },
+    { label: "Admin", link: "/adminpanel" },
   ];
 
   return (

@@ -7,10 +7,11 @@ import AdminPanelSkeleton from "../components/skeletons/AdminPanelSkeleton";
 const NotesTable = () => {
   const dispatch = useDispatch();
   const notesAdmin = useSelector((state) => state.note.notesAdmin);
-
+  const noteAcceptStatusLoading=useSelector((state)=>state.note.noteAcceptStatusLoading)
   useEffect(() => {
     dispatch(getNotesAdmin());
   }, [dispatch]);
+
 
   return (
     <div className="overflow-x-auto">
@@ -74,12 +75,17 @@ const NotesTable = () => {
                       </td>
                       <td className="py-3 px-6 text-center">
                         <div className="flex gap-4 item-center justify-center">
-                          <ActionIcon icon="edit" note={note} />
-                          <ActionIcon icon="delete" note={note} />
+                          <ActionIcon icon="edit" note={note}
+
+                           />
+                          <ActionIcon icon="delete" note={note} 
+                          
+                          />
                           <ActionIcon
                             icon="accept"
                             status={note?.acceptedStatus}
                             note={note}
+                            noteloading={noteAcceptStatusLoading}
                           />
                         </div>
                       </td>
@@ -96,3 +102,5 @@ const NotesTable = () => {
 };
 
 export default NotesTable;
+
+

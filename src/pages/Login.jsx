@@ -9,11 +9,10 @@ import { useAuth } from '../context/authContext';
 import { useDispatch,useSelector } from "react-redux"
 import { login } from '../redux/auth/authActions';
 
-const host=`https://notesbackend-biux.onrender.com/`;
+
 
 
 const Login = () => {
-    // const { login } = useAuth();
     const dispatch = useDispatch();
     const [formdata,setFormdata]=useState({email:'',password:''})
     const [seepassword,setseepassword]=useState(false)
