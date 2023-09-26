@@ -13,7 +13,7 @@ const NotesTable = () => {
   }, [dispatch]);
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto mt-9">
       <div className="bg-gray-900 min-w-screen min-h-screen flex justify-center font-sans overflow-hidden">
         <div className="w-full lg:w-5/6">
           <div className="bg-white shadow-md rounded my-6">

@@ -7,7 +7,7 @@ import CNS from './images/cns.jpg';
 import IP from './images/IP.png';
 import { useSelector ,useDispatch} from "react-redux";
 import { buyNote,getNotes } from "../redux/notes/noteActions";
-import { get } from "mongoose";
+// import { get } from "mongoose";
 import { getLogedinUser } from "../redux/auth/authActions";
 
 

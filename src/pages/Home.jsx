@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import BookCard from '../components/BookCard'
 import Search from '../components/search'
-
+import QuickFilter from '../components/QuickFilter';
 import { getNotes } from '../redux/notes/noteActions';
 import { useDispatch, useSelector } from 'react-redux';
 import BookCardSkeletion from '../components/skeletons/BookCardSkeletion';
@@ -20,9 +20,10 @@ const Home = () => {
   return (
     <>
    
-      <div className=' bg-gray-200  w-full  z-20 top-0 left-0 border-b border border-solid border-gray-800 dark:border-gray-600 h-screen'>
+      <div className=' w-full  z-20 top-0 left-0 border-b border border-solid border-gray-800 dark:border-gray-600 h-screen'>
         <div className=' text-white container mx-auto mt-3'>
           <Search /><br />
+          <QuickFilter /> 
           <div className='flex flex-wrap justify-center'>
           {
             noteLoading?

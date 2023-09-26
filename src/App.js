@@ -12,7 +12,8 @@ import NotesForm from './pages/NotesForm';
 import NotesTable from './pages/NotesTable';
 import OtpForm from './pages/OtpForm';
 import Navbar from './components/Navbar';
-import Profile from './pages/profile';
+import Profile from './pages/Profile';
+import Dashoboard from './pages/Dashboard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogedinUser } from './redux/auth/authActions';
@@ -33,20 +34,24 @@ const App = () => {
       <Router>
         <ToastContainer />
         //show navbar only if the user is logged initialState
-        {
+        {/* {
           userLoggedIn && <Navbar />
-        }
+        } */}
+        <Navbar />
         <div >
           <Routes>
             //loggedinuser routes
             <Route element={<PrivateRoutes />}>
-              <Route element={<Home />} path="/" />
+              
+            </Route>
+
+            <Route element={<Home />} path="/" />
               <Route element={<NotesTable />} path="/notesTable" />
-              <Route element={<Profile />} path="/profile" />
+              <Route element={<Dashoboard />} path="/dashboard" />
               <Route element={<Nviewer />} path="/nviewer/:noteId" />
               <Route element={<NotesForm />} path="/addnotes" />
               <Route element={<OtpForm />} path="/otpForm" />
-            </Route>
+              <Route element={<Profile />} path="/profile" />
 
             //authetication routes
             <Route element={<Login />} path="/login" />
