@@ -34,9 +34,9 @@ const App = () => {
       <Router>
         <ToastContainer />
         //show navbar only if the user is logged initialState
-        {/* {
+        {
           userLoggedIn && <Navbar />
-        } */}
+        }
         <Navbar />
         <div >
           <Routes>
@@ -48,10 +48,7 @@ const App = () => {
               <Route element={<Nviewer />} path="/nviewer/:noteId" />
               <Route element={<NotesForm />} path="/addnotes" />
               <Route element={<OtpForm />} path="/otpForm" />
-
-
             </Route>
-
             //authetication routes
             <Route element={<Login />} path="/login" />
             <Route element={<Register />} path="/register" />
