@@ -42,16 +42,15 @@ const App = () => {
           <Routes>
             //loggedinuser routes
             <Route element={<PrivateRoutes />}>
+              <Route element={<Home />} path="/" />
+
+              <Route element={<Dashoboard />} path="/dashboard" />
+              <Route element={<Nviewer />} path="/nviewer/:noteId" />
+              <Route element={<NotesForm />} path="/addnotes" />
+              <Route element={<OtpForm />} path="/otpForm" />
+
 
             </Route>
-
-            <Route element={<Home />} path="/" />
-
-            <Route element={<Dashoboard />} path="/dashboard" />
-            <Route element={<Nviewer />} path="/nviewer/:noteId" />
-            <Route element={<NotesForm />} path="/addnotes" />
-            <Route element={<OtpForm />} path="/otpForm" />
-
 
             //authetication routes
             <Route element={<Login />} path="/login" />
