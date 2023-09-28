@@ -6,7 +6,6 @@ import { AcceptRejectNotes ,getNotesAdmin,deleteNote} from '../redux/notes/noteA
 
 const ActionIcon=({ icon, note,noteloading })=> {
     const dispatch = useDispatch();
-    const noteAcceptStatusLoading=useSelector((state)=>state.note.noteAcceptStatusLoading)
 
     const HandleAcceptRejectNotes = (id) => async () => {
         await dispatch(AcceptRejectNotes(id));
@@ -20,15 +19,14 @@ const ActionIcon=({ icon, note,noteloading })=> {
             ()=>{
                 window.open(`http://localhost:4000/`+note.file)
             }
-
         } />}
         {icon === 'delete' && <AiFillDelete
             onClick={async () => {
                 await dispatch(deleteNote (note._id));
                 await dispatch(getNotesAdmin());
             }}
-
         />}
+
         {icon === 'accept' && (
           <button
             onClick={HandleAcceptRejectNotes(note._id)}
@@ -46,6 +44,7 @@ const ActionIcon=({ icon, note,noteloading })=> {
     );
 
 }
+
 
 
 export default ActionIcon
