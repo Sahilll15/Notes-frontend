@@ -26,11 +26,7 @@ const Home = () => {
           <QuickFilter />
           <div className='flex flex-wrap justify-center'>
             {
-              noteLoading ?
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
-                  <BookCardSkeletion key={n} />
-                )) :
-
+              noteLoading ? <BookCardSkeletion /> :
                 notes.length === 0 ? <h1 className='text-black text-2xl'>No Notes To Display</h1> :
 
                   notes?.map((note, index) => (
@@ -38,7 +34,6 @@ const Home = () => {
                   ))
             }
           </div>
-
         </div>
       </div>
     </>
