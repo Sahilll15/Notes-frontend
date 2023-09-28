@@ -24,7 +24,6 @@ const App = () => {
   const userLoggedIn = useSelector((state) => state?.user?.isAuthenticated)
   useEffect(() => {
     dispatch(getLogedinUser())
-
   }, [])
 
 
@@ -33,11 +32,10 @@ const App = () => {
 
       <Router>
         <ToastContainer />
-        //show navbar only if the user is logged initialState
+
         {
-          userLoggedIn && <Navbar />
+          userLoggedIn ? <Navbar /> : null
         }
-        <Navbar />
         <div >
           <Routes>
             //loggedinuser routes
@@ -47,11 +45,12 @@ const App = () => {
               <Route element={<Dashoboard />} path="/dashboard" />
               <Route element={<Nviewer />} path="/nviewer/:noteId" />
               <Route element={<NotesForm />} path="/addnotes" />
-              <Route element={<OtpForm />} path="/otpForm" />
+
             </Route>
             //authetication routes
             <Route element={<Login />} path="/login" />
             <Route element={<Register />} path="/register" />
+            <Route element={<OtpForm />} path="/otpform" />
           </Routes>
         </div>
       </Router >
