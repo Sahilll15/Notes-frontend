@@ -9,6 +9,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { buyNote, getNotes } from "../redux/notes/noteActions";
 // import { get } from "mongoose";
 import { getLogedinUser } from "../redux/auth/authActions";
+import { likeUnlikeNote } from "../redux/likes/likeActions";
+
 
 
 
@@ -22,6 +24,12 @@ const BookCard = ({ note }) => {
     await dispatch(buyNote(noteId));
     await dispatch(getNotes());
   }
+
+  const handlelike = async (noteId) => {
+    await dispatch(likeUnlikeNote(noteId));
+    await dispatch(getNotes());
+  }
+
 
   useEffect(() => {
     dispatch(getLogedinUser())
@@ -63,7 +71,10 @@ const BookCard = ({ note }) => {
 
 
         <div className="comment-like flex justify-around items-center p-2">
-          <span className="cursor-pointer h-40 w-50 p-3 flex items-center justify-center font-bold rounded-2xl bg-transparent hover:bg-purple-300 transition duration-150">
+          <span onClick={() => {
+            handlelike(note?._id)
+          }}
+            className="cursor-pointer h-40 w-50 p-3 flex items-center justify-center font-bold rounded-2xl bg-transparent hover:bg-purple-300 transition duration-150">
             <i className="fa-regular fa-heart fa-xl mx-2"></i>
             {note?.likes?.length || 0}
           </span>

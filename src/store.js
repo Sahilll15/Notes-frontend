@@ -5,6 +5,7 @@ import { noteSlice } from './redux/notes/noteSlice';
 import { coinSlice } from './redux/coins/coinSlice';
 import { todoSlice } from './redux/todo/todoSlice';
 import { commentSlice } from './redux/comments/commentSlice'
+import { likeSlice } from './redux/likes/likeSlice';
 
 
 
@@ -15,7 +16,8 @@ const store = configureStore({
         note: noteSlice.reducer,
         coin: coinSlice.reducer,
         todo: todoSlice.reducer,
-        comment: commentSlice.reducer
+        comment: commentSlice.reducer,
+        like: likeSlice.reducer
     },
     middleware
 })
