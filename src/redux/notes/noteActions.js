@@ -84,8 +84,6 @@ export const getFormData = createAsyncThunk(
 export const addNote = createAsyncThunk(
     'notes/addNote',
     async (data, { rejectWithValue }) => {
-        const { name, desc, file } = data;
-
 
         const formData = new FormData();
 

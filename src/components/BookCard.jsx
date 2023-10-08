@@ -68,7 +68,8 @@ const BookCard = ({ note }) => {
             {note?.likes?.length || 0}
           </span>
           <span className="cursor-pointer h-40 w-50 p-3 flex items-center justify-center font-bold rounded-2xl bg-transparent hover:bg-purple-300 transition duration-150">
-            <i className="fa-regular fa-comment fa-xl mx-2"></i>4
+            <i className="fa-regular fa-comment fa-xl mx-2"></i>
+            {note?.comments?.length || 0}
           </span>
 
 

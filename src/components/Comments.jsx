@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { createComment, getCommentsByNoteId } from '../redux/comments/commentActions';
 
-
-
 const Comments = ({ note }) => {
     const dispatch = useDispatch();
     const [comment, setComment] = useState({
@@ -20,20 +18,14 @@ const Comments = ({ note }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Dispatching createComment action');
-        dispatch(createComment({ comment: comment.comment, noteId: note?._id }));
+        await dispatch(createComment({ comment: comment.comment, noteId: note?._id }));
         setComment({ comment: '' });
-        dispatch(getCommentsByNoteId(note?._id))
+        await dispatch(getCommentsByNoteId(note?._id))
     };
-
 
     useEffect(() => {
         dispatch(getCommentsByNoteId(note?._id))
-    }, [dispatch])
-
-    if (!Array.isArray(commentsById)) {
-        return <h1>Loading...</h1>;
-    }
-
+    }, [dispatch, note])
 
     return (
         <div>
@@ -81,7 +73,18 @@ const Comments = ({ note }) => {
             </div>
             <br />
             <div className="relative h-grow w-full min-w-[200px] max-w-[34rem] rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 pr-20 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-                {commentsById &&
+                {
+                    commentsById.length === 0 ? (
+                        <div className="flex flex-col justify-center items-center">
+                            <h1 className="text-2xl font-bold">No Comments Yet</h1>
+                            <h1 className="text-2xl font-bold">Be the first one to comment</h1>
+                        </div>
+                    ) : (
+                        <div></div>
+                    )
+                }
+
+                {Array.isArray(commentsById) &&
                     commentsById?.map((comment) => (
                         <div key={comment?._id} className="mb-4 p-2 border rounded-lg shadow-md bg-white hover:shadow-lg">
                             <div className="flex flex-row justify-between">
@@ -96,7 +99,6 @@ const Comments = ({ note }) => {
                         </div>
                     ))}
             </div>
-
         </div>
     );
 };
