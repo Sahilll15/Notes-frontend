@@ -5,8 +5,9 @@ import ResetPwd from "../components/Profile/Reset";
 const profile = () => {
   return (
     <div>
-      <MainCard />
+      {/* <MainCard /> */}
       <ResetPwd />
+      
       <br />
     </div>
   );

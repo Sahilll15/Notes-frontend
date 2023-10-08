@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const Reset = () => {
   return (
-    <div className="-mt-28">
+    <div className="-mt-8">
         <center>
       <div className="antialiased w-8/12 ">
         <div className="max-w-full mx-auto my-10 bg-white p-3 rounded-xl border-2 shadow-xl border-gray-300">

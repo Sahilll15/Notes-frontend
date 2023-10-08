@@ -16,6 +16,8 @@ import Dashoboard from './pages/Dashboard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogedinUser } from './redux/auth/authActions';
+import Profile from './pages/Profile';
+import Landing from './pages/Landing';
 
 
 
@@ -51,6 +53,10 @@ const App = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<Register />} path="/register" />
             <Route element={<OtpForm />} path="/otpform" />
+            <Route element={<Profile />} path="/profile" />
+            <Route element={<Landing />} path="/landing" />
+
+
           </Routes>
         </div>
       </Router >
