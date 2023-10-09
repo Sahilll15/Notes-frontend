@@ -1,9 +1,15 @@
 import React from 'react'
 
-const Search = () => {
+const Search = ({ search, setSearch }) => {
+
+  const handlesubmit = (e) => {
+    e.preventDefault()
+    console.log(search)
+  }
+
   return (
     <div  >
-      <form className=' mt-16 '>
+      <form className=' mt-16 ' onSubmit={handlesubmit}>
         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
           Search
         </label>
@@ -31,6 +37,8 @@ const Search = () => {
               id="default-search"
               className="block w-96 p-4  pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" // Smaller input field
               placeholder="Search Notes.."
+              autoComplete="off"
+              onChange={(e) => setSearch(e.target.value)}
             />
             <button
               type="submit"
