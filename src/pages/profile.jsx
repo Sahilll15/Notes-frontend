@@ -1,16 +1,9 @@
-import React from "react";
-import MainCard from "../components/Profile/MainCard";
-import ResetPwd from "../components/Profile/Reset";
+import React from 'react'
 
-const profile = () => {
+const Profile = () => {
   return (
-    <div>
-      {/* <MainCard /> */}
-      <ResetPwd />
-      
-      <br />
-    </div>
-  );
-};
+    <div>Profile</div>
+  )
+}
 
-export default profile;
+export default Profile

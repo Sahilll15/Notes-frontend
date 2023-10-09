@@ -3,6 +3,7 @@ import { useNote } from "../context/notesContext";
 import { useDispatch, useSelector } from "react-redux";
 import { getFormData, addNote } from "../redux/notes/noteActions";
 import { getNotes } from "../redux/notes/noteActions";
+import { toast } from "react-toastify";
 
 const NotesForm = () => {
   const dispatch = useDispatch();
@@ -48,10 +49,42 @@ const NotesForm = () => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
+    
+    if (formdata.name.length < 10) {
+      toast.error("Name must be at least 10 characters long");
+      return;
+    }
+    if (formdata.desc.length < 10) {
+      toast.error("Description must be at least 10 characters long");
+      return;
+    }
+  
+    if (!formdata.subject) {
+      toast.error("Please select a subject");
+      return;
+    }
+  
+    if (!formdata.module) {
+      toast.error("Please select a module");
+      return;
+    }
+  
+    if (!formdata.type) {
+      toast.error("Please select a type");
+      return;
+    }
+  
+    if (!formdata.file) {
+      toast.error("Please upload a file");
+      return;
+    }
+  
     await dispatch(addNote(formdata));
     await dispatch(getNotes());
     console.log(formdata);
   };
+  
+  
 
   useEffect(() => {
     dispatch(getFormData());

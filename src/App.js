@@ -20,6 +20,7 @@ import Profile from './pages/Profile';
 import Landing from './pages/Landing';
 
 import NotesTable from './pages/AdminPanel'
+import SideBar from './components/Sidebar/Sidebar';
 
 
 const App = () => {
@@ -37,7 +38,7 @@ const App = () => {
         <ToastContainer />
 
         {
-          userLoggedIn ? <Navbar /> : null
+          userLoggedIn ? <SideBar /> : null
         }
         <div >
           <Routes>

@@ -24,7 +24,7 @@ const Navbar = () => {
     { label: "AddNotes", link: "/addnotes" },
     { label: "Profile", link: "/profile" },
 
-    { label: "Admin", link: "/notestable" },
+    { label: "Admin", link: "/admin" },
 
   ];
 

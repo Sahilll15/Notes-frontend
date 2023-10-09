@@ -6,6 +6,7 @@ import QuickFilter from '../components/QuickFilter';
 import { getNotes } from '../redux/notes/noteActions';
 import { useDispatch, useSelector } from 'react-redux';
 import BookCardSkeletion from '../components/skeletons/BookCardSkeletion';
+import Alternate from '../components/Layout/Alternate' 
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,14 +20,14 @@ const Home = () => {
 
   return (
     <>
-
+    <Alternate>
       <div className=' w-full  z-20 top-0 left-0 border-b border border-solid border-gray-800 dark:border-gray-600 h-screen'>
-        <div className=' text-white container mx-auto mt-3'>
+        <div className='  container mx-auto mt-3'>
           <Search /><br />
           <QuickFilter />
           <div className='flex flex-wrap justify-center'>
             {
-              noteLoading ? <BookCardSkeletion /> :
+              
                 notes.length === 0 ? <h1 className='text-black text-2xl'>No Notes To Display</h1> :
 
                   notes?.map((note, index) => (
@@ -37,6 +38,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      </Alternate>
     </>
   );
 };
