@@ -3,12 +3,13 @@ import axios from "axios";
 
 
 const authToken = localStorage.getItem('authtoken');
+const host = process.env.REACT_APP_API_HOST;
 
 export const likeUnlikeNote = createAsyncThunk(
     'like/likeUnlikePost',
     async (noteId, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`localhost:4000/api/v1/likes/likeUnlikeNote/${noteId}`, {
+            const response = await axios.post(`${host}/api/v1/likes/likeUnlikeNote/${noteId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'application/json',

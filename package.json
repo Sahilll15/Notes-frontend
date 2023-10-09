@@ -49,4 +49,7 @@
   "devDependencies": {
     "tailwindcss": "^3.3.3"
   }
+  ,
+ 
+  "proxy": "https://notesbackend-biux.onrender.com"
 }

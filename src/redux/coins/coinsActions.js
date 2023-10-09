@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+const host = process.env.REACT_APP_API_HOST;
 
 export const transferCoins = createAsyncThunk(
     'coins/transferCoins',
     async ({ recieverId, coins }, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`http://localhost:4000/api/v1/transfer/transfercoins/${recieverId}`, {
+            const response = await axios.post(`${host}/api/v1/transfer/transfercoins/${recieverId}`, {
                 coins
             }, {
                 headers: {
@@ -33,7 +34,7 @@ export const getTransferCoinsHistory = createAsyncThunk(
     'coins/getTransferCoinsHistory',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/v1/transfer/transfercoins/getAllTransferCoins`, {
+            const response = await axios.get(`${host}/api/v1/transfer/transfercoins/getAllTransferCoins`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
                 }
@@ -61,7 +62,7 @@ export const getTransfercoinsUser = createAsyncThunk(
     'coins/getTransfercoinsUser',
     async (userId, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/v1/transfer/transfercoins/getTransferCoinsByUser/${userId}`, {
+            const response = await axios.get(`${host}/api/v1/transfer/transfercoins/getTransferCoinsByUser/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
                 }
@@ -86,7 +87,7 @@ export const lottery = createAsyncThunk(
     'coins/lottery',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`http://localhost:4000/api/v1/transfer/transfercoins/lottery`, {
+            const response = await axios.post(`${host}/api/v1/transfer/transfercoins/lottery`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
                 }

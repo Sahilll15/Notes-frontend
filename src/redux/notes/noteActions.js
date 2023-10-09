@@ -3,12 +3,13 @@ import axios from 'axios';
 import { toast } from 'react-toastify'
 
 const authToken = localStorage.getItem('authtoken');
+const host = process.env.REACT_APP_API_HOST;
 
 export const getNotes = createAsyncThunk(
     'notes/getNotes',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get('http://localhost:4000/api/v1/notes/', {
+            const response = await axios.get(`${host}/api/v1/notes/`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'application/json',
@@ -34,7 +35,7 @@ export const getSingleNote = createAsyncThunk(
     'notes/getSingleNote',
     async (noteId, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/v1/notes/getSingleNote/${noteId}`, {
+            const response = await axios.get(`${host}/api/v1/notes/getSingleNote/${noteId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'application/json',
@@ -62,7 +63,7 @@ export const getFormData = createAsyncThunk(
     'notes/getFormData',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get('http://localhost:4000/api/v1/notes/getFormData', {
+            const response = await axios.get(`${host}/api/v1/notes/getFormData`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ export const addNote = createAsyncThunk(
         }
 
         try {
-            const response = await axios.post('http://localhost:4000/api/v1/notes/', formData, {
+            const response = await axios.post(`${host}/api/v1/notes/`, formData, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -121,7 +122,7 @@ export const getNotesAdmin = createAsyncThunk(
     'notes/getNotesAdmin',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get('http://localhost:4000/api/v1/notes/getnotesAdmin', {
+            const response = await axios.get(`${host}/api/v1/notes/getnotesAdmin`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'application/json',
@@ -149,7 +150,7 @@ export const AcceptRejectNotes = createAsyncThunk(
     async (NoteId, { rejectWithValue }) => {
 
         try {
-            const response = await axios.put(`http://localhost:4000/api/v1/notes/acceptreject/${NoteId}`, {}, {
+            const response = await axios.put(`${host}/api/v1/notes/acceptreject/${NoteId}`, {}, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'application/json',
@@ -179,7 +180,7 @@ export const deleteNote = createAsyncThunk(
     'notes/deleteNote',
     async (NoteId, { rejectWithValue }) => {
         try {
-            const response = await axios.delete(`http://localhost:4000/api/v1/notes/deleteNote/${NoteId}`, {
+            const response = await axios.delete(`${host}/api/v1/notes/deleteNote/${NoteId}`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'application/json',
@@ -208,7 +209,7 @@ export const buyNote = createAsyncThunk(
     'notes/buyNote',
     async (NoteId, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`http://localhost:4000/api/v1/notes/buyNote/${NoteId}`, {}, {
+            const response = await axios.post(`${host}/api/v1/notes/buyNote/${NoteId}`, {}, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'application/json',
