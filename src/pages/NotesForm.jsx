@@ -49,6 +49,7 @@ const NotesForm = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
     await dispatch(addNote(formdata));
+    await dispatch(getNotes());
     console.log(formdata);
   };
 
@@ -68,18 +69,18 @@ const NotesForm = () => {
         </div>
         <form className="mt-8 space-y-3" onSubmit={handlesubmit}>
           <div className="grid grid-cols-1 space-y-2">
-            {/* <label className="text-sm font-bold text-gray-500 tracking-wide">
-    Name
-    <input
-      type="text"
-      className="text-base w-3/4 p-2 ml-14 border-x border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-      value={formdata.name}
-    placeholder='Name the note..'
-      onChange={onChange}
-      name="name"
-      required
-    />
-  </label> */}
+            <label className="text-sm font-bold text-gray-500 tracking-wide">
+              Name
+              <input
+                type="text"
+                className="text-base w-3/4 p-2 ml-14 border-x border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+                value={formdata.name}
+                placeholder='Name the note..'
+                onChange={onChange}
+                name="name"
+                required
+              />
+            </label>
           </div>
           <div className="grid grid-cols-1 space-y-2">
             <label className="text-sm font-bold text-gray-500 tracking-wide">
