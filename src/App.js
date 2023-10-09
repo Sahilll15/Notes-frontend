@@ -19,6 +19,7 @@ import { getLogedinUser } from './redux/auth/authActions';
 import Profile from './pages/Profile';
 import Landing from './pages/Landing';
 
+import NotesTable from './pages/AdminPanel'
 
 
 const App = () => {
@@ -43,10 +44,12 @@ const App = () => {
             //loggedinuser routes
             <Route element={<PrivateRoutes />}>
               <Route element={<Home />} path="/" />
-
+              <Route element={<NotesTable />} path="/admin" />
               <Route element={<Dashoboard />} path="/dashboard" />
               <Route element={<Nviewer />} path="/nviewer/:noteId" />
               <Route element={<NotesForm />} path="/addnotes" />
+              <Route element={<NotesTable />} path="/admin" />
+
 
             </Route>
             //authetication routes

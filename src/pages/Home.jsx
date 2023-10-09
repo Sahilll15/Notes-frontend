@@ -32,6 +32,7 @@ const Home = () => {
                   notes?.map((note, index) => (
                     <BookCard note={note} key={index} />
                   ))
+              // < BookCardSkeletion />
             }
           </div>
         </div>
