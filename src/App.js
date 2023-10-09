@@ -18,6 +18,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLogedinUser } from './redux/auth/authActions';
 
 import NotesTable from './pages/AdminPanel'
+import Room from './pages/Room';
+import Video from './pages/Video';
 
 
 const App = () => {
@@ -47,6 +49,8 @@ const App = () => {
               <Route element={<Nviewer />} path="/nviewer/:noteId" />
               <Route element={<NotesForm />} path="/addnotes" />
               <Route element={<NotesTable />} path="/admin" />
+              <Route element={<Room />} path="/room/:roomId" />
+              <Route element={<Video />} path="/video/" />
 
 
             </Route>
