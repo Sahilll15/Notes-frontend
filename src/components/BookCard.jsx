@@ -47,9 +47,13 @@ const BookCard = ({ note }) => {
             {note?.name}
           </span>
         </div>
+        <p className="text-gray-400 text-base">
+          Subject : {note?.subject?.name }
+        </p>
         <p className="text-gray-500 text-lg">
           {note?.desc || "No Desc"}
         </p>
+        
         {/* <span className="text-gray-400">by {note.author.username}</span> */}
         <div className="image-preview min-h-48 w-full rounded-full mb-4">
           <img src={note?.subject?.Image} alt="image" className="w-full h-full rounded-lg" />

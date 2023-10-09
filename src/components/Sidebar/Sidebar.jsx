@@ -81,11 +81,11 @@ export const SideBar = () => {
             </div>
           </NavLink>
 
-          <NavLink to={"/chat"}>
+          <NavLink to={"/"}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-people"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                Communities
+                Notes
               </span>
             </div>
           </NavLink>
@@ -101,43 +101,37 @@ export const SideBar = () => {
             </div>
           </NavLink>
 
-          <NavLink to={'/profile'}>
+          <NavLink to={'/addnotes'}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-person-circle"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                My Profile
+                Add notes
               </span>
             </div>
           </NavLink>
-          <NavLink to={"/boost"}>
-            <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-              <i class="bi bi-plus-circle"></i>
-              <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                Boost Post
-              </span>
-            </div>
-          </NavLink>
-          <NavLink to={"/userstatistics"}>
-            <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-              <i class="bi bi-bar-chart"></i>
-              <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                Statistics
-              </span>
-            </div>
-          </NavLink>
-          <NavLink to={"/lend"}>
+         
+          <NavLink to={"/dashboard"}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-piggy-bank-fill"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                Fundraisers
+                Dashboard
               </span>
             </div>
           </NavLink>
-          <NavLink to={"/setting"}>
+          <NavLink to={"/profile"}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-gear"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                Setting
+               Profile
+              </span>
+            </div>
+          </NavLink>
+
+          <NavLink to={"/admin"}>
+            <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+              <i class="bi bi-gear"></i>
+              <span className="text-[15px] ml-4 text-gray-200 font-bold">
+               Admin
               </span>
             </div>
           </NavLink>
