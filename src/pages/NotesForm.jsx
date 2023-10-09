@@ -127,7 +127,7 @@ const NotesForm = () => {
               >
                 <option value="">Select Subject</option>
                 {subjects?.map((data, index) => (
-                  <option key={index} value={data.name}>
+                  <option key={index} value={data._id}>
                     {data.name}
                   </option>
                 ))}

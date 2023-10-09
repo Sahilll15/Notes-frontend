@@ -27,8 +27,8 @@ const Home = () => {
           <QuickFilter />
           <div className='flex flex-wrap justify-center'>
             {
-              
-                notes.length === 0 ? <h1 className='text-black text-2xl'>No Notes To Display</h1> :
+              noteLoading ? <BookCardSkeletion /> :
+                notes.length === 0 ? <h1 className='text-white text-2xl'>No Notes To Display</h1> :
 
                   notes?.map((note, index) => (
                     <BookCard note={note} key={index} />

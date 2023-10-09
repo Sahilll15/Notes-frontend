@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import ADSA from "./images/ADSA.png";
 import DEVEOPS from "./images/DEVEOPS.png";
@@ -7,6 +7,7 @@ import CNS from './images/cns.jpg';
 import IP from './images/IP.png';
 import { useSelector, useDispatch } from "react-redux";
 import { buyNote, getNotes } from "../redux/notes/noteActions";
+
 // import { get } from "mongoose";
 import { getLogedinUser } from "../redux/auth/authActions";
 import { likeUnlikeNote } from "../redux/likes/likeActions";
@@ -20,6 +21,7 @@ const BookCard = ({ note }) => {
   const dispatch = useDispatch();
   const currentuser = useSelector((state) => state?.user?.user);
   const buyNotesLoading = useSelector((state) => state.note.noteLoading)
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   const handleBuyNote = async (noteId) => {
     await dispatch(buyNote(noteId));
@@ -30,6 +32,7 @@ const BookCard = ({ note }) => {
     await dispatch(likeUnlikeNote(noteId));
     await dispatch(getNotes());
   }
+
 
 
   useEffect(() => {
@@ -49,17 +52,7 @@ const BookCard = ({ note }) => {
         </p>
         {/* <span className="text-gray-400">by {note.author.username}</span> */}
         <div className="image-preview min-h-48 w-full rounded-full mb-4">
-          {note.subject === "DEVEOPS" ? (
-            <img src={DEVEOPS} alt="" className="w-full h-full rounded-sm" />
-          ) : note.subject === "SE" ? (
-            <img src={SE} alt="" className="w-full h-full rounded-xl" />
-          ) : note.subject === "CNS" ? (
-            <img src={CNS} alt="" className="w-full h-full rounded-xl" />
-          ) : note.subject === "IP" ? (
-            <img src={IP} alt="" className="w-full h-full rounded-xl" />
-          ) : (
-            <img src={ADSA} alt="" className="w-full h-full rounded-xl" />
-          )}
+          <img src={note?.subject?.Image} alt="image" className="w-full h-full rounded-lg" />
         </div>
         <div className="flex justify-between items-center">
           <span className="datetime text-gray-400">
@@ -100,6 +93,34 @@ const BookCard = ({ note }) => {
             </button>
 
           )}
+
+          {showConfirmationModal && (
+            <div className="fixed inset-0 flex items-center justify-center z-50 ">
+              <div className="bg-white p-8 border border-black rounded-lg shadow-md">
+                <p className="text-lg font-semibold text-black ">
+                  Confirm buy :{note.name}
+                </p>
+
+                <div className="flex justify-end mt-4">
+                  <button
+                    className="px-4 py-2 mr-2 text-gray-600 border  rounded-lg bg-red-500 text-white"
+                    onClick={() => setShowConfirmationModal(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                    onClick={() => {
+                      handleBuyNote(note._id)
+                    }}
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
         </div>
       </div>
     </div>
