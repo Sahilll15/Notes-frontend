@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Alternates from "../components/Layout/Profile";
+import Alternates from "../components/Layout/Boost";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
@@ -13,7 +13,7 @@ const Profile = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        const firstThreeRepos = data.slice(0, 3);
+        const firstThreeRepos = data.slice(0, 1);
         setRepositories(firstThreeRepos);
         setLoading(false);
       })
