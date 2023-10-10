@@ -3,6 +3,8 @@ import { useNote } from "../context/notesContext";
 import { useDispatch, useSelector } from "react-redux";
 import { getFormData, addNote } from "../redux/notes/noteActions";
 import { getNotes } from "../redux/notes/noteActions";
+import { toast } from "react-toastify";
+import Alternates from "../components/Layout/MainLayout"
 
 const NotesForm = () => {
   const dispatch = useDispatch();
@@ -48,10 +50,42 @@ const NotesForm = () => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
+    
+    if (formdata.name.length < 10) {
+      toast.error("Name must be at least 10 characters long");
+      return;
+    }
+    if (formdata.desc.length < 10) {
+      toast.error("Description must be at least 10 characters long");
+      return;
+    }
+  
+    if (!formdata.subject) {
+      toast.error("Please select a subject");
+      return;
+    }
+  
+    if (!formdata.module) {
+      toast.error("Please select a module");
+      return;
+    }
+  
+    if (!formdata.type) {
+      toast.error("Please select a type");
+      return;
+    }
+  
+    if (!formdata.file) {
+      toast.error("Please upload a file");
+      return;
+    }
+  
     await dispatch(addNote(formdata));
     await dispatch(getNotes());
     console.log(formdata);
   };
+  
+  
 
   useEffect(() => {
     dispatch(getFormData());
@@ -59,9 +93,9 @@ const NotesForm = () => {
   }, [dispatch]);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 bg-no-repeat bg-cover relative items-center">
-      <div className="absolute bg-black opacity-60 inset-0 z-0"></div>
-      <div className="sm:max-w-screen-lg w-full p-10 bg-white rounded-xl z-10">
+    <Alternates>
+    <div className="relative min-h-screen flex  items-center justify-center  py-12 px-4 sm:px-6 lg:px-8  bg-no-repeat bg-cover relative items-center">
+      <div className="absolute g w-full p-10 bg-white  z-10">
         <div className="text-center">
           <h2 className="mt-5 text-3xl font-bold text-gray-900">
             Add Notes & Contribute to the Community!!
@@ -234,6 +268,7 @@ const NotesForm = () => {
         </form>
       </div>
     </div>
+    </Alternates>
   );
 };
 

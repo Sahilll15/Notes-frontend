@@ -12,15 +12,17 @@ import NotesForm from './pages/NotesForm';
 import OtpForm from './pages/OtpForm';
 import Navbar from './components/Navbar';
 
-import Dashoboard from './pages/Dashboard';
+import Dashoboard from './pages/Newdashboard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogedinUser } from './redux/auth/authActions';
+import Profile from './pages/Profile';
+import Landing from './pages/Landing';
 
 import NotesTable from './pages/AdminPanel'
+import SideBar from './components/Sidebar/Sidebar';
 import Room from './pages/Room';
 import Video from './pages/Video';
-
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,7 +39,7 @@ const App = () => {
         <ToastContainer />
 
         {
-          userLoggedIn ? <Navbar /> : null
+          userLoggedIn ? <SideBar /> : null
         }
         <div >
           <Routes>
@@ -58,6 +60,10 @@ const App = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<Register />} path="/register" />
             <Route element={<OtpForm />} path="/otpform" />
+            <Route element={<Profile />} path="/profile" />
+            <Route element={<Landing />} path="/landing" />
+
+
           </Routes>
         </div>
       </Router >

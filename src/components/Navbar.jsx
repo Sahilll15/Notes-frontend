@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "./Navbar.css"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -102,7 +103,7 @@ const Navbar = () => {
         id="bottom-navigation"
         className="block fixed inset-x-0 bottom-0 z-10 mt-5 bg-white shadow"
       >
-        <div id="tabs" className="flex justify-between mx-5">
+        <div id="tabs" className="flex justify-between mx-5 mbtn">
           <NavLink to={'/'}>
             <div
 
