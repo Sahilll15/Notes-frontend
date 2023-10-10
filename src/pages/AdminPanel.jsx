@@ -3,6 +3,7 @@ import { getNotesAdmin } from "../redux/notes/noteActions";
 import { useDispatch, useSelector } from "react-redux";
 import ActionIcon from "../components/ActionsIcons";
 import AdminPanelSkeleton from "../components/skeletons/AdminPanelSkeleton";
+import MainLayout from "../components/Layout/MainLayout";
 
 const NotesTable = () => {
   const dispatch = useDispatch();
@@ -14,9 +15,10 @@ const NotesTable = () => {
 
 
   return (
+    <MainLayout>
     <div className="overflow-x-auto ">
-      <div className="bg-gray-900 min-w-screen min-h-screen flex justify-center font-sans overflow-hidden">
-        <div className="w-full lg:w-5/6">
+      <div className="bg-white min-h-screen flex  font-sans overflow-hidden">
+        <div className="min-w-full lg:w-5/6">
           <div className="bg-white shadow-md rounded my-6 mt-20">
             <table className="min-w-max w-full table-auto">
               <thead>
@@ -96,8 +98,8 @@ const NotesTable = () => {
         </div>
       </div>
     </div>
+    </MainLayout>
   );
 };
 
 export default NotesTable;
-
