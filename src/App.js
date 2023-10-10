@@ -24,7 +24,6 @@ import SideBar from './components/Sidebar/Sidebar';
 import Room from './pages/Room';
 import Video from './pages/Video';
 
-import SideBar from './components/Sidebar/Sidebar';
 const App = () => {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector((state) => state?.user?.isAuthenticated)
