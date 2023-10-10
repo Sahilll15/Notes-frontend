@@ -25,6 +25,7 @@ const Navbar = () => {
     { label: "Profile", link: "/profile" },
 
     { label: "Admin", link: "/admin" },
+    { label: "Video", link: "/Video" },
 
   ];
 

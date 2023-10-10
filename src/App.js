@@ -21,8 +21,10 @@ import Landing from './pages/Landing';
 
 import NotesTable from './pages/AdminPanel'
 import SideBar from './components/Sidebar/Sidebar';
+import Room from './pages/Room';
+import Video from './pages/Video';
 
-
+import SideBar from './components/Sidebar/Sidebar';
 const App = () => {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector((state) => state?.user?.isAuthenticated)
@@ -50,6 +52,8 @@ const App = () => {
               <Route element={<Nviewer />} path="/nviewer/:noteId" />
               <Route element={<NotesForm />} path="/addnotes" />
               <Route element={<NotesTable />} path="/admin" />
+              <Route element={<Room />} path="/room/:roomId" />
+              <Route element={<Video />} path="/video/" />
 
 
             </Route>

@@ -29,7 +29,8 @@ const Nviewer = () => {
     <>
       <div className="lg:flex md:flex-row" style={{ color: 'white' }}>
         <div className="lg:w-2/3 md:w-full bg-lightgray p-4">
-          <h1 className="text-3xl font-bold mt-10">{singlenote?.name}-by {singlenote?.author?.username}</h1>
+          <h1 className="text-3xl font-bold mt-10 text-center">{singlenote?.name} </h1>
+          <h3 className="text-3xl font-bold text-center">-by {singlenote?.author?.username}</h3>
 
           <iframe
             className="iframe mt-10"
