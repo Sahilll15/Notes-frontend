@@ -7,17 +7,17 @@ import AdminPanelSkeleton from "../components/skeletons/AdminPanelSkeleton";
 const NotesTable = () => {
   const dispatch = useDispatch();
   const notesAdmin = useSelector((state) => state.note.notesAdmin);
-  const noteAcceptStatusLoading=useSelector((state)=>state.note.noteAcceptStatusLoading)
+  const noteAcceptStatusLoading = useSelector((state) => state.note.noteAcceptStatusLoading)
   useEffect(() => {
     dispatch(getNotesAdmin());
   }, [dispatch]);
 
 
   return (
-    <div className="overflow-x-auto mt-9">
+    <div className="overflow-x-auto ">
       <div className="bg-gray-900 min-w-screen min-h-screen flex justify-center font-sans overflow-hidden">
         <div className="w-full lg:w-5/6">
-          <div className="bg-white shadow-md rounded my-6">
+          <div className="bg-white shadow-md rounded my-6 mt-20">
             <table className="min-w-max w-full table-auto">
               <thead>
                 <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -41,15 +41,15 @@ const NotesTable = () => {
                       key={note._id}
                     >
                       <td className="py-3 px-6 text-center whitespace-nowrap">
+                        <td className="py-3 px-6 text-center">
+                          <div className="flex items-center justify-center">
+                            <span>{note?.author?.username}</span>
+                          </div>
+                        </td>
+                      </td>
                       <td className="py-3 px-6 text-center">
                         <div className="flex items-center justify-center">
-                          <span>{note?.author?.username}</span>
-                        </div>
-                      </td>
-                      </td>
-                      <td className="py-3 px-6 text-center">
-                        <div className="flex items-center justify-center">
-                          <span>{note.subject}</span>
+                          <span>{note?.subject?.name || ""}</span>
                         </div>
                       </td>
                       <td className="py-3 px-6 text-center">
@@ -64,11 +64,9 @@ const NotesTable = () => {
                       </td>
                       <td className="py-3 px-6 text-center">
                         <span
-                          className={`bg-${
-                            note.acceptedStatus ? "green" : "red"
-                          }-200 text-${
-                            note.acceptedStatus ? "green" : "red"
-                          }-600 py-1 px-3 rounded-full text-xs`}
+                          className={`bg-${note.acceptedStatus ? "green" : "red"
+                            }-200 text-${note.acceptedStatus ? "green" : "red"
+                            }-600 py-1 px-3 rounded-full text-xs`}
                         >
                           {note.acceptedStatus ? "Accepted" : "Not Accepted"}
                         </span>
@@ -77,9 +75,9 @@ const NotesTable = () => {
                         <div className="flex gap-4 item-center justify-center">
                           <ActionIcon icon="edit" note={note}
 
-                           />
-                          <ActionIcon icon="delete" note={note} 
-                          
+                          />
+                          <ActionIcon icon="delete" note={note}
+
                           />
                           <ActionIcon
                             icon="accept"
@@ -102,5 +100,4 @@ const NotesTable = () => {
 };
 
 export default NotesTable;
-
 
