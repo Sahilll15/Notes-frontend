@@ -23,6 +23,7 @@ import NotesTable from './pages/AdminPanel'
 import SideBar from './components/Sidebar/Sidebar';
 import Room from './pages/Room';
 import Video from './pages/Video';
+import Notification from './pages/Notification';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const App = () => {
               <Route element={<NotesTable />} path="/admin" />
               <Route element={<Room />} path="/room/:roomId" />
               <Route element={<Video />} path="/video/" />
+              <Route element={<Notification />} path="/notification" />
 
 
             </Route>
