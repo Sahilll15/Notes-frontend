@@ -55,7 +55,7 @@ const BookCard = ({ note }) => {
         </p>
         
         {/* <span className="text-gray-400">by {note.author.username}</span> */}
-        <div className="image-preview min-h-48 w-full rounded-full mb-4">
+        <div className="image-preview max-h-36 max-w-36 rounded-full mb-4">
           <img src={note?.subject?.Image} alt="image" className="w-full h-full rounded-lg" />
         </div>
         <div className="flex justify-between items-center">
