@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Alternate from '../components/Layout/Alternate';
+import Alternates from '../components/Layout/Profile';
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
@@ -26,7 +26,7 @@ const Profile = () => {
 
   return (
     <>
-      <Alternate>
+      <Alternates className='w-full'>
         <div className="bg-white w-full flex flex-col md:flex-row items-center transform rotate-x-2">
           <img src="https://safesiren.vercel.app/static/media/login.665ff9176f5ac11ac2e6.png" style={{ width: '20%' }} className="w-15 mb-4 md:mb-0" alt="" />
           <div className="flex-grow p-4 text-center md:text-left ml-5">
@@ -55,10 +55,15 @@ const Profile = () => {
          </div>
          
           ))}
+<br/>
 
-          <a href="https://github.com/yourusername" className="bg-blue-500 mt-3 text-white px-4 py-2 rounded-full hover:bg-blue-700">Go to GitHub</a>
+<button class="cursor-pointer inline-flex items-center rounded-full 
+px-9 py-3 text-xl font-mono font-semibold text-rose-600 hover:text-white border-2 border-rose-600 hover:bg-rose-600 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-75 duration-300 focus:bg-transparent focus:text-rose-600">
+  Button
+</button>
+
         </div>
-      </Alternate>
+      </Alternates>
     </>
   );
 }

@@ -101,4 +101,3 @@ const NotesTable = () => {
 
 export default NotesTable;
 
-

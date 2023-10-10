@@ -12,7 +12,7 @@ import NotesForm from './pages/NotesForm';
 import OtpForm from './pages/OtpForm';
 import Navbar from './components/Navbar';
 
-import Dashoboard from './pages/Dashboard';
+import Dashoboard from './pages/Newdashboard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogedinUser } from './redux/auth/authActions';
