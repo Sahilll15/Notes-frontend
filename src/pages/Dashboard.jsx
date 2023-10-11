@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { getUserInfo, getUsersLeaderBoard } from "../redux/user/userActions";
 import { useDispatch, useSelector } from "react-redux";
+import Alternates from "../components/Layout/Boost"
+
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -24,7 +26,8 @@ const Profile = () => {
 
 
   return (
-    <div className="bg-black">
+    <Alternates>
+    {/* <div className="bg-black"> */}
       <div>
 
 
@@ -121,7 +124,8 @@ const Profile = () => {
           </center>
         </div>
       </div>
-    </div>
+    {/* </div> */}
+    </Alternates>
   );
 }
 

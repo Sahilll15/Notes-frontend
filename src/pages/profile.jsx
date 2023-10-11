@@ -47,8 +47,9 @@ const Profile = () => {
 
     return (
         <>
-            <Alternates className="w-full">
-                <div className="bg-white w-full flex flex-col md:flex-row items-center transform rotate-x-2 mt-5 border border-black rounded-lg">
+            <Alternates className=" ">
+                <div className="">
+                <div className="bg-white  w-full flex flex-col md:flex-row items-center transform rotate-x-2 mt-5 border border-black rounded-lg">
                     <img
                         src={profileImage}
                         style={{ width: "20%" }}
@@ -125,6 +126,7 @@ const Profile = () => {
                             </Link>
                         </button>
                     </center>
+                </div>
                 </div>
             </Alternates>
         </>
