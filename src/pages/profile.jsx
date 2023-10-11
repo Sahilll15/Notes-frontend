@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Alternates from "../components/Layout/Boost";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Edit from "../components/Profile/EditProfile";
 
 const Profile = () => {
@@ -67,7 +67,7 @@ const Profile = () => {
           <div className="flex-grow p-4 text-center md:text-left ml-5">
             <h2 className="text-xl font-bold mb-2 text-right">
               
-                <button >Edit</button>
+         <NavLink>  <button >Edit</button></NavLink>     
               
             </h2>
             <h2 className="text-xl font-bold mb-2">User Name</h2>
