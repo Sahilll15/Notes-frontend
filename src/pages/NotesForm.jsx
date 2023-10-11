@@ -94,7 +94,7 @@ const NotesForm = () => {
 
   return (
     <Alternates>
-    <div className="relative min-h-screen flex  items-center justify-center  py-12 px-4 sm:px-6 lg:px-8  bg-no-repeat bg-cover relative items-center">
+    <div className="relative min-h-screen flex  items-center justify-center  py-12 px-4 sm:px-6 lg:px-8  bg-no-repeat bg-cover ">
       <div className="absolute g w-full p-10 bg-white  z-10">
         <div className="text-center">
           <h2 className="mt-5 text-3xl font-bold text-gray-900">
