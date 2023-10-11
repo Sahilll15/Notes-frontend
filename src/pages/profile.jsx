@@ -2,43 +2,40 @@ import React, { useEffect, useState } from "react";
 import Alternates from "../components/Layout/Boost";
 import { Link, NavLink } from "react-router-dom";
 import Edit from "../components/Profile/EditProfile";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
     const [repositories, setRepositories] = useState([]);
     const [loading, setLoading] = useState(true);
+    const user = useSelector((state) => state?.user?.user)
+
 
     const [githubLink, setGithubLink] = useState(
         "https://github.com/yourusername"
     );
     const [profileImage, setProfileImage] = useState(
-        "https://safesiren.vercel.app/static/media/login.665ff9176f5ac11ac2e6.png"
+        user?.profile
     );
 
-    useEffect(() => {
-        const githubUsername = "adityashah7867";
-        fetch(
-            `https://api.github.com/users/${githubUsername}/repos?sort=created&direction=desc`
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                setRepositories(data);
-                setLoading(false);
-            })
-            .catch((error) => console.error("Error fetching repositories:", error));
-    }, []);
+    const fetchRepos = async () => {
+        const githubUsername = user?.githubUsername;
+        try {
+            const response = await fetch(
+                `https://api.github.com/users/${githubUsername}/repos?sort=created&direction=desc`
+            )
+            const data = await response.json()
+            const firstThreeRepos = data.slice(0, 3);
+            setRepositories(firstThreeRepos);
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
 
     useEffect(() => {
-        const githubUsername = "adityashah7867";
-        fetch(
-            `https://api.github.com/users/${githubUsername}/repos?sort=created&direction=desc`
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                const firstThreeRepos = data.slice(0, 3);
-                setRepositories(firstThreeRepos);
-                setLoading(false);
-            })
-            .catch((error) => console.error("Error fetching repositories:", error));
+        fetchRepos();
     }, []);
 
     if (loading) {
@@ -50,9 +47,9 @@ const Profile = () => {
             <Alternates className="w-full">
                 <div className="bg-white w-full flex flex-col md:flex-row items-center transform rotate-x-2 mt-5 border border-black rounded-lg">
                     <img
-                        src={profileImage}
+                        src={user?.profile}
                         style={{ width: "20%" }}
-                        className="w-15 mb-4 md:mb-0"
+                        className="w-15 mb-4 md:mb-0 border border-black "
                         alt=""
                     />
 
@@ -60,17 +57,17 @@ const Profile = () => {
                         <h2 className="text-xl font-bold mb-2 text-right">
                             <NavLink>
                                 {" "}
-                                <button>Edit</button>
+                                <NavLink to={'/setting'}>Edit</NavLink>
                             </NavLink>
                         </h2>
                         <h2 className="text-xl font-bold mb-2">User Name</h2>
-                        <p>name</p>
+                        <p>{user?.username}</p>
                         <h2 className="text-xl font-bold mt-4 mb-2">Email</h2>
-                        <p>email</p>
+                        <p>{user?.email}</p>
                         <h2 className="text-xl font-bold mt-4 mb-2">Github</h2>
                         <p>
-                            <a href={githubLink} className="text-blue-500">
-                                {githubLink}
+                            <a href={`https://github.com/${user?.githubUsername}`} className="text-blue-500">
+                                {`https://github.com/${user?.githubUsername}`}
                             </a>
                         </p>
                     </div>
@@ -84,15 +81,26 @@ const Profile = () => {
                     <h2 className="text-xl font-bold mb-4">Your Github Repositories</h2>
 
                     <br />
-                    {repositories.map((repo) => (
+                    {
+                        repositories.length === 0 && <h1 className="text-xl mr-4 text-left ml-16 text-center">
+                            No Repositories maybe the username is wrong
+                        </h1>
+
+                    }
+                    {repositories?.map((repo) => (
                         <div className=" rounded-lg border-2 border-black mt-2">
                             <div key={repo.id} className=" px-2  flex items-center">
                                 <img
                                     src={repo.owner.avatar_url}
                                     alt={repo.owner.login}
-                                    className="w-10 h-10 rounded-full ml-9o"
+                                    className="w-10 h-10 rounded-full border border-black"
                                 />
-                                <h1 className="text-lg mr-4 ml-3">{repo.full_name}</h1>
+                                <a href="/">
+                                    <h1 className="text-lg mr-4 ml-3">{repo.name}</h1>
+                                </a>
+
+
+
                                 <button class="flex gap-3 mt-6 ml-auto cursor-pointer text-white font-semibold bg-gradient-to-r from-gray-800 to-black px-7 py-3 rounded-full border border-gray-600 hover:scale-105 duration-200 hover:text-gray-500 hover:border-gray-800 hover:from-black hover:to-gray-900">
                                     <svg
                                         viewBox="0 0 24 24"
@@ -107,10 +115,9 @@ const Profile = () => {
                                     </svg>
                                     Go To Repo
                                 </button>
+
                             </div>
-                            <h1 className="text-xl mr-4 text-left ml-16">
-                                {repo.description}
-                            </h1>
+
 
                             <br />
                         </div>

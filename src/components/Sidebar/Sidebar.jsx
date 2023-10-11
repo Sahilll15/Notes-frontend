@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
-
+import { useSelector } from "react-redux";
 
 export const SideBar = () => {
 
-  
+  const user = useSelector((state) => state.user.user)
+
 
 
 
@@ -23,8 +24,8 @@ export const SideBar = () => {
           <div className="text-gray-100 text-xl">
             <div className="p-2.5 mt-1 flex items-center">
               <img
-                
-                src="https://safesiren.vercel.app/static/media/login.665ff9176f5ac11ac2e6.png"
+
+                src={user?.profile}
 
                 className='w-[40px] h-[40px] rounded-full border'
 
@@ -32,7 +33,7 @@ export const SideBar = () => {
               />
               <h1 className="font-bold text-gray-200 text-[15px] ml-3">
                 <div className="flex-col">
-                  <p> USER</p>
+                  <p> {user?.username}</p>
                 </div>
               </h1>
             </div>
@@ -96,7 +97,7 @@ export const SideBar = () => {
               <span className='text-[15px] ml-4 font-bold text-gray-200'>
                 Important Dates
               </span>
-             
+
             </div>
           </NavLink>
 
@@ -108,7 +109,7 @@ export const SideBar = () => {
               </span>
             </div>
           </NavLink>
-         
+
           <NavLink to={"/dashboard"}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-piggy-bank-fill"></i>
@@ -121,7 +122,7 @@ export const SideBar = () => {
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-gear"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
-               Profile
+                Profile
               </span>
             </div>
           </NavLink>
@@ -130,19 +131,28 @@ export const SideBar = () => {
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-gear"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
-               Admin
+                Admin
               </span>
+            </div>
+          </NavLink>
+          <NavLink to={'/setting'}>
+            <div className='p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-500'>
+              <i class="bi bi-bell"></i>
+              <span className='text-[15px] ml-4 font-bold text-gray-200'>
+                Settings
+              </span>
+
             </div>
           </NavLink>
 
           <div className="my-4 bg-gray-600 h-[1px]" />
 
-          
 
-          
+
+
           <div
             className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-            
+
           >
             <i className="bi bi-box-arrow-in-right" />
             <span className="text-[15px] ml-4 text-gray-200 font-bold">
