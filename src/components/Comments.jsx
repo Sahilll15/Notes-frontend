@@ -30,24 +30,31 @@ const Comments = ({ note }) => {
     return (
         <div>
             <div className="second">
-                <form onSubmit={handleSubmit}>
-                    <button
-                        type="submit"
-                        className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
-                    >
-                        <svg
-                            className="w-5 h-5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor"
-                            viewBox="0 0 18 18"
-                        >
-                            <path d="M13 20a1 1 0 0 1-.64-.231L7 15.3l-5.36 4.469A1 1 0 0 1 0 19V2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v17a1 1 0 0 1-1 1Z" />
-                        </svg>
-                        <span className="sr-only">Icon description</span>
-                    </button>
+                
+            <div className="flex">
+  <button
+    type="submit"
+    className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
+  >
+    <img width="48" height="48" src="https://img.icons8.com/color/48/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>
+    <span className="sr-only">Icon description</span>
+  </button>
+
+  <button
+    type="submit"
+    className="text-red-700 border border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800 dark:hover:bg-red-500"
+  >
+   <img width="64" height="64" src="https://img.icons8.com/arcade/64/facebook-like.png" alt="facebook-like"/>
+    <span className="sr-only">Like</span>
+  </button>
+</div>
+
+                  
+
+
+                    <form onSubmit={handleSubmit}>
                     <br />
-                    <br />
+               
                     <br />
                     <h1 className="text-2xl font-bold">ADD COMMENTS</h1>
                     <br />

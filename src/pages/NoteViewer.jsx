@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { getSingleNote } from '../redux/notes/noteActions';
 import Comments from '../components/Comments';
+import Alternates from "../components/Layout/HomeLay"
 
 const Nviewer = () => {
 
@@ -26,11 +27,11 @@ const Nviewer = () => {
 
 
   return (
-    <>
-      <div className="lg:flex md:flex-row" style={{ color: 'white' }}>
+    <Alternates >
+      <div className="lg:flex md:flex-row -mt-16" style={{ color: 'white' }}>
         <div className="lg:w-2/3 md:w-full bg-lightgray p-4">
-          <h1 className="text-3xl font-bold mt-10 text-center">{singlenote?.name} </h1>
-          <h3 className="text-3xl font-bold text-center">-by {singlenote?.author?.username}</h3>
+          <h1 className="text-3xl font-bold mt-10 text-left">{singlenote?.name} </h1>
+          <h3 className="text-3xl font-bold text-left">-by {singlenote?.author?.username}</h3>
 
           <iframe
             className="iframe mt-10"
@@ -46,7 +47,7 @@ const Nviewer = () => {
         </div>
       </div>
 
-    </>
+    </Alternates>
   );
 }
 

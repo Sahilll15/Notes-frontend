@@ -6,7 +6,7 @@ import QuickFilter from '../components/QuickFilter';
 import { getNotes } from '../redux/notes/noteActions';
 import { useDispatch, useSelector } from 'react-redux';
 import BookCardSkeletion from '../components/skeletons/BookCardSkeletion';
-import Alternate from '../components/Layout/Alternate' 
+import Alternate from '../components/Layout/HomeLay' 
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,8 +29,8 @@ const Home = () => {
   return (
     <>
     <Alternate>
-      <div className=' w-full -mt-16 z-20 top-0 left-0 border border-5 border-solid ml-0 sm:ml-0  lg:ml-16 border-red-500 h-screen'>
-        <div className='  container mx-auto mt-3'>
+      <div className=' w-full  z-20 top-0 left-0  mt-5 ml-0 sm:ml-0  lg:-ml-16  h-screen'>
+        <div className='  container mx-auto '>
           <Search /><br />
           <QuickFilter />
           <div className='flex flex-wrap justify-center'>
