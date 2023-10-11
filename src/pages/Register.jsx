@@ -6,19 +6,20 @@ import logo from '../logoOld.png'
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from '../context/authContext';
 import { register } from '../redux/auth/authActions';
-import { useDispatch,useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 
 
 const Register = () => {
   const dispatch = useDispatch();
-  const isloading=useSelector((state)=>state?.user?.loading)
-  
+  const isloading = useSelector((state) => state?.user?.loading)
+
   const [formdata, setFormdata] = useState({
     username: '',
     email: '',
     password: '',
     cpassword: '',
+    Department: ''
   });
 
   const [seepasword, setseepassword] = useState(false);
@@ -58,9 +59,9 @@ const Register = () => {
       //   setFormdata({ username: '', email: '', password: '', cpassword: '' });
       // }
       // else {
-        //
-        dispatch(register(formdata));
-    
+      //
+      dispatch(register(formdata));
+
     }
     catch (error) {
       const errorMessage = error.response?.data?.message || 'User registration failed!';
@@ -73,7 +74,7 @@ const Register = () => {
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-blue-900 dark:text-blue-500 text-4xl">
-            <img src={logo} alt="" style={{width:'250px',height:'130px'}}/>
+            <img src={logo} alt="" style={{ width: '250px', height: '130px' }} />
             NotesBeta
           </a>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -112,6 +113,28 @@ const Register = () => {
                     required
                   />
                 </div>
+                <div>
+                  <label htmlFor="Department" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Department
+                  </label>
+                  <select
+                    onChange={onChange}
+                    name="Department"
+                    id="Department"
+                    value={formdata.Department}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
+                  >
+                    <option value="">Select a Department</option>
+                    <option value="IT">IT</option>
+                    <option value="COMPS">COMPS</option>
+                    <option value="CSE">CSE</option>
+                    <option value="CIVIL">CIVIL</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CIVIL">AIDS</option>
+                  </select>
+                </div>
+
                 <div>
                   <label htmlhtmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Password
@@ -157,7 +180,7 @@ const Register = () => {
                       </label>
                     </div>
                   </div>
-                
+
                 </div>
                 <button
                   type="submit"
@@ -182,7 +205,7 @@ const Register = () => {
       <ToastContainer />
 
 
-</div>
+    </div>
   );
 };
 

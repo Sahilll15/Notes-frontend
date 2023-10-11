@@ -6,17 +6,17 @@ import PasswordResetForm from '../components/PasswordResetForm';
 import { NavLink } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useAuth } from '../context/authContext';
-import {resetPassword} from '../redux/auth/authActions'
-import { useDispatch,useSelector } from 'react-redux';
+import { resetPassword } from '../redux/auth/authActions'
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
 const OtpForm = () => {
   const { sendOtp } = useAuth();
-  const dispatch=useDispatch();
-  
+  const dispatch = useDispatch();
+
   const [formdata, setFormdata] = useState({ email: '' });
-  const [otpSent, setOtpSent] = useState(false); 
+  const [otpSent, setOtpSent] = useState(false);
   const onChange = (e) => {
     setFormdata({ ...formdata, [e.target.name]: e.target.value });
   };
@@ -24,12 +24,12 @@ const OtpForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const success=await sendOtp(formdata.email);
+    const success = await sendOtp(formdata.email);
     dispatch(resetPassword);
-    if(success){
+    if (success) {
       setOtpSent(true);
     }
-    else{
+    else {
       toast.error('OTP sending failed!');
     }
   };
@@ -47,7 +47,7 @@ const OtpForm = () => {
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              {otpSent ? 'Reset Password' : 'Reset Password OTP'}
+                {otpSent ? 'Reset Password' : 'Reset Password OTP'}
               </h1>
               {!otpSent ? (
                 <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
@@ -71,17 +71,17 @@ const OtpForm = () => {
                   >
                     Send OTP
                   </button>
-             
-                 
-                
+
+
+
                 </form>
               ) : (
                 <PasswordResetForm email={formdata.email} />
               )}
               <NavLink to="/login" className="lg:mt-9 flex items-center font-medium text-blue-800 text-primary-600 hover:underline dark:text-primary-500">
-      <FaArrowLeft size={12} style={{ marginRight: '8px' }} />
-      Go Back
-    </NavLink>
+                <FaArrowLeft size={12} style={{ marginRight: '8px' }} />
+                Go Back
+              </NavLink>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-import { getUserInfo, getUsersLeaderBoard } from './userActions'
+import { getUserInfo, getUsersLeaderBoard, getUserProfile, editProfile } from './userActions'
 
 const initialState = {
     userDetails: {},
@@ -44,6 +44,39 @@ export const userSlice = createSlice({
             state.userDetailsLoading = false;
             state.error = action.payload;
         })
+
+        builder.addCase(getUserProfile.pending, (state, action) => {
+            state.userDetailsLoading = true;
+        })
+
+        builder.addCase(getUserProfile.fulfilled, (state, action) => {
+            state.userDetailsLoading = false;
+            state.userDetails = action.payload;
+        })
+
+        builder.addCase(getUserProfile.rejected, (state, action) => {
+            state.userDetailsLoading = false;
+            state.error = action.payload;
+        })
+
+
+        //edit profile redux 
+        builder.addCase(editProfile.pending, (state, action) => {
+            state.userDetailsLoading = true;
+        })
+
+        builder.addCase(editProfile.fulfilled, (state, action) => {
+            state.userDetailsLoading = false;
+            state.userDetails = action.payload;
+        })
+
+        builder.addCase(editProfile.rejected, (state, action) => {
+            state.userDetailsLoading = false;
+            state.error = action.payload;
+        })
+
+
+
 
     }
 })
