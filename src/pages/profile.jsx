@@ -6,9 +6,7 @@ import Edit from "../components/Profile/EditProfile";
 const Profile = () => {
   const [repositories, setRepositories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [editMode, setEditMode] = useState(false);
-  const [name, setName] = useState("Your Name");
-  const [email, setEmail] = useState("abc@gmail.com");
+  
   const [githubLink, setGithubLink] = useState(
     "https://github.com/yourusername"
   );
@@ -29,27 +27,10 @@ const Profile = () => {
       .catch((error) => console.error("Error fetching repositories:", error));
   }, []);
 
-  const handleEdit = () => {
-    setEditMode(true);
-  };
+  
+  
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setProfileImage(reader.result);
-      }
-    };
-
-    reader.readAsDataURL(file);
-  };
-
-  const handleSave = () => {
-    setEditMode(false);
-    // Add logic to save the updated data (name, email, githubLink) if needed
-  };
+  
 
   useEffect(() => {
     const githubUsername = "adityashah7867";
@@ -73,63 +54,41 @@ const Profile = () => {
     <>
       <Alternates className="w-full">
         <div className="bg-white w-full flex flex-col md:flex-row items-center transform rotate-x-2 mt-5">
-          {editMode ? (
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
-          ) : (
+          
             <img
               src={profileImage}
               style={{ width: "20%" }}
               className="w-15 mb-4 md:mb-0"
               alt=""
             />
-          )}
+   
 
           {/* ... existing code ... */}
           <div className="flex-grow p-4 text-center md:text-left ml-5">
             <h2 className="text-xl font-bold mb-2 text-right">
-              {editMode ? (
-                <button onClick={handleSave}>Save</button>
-              ) : (
-                <button onClick={handleEdit}>Edit</button>
-              )}
+              
+                <button >Edit</button>
+              
             </h2>
             <h2 className="text-xl font-bold mb-2">User Name</h2>
             <p>
-              {editMode ? (
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              ) : (
+              
                 name
-              )}
+             
             </p>
             <h2 className="text-xl font-bold mt-4 mb-2">Email</h2>
             <p>
-              {editMode ? (
-                <input
-                  type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              ) : (
+             
                 email
-              )}
+             
             </p>
             <h2 className="text-xl font-bold mt-4 mb-2">Github</h2>
             <p>
-              {editMode ? (
-                <input
-                  type="text"
-                  value={githubLink}
-                  onChange={(e) => setGithubLink(e.target.value)}
-                />
-              ) : (
+              
                 <a href={githubLink} className="text-blue-500">
                   {githubLink}
                 </a>
-              )}
+           
             </p>
           </div>
         </div>

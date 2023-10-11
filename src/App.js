@@ -24,6 +24,7 @@ import SideBar from './components/Sidebar/Sidebar';
 import Room from './pages/Room';
 import Video from './pages/Video';
 import Notification from './pages/Notification';
+import Setting from './pages/Setting';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const App = () => {
               <Route element={<Room />} path="/room/:roomId" />
               <Route element={<Video />} path="/video/" />
               <Route element={<Notification />} path="/notification" />
+              <Route element={<Setting />} path="/setting" />
 
 
             </Route>
