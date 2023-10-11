@@ -74,20 +74,20 @@ const Profile = () => {
     <>
       <Alternates className="w-full">
         <div className="bg-white w-full flex flex-col md:flex-row items-center transform rotate-x-2 mt-5">
-          
+
 
           {editMode ? (
-                <input type="file" accept="image/*" onChange={handleImageUpload} />
-              ) : (
-                <img
-            src={profileImage}
-            style={{ width: "20%" }}
-            className="w-15 mb-4 md:mb-0"
-            alt=""
-          />
-              )}
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
+          ) : (
+            <img
+              src={profileImage}
+              style={{ width: "20%" }}
+              className="w-15 mb-4 md:mb-0"
+              alt=""
+            />
+          )}
 
-          
+
           {/* ... existing code ... */}
           <div className="flex-grow p-4 text-center md:text-left ml-5">
             <h2 className="text-xl font-bold mb-2 text-right">
