@@ -8,7 +8,7 @@ const Notification = () => {
       <div className="flex flex-col md:flex-row">
         {/* Left side - 1/3 */}
         <div className="w-full md:w-1/3 p-4">
-          <div className="mt-5 mt-10">
+          <div className=" mt-5">
             <div className="max-w-md mx-auto bg-white rounded-xl overflow-hidden md:max-w-2xl mt-1  p-6">
               <div className="font-bold text-xl mb-2">Exam/Assignment Title</div>
               <p className="text-gray-700 text-base">

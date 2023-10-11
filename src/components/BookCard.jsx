@@ -18,10 +18,15 @@ import Loader from "../components/Loader/Loader";
 
 
 const BookCard = ({ note }) => {
+  const [showCommentModal, setShowCommentModal] = useState(false);
   const dispatch = useDispatch();
   const currentuser = useSelector((state) => state?.user?.user);
   const buyNotesLoading = useSelector((state) => state.note.noteLoading)
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
+  const handleCommentClick = () => {
+    setShowCommentModal(true); // Step 2
+  };
 
   const handleBuyNote = async (noteId) => {
     await dispatch(buyNote(noteId));
@@ -41,7 +46,7 @@ const BookCard = ({ note }) => {
 
   return (
     <div className="flex flex-row md:flex-row sm:flex-row flex-wrap ml-4 lg:ml-4">
-      <div className="post-card mx-2 mt-6 w-80 bg-lightgray dark:bg-white  rounded-lg border border-gray-600">
+      <div className="post-card mx-2 mt-6 w-80 bg-white  rounded-lg border border-gray-600">
         <div className="flex items-center">
           <span className="title text-white mr-2 text-2xl font-semibold">
             {note?.name}
@@ -76,10 +81,14 @@ const BookCard = ({ note }) => {
             <i className="fa-regular fa-heart fa-xl mx-2"></i>
             {note?.likes?.length || 0}
           </span>
-          <span className="cursor-pointer h-40 w-50 p-3 flex items-center justify-center font-bold rounded-2xl bg-transparent hover:bg-purple-300 transition duration-150">
+          <span
+          onClick={handleCommentClick}
+           className="cursor-pointer h-40 w-50 p-3 flex items-center justify-center font-bold rounded-2xl bg-transparent hover:bg-purple-300 transition duration-150">
             <i className="fa-regular fa-comment fa-xl mx-2"></i>
             {note?.comments?.length || 0}
           </span>
+
+          
 
 
           {note.purchased.includes(currentuser?.id) ? (
@@ -107,7 +116,7 @@ const BookCard = ({ note }) => {
 
                 <div className="flex justify-end mt-4">
                   <button
-                    className="px-4 py-2 mr-2 text-gray-600 border  rounded-lg bg-red-500 text-white"
+                    className="px-4 py-2 mr-2  border  rounded-lg bg-red-500 text-white"
                     onClick={() => setShowConfirmationModal(false)}
                   >
                     Cancel
@@ -127,6 +136,23 @@ const BookCard = ({ note }) => {
 
         </div>
       </div>
+      {showCommentModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 ">
+          <div className="bg-white p-8 border border-black rounded-lg shadow-md">
+            <p className="text-lg font-semibold text-black ">Comment Modal</p>
+
+            <div className="flex justify-end mt-4">
+              <button
+                className="px-4 py-2 mr-2 text-gray-600 border  rounded-lg bg-red-500 text-white"
+                onClick={() => setShowCommentModal(false)}
+              >
+                Cancel
+              </button>
+              {/* Add your comment modal content here */}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
 
   );
