@@ -2,14 +2,10 @@ import React from 'react'
 
 const Search = ({ search, setSearch }) => {
 
-  const handlesubmit = (e) => {
-    e.preventDefault()
-    console.log(search)
-  }
 
   return (
     <div  >
-      <form className=' mt-16 ' onSubmit={handlesubmit}>
+      <form className=' mt-16 ' >
         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
           Search
         </label>
