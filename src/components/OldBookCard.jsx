@@ -11,7 +11,7 @@ import { buyNote, getNotes } from "../redux/notes/noteActions";
 // import { get } from "mongoose";
 import { getLogedinUser } from "../redux/auth/authActions";
 import { likeUnlikeNote } from "../redux/likes/likeActions";
-import Loader from "../components/Loader/Loader";
+import Loader from "./Loader/Loader";
 
 
 
@@ -91,7 +91,7 @@ const BookCard = ({ note }) => {
           
 
 
-          {note.purchased.includes(currentuser?._id) ? (
+          {note.purchased.includes(currentuser?.id) ? (
             <NavLink to={`/nviewer/${note?._id}`}>
               <button className="border border-black px-4 py-1 rounded-lg bg-white text-black hover:bg-black hover:text-white hover:border-white">
                 View

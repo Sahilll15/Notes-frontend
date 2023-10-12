@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 // http://localhost:4000/api/v1/users/getUserInfo/6501e34bc36bdc85aed140c4
@@ -92,7 +93,9 @@ export const editProfile = createAsyncThunk(
 
             if (response.status === 200) {
                 console.log(response.data);
+                toast.success('Profile Updated Successfully');
                 return response.data;
+                
             }
             else {
                 return rejectWithValue(response.data.message)
