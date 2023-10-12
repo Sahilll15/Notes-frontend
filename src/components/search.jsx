@@ -6,7 +6,7 @@ const Search = ({ search, setSearch }) => {
   return (
     <div  >
 
-      <form className=' mt-6 ' onSubmit={handlesubmit}>
+      <form className=' mt-6 ' >
 
         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
           Search

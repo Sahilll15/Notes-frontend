@@ -5,10 +5,6 @@ import Edit from "../components/Profile/EditProfile";
 import { useSelector } from "react-redux";
 
 const Profile = () => {
-
-  const [repositories, setRepositories] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   const skills = [
     "HTML",
     "CSS",
@@ -18,44 +14,44 @@ const Profile = () => {
     "Python",
     "SQL",
   ];
+  
 
-  const [githubLink, setGithubLink] = useState(
-    "https://github.com/yourusername"
-  );
-  const [profileImage, setProfileImage] = useState(
-    "https://safesiren.vercel.app/static/media/login.665ff9176f5ac11ac2e6.png"
-  );
+  const [repositories, setRepositories] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const user = useSelector((state) => state?.user?.user)
 
-  useEffect(() => {
-    const githubUsername = "adityashah7867";
-    fetch(
-      `https://api.github.com/users/${githubUsername}/repos?sort=created&direction=desc`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setRepositories(data);
-        setLoading(false);
-      })
-      .catch((error) => console.error("Error fetching repositories:", error));
-  }, []);
 
-  useEffect(() => {
-    const githubUsername = "adityashah7867";
-    fetch(
-      `https://api.github.com/users/${githubUsername}/repos?sort=created&direction=desc`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const firstThreeRepos = data.slice(0, 3); // Changed to get the first three repos
-        setRepositories(firstThreeRepos);
-        setLoading(false);
-      })
-      .catch((error) => console.error("Error fetching repositories:", error));
-  }, []);
+    const [githubLink, setGithubLink] = useState(
+        "https://github.com/yourusername"
+    );
+    const [profileImage, setProfileImage] = useState(
+        user?.profile
+    );
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+    const fetchRepos = async () => {
+        const githubUsername = user?.githubUsername;
+        try {
+            const response = await fetch(
+                `https://api.github.com/users/${githubUsername}/repos?sort=created&direction=desc`
+            )
+            const data = await response.json()
+            const firstThreeRepos = data.slice(0, 5);
+            setRepositories(firstThreeRepos);
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+
+    useEffect(() => {
+        fetchRepos();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
   return (
     <>
@@ -79,16 +75,15 @@ const Profile = () => {
                   </div>
                   <div class="text-left mt-2">
                     <h2 class="text-xl font-semibold text-gray-800">
-                      USERNAME
+                      {user?.username}
                     </h2>
                     <p class="text-sm text-gray-600 mt-3">Email Address:</p>
-                    <p>adityashah9866@gmail.com</p>
+                    <p>{user?.email}</p>
                     <p class="text-sm text-gray-600 mt-3">GitHub ID</p>
-                    <p>https://github.com/adityashah7867</p>
+                    <a href={ `https://github.com/${user?.githubUsername}`}className="text-blue-500"> https://github.com/{user?.githubUsername}</a>
                     <p class="text-sm text-gray-600 mt-5">BIO</p>
                     <p className="mb-3">
-                      sd fsd sd djf kvhdf ivhd fkh ndmfn fdkn n khfn d fjknd
-                      fekfdj kfdṇ fdkd, nfkd, fkd{" "}
+                     {user?.Bio}
                     </p>
                   </div>
                 </div>
@@ -116,7 +111,7 @@ const Profile = () => {
               <div className="mt-5">
                 <div className="w-full ">
                   <div className="mt-5"></div>
-                  {/* {repositories.map((repo) => (
+                  {repositories.map((repo) => (
                     <div
                       className="bg-white p-4 rounded-lg shadow-lg mb-4"
                       key={repo.id}
@@ -128,8 +123,8 @@ const Profile = () => {
                           className="w-12 h-12 rounded-full mr-3"
                         />
                         <div>
-                          <h1 className="text-xl font-semibold">
-                            {repo.full_name}
+                          <h1 className=" sm:text-xs lg:text-xl font-semibold">
+                            {repo.name}
                           </h1>
                           <p className="text-gray-600">{repo.description}</p>
                         </div>
@@ -156,7 +151,7 @@ const Profile = () => {
                         </a>
                       </div>
                     </div>
-                  ))} */}
+                  ))}
                 </div>
               </div>
             </div>
