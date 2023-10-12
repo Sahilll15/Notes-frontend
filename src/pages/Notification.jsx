@@ -11,7 +11,7 @@ const Notification = () => {
         <div className="w-full md:w-1/3 p-4 ">
           <div className=" mt-5">
             <div className="max-w-md mx-auto bg-white rounded-xl overflow-hidden shadow-sm md:max-w-2xl mt-1  p-6">
-              <div className="font-bold text-xl mb-2">Exam/Assignment Title</div>
+              <div className="font-semibold text-xl mb-2">Exam/Assignment Title</div>
               <p className="text-gray-700 text-base">
                 Description of the exam/assignment goes here.
               </p>
@@ -21,7 +21,7 @@ const Notification = () => {
             </div>
 
             <div className="max-w-md mx-auto bg-white rounded-xl overflow-hidden shadow-md md:max-w-2xl mt-1   p-6">
-              <div className="font-bold text-xl mb-2">Exam/Assignment Title</div>
+              <div className="font-semibold text-xl mb-2">Exam/Assignment Title</div>
               <p className="text-gray-700 text-base">
                 Description of the exam/assignment goes here.
               </p>
@@ -31,7 +31,7 @@ const Notification = () => {
             </div>
 
             <div className="max-w-md mx-auto bg-white rounded-xl overflow-hidden shadow-md md:max-w-2xl mt-1 p-6">
-              <div className="font-bold text-xl mb-2">Exam/Assignment Title</div>
+              <div className="font-semibold text-xl mb-2">Exam/Assignment Title</div>
               <p className="text-gray-700 text-base">
                 Description of the exam/assignment goes here.
               </p>
@@ -47,7 +47,7 @@ const Notification = () => {
         {/* Right side - 2/3 */}
         <div className="xl:w-2/4 border-2  mx-auto mt-9">
           <div className="container border-2 bg-white rounded-xl overflow-hidden shadow-lg mx-auto p-4 text-center">
-            <h1 className="text-3xl mb-4">My To-Do List</h1>
+            <h1 className="text-3xl font-bold mb-4">My To-Do List</h1>
             <div className="flex space-x-2 mb-4">
               <input id="task" className="flex-1 border rounded py-2 px-3" type="text" placeholder="Add a new task..." />
               <button onclick="addTask()" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Add</button>

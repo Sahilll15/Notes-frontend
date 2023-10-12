@@ -3,6 +3,7 @@ import DashLay from "../components/Layout/Boost";
 import { getUserInfo, getUsersLeaderBoard } from "../redux/user/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import BLOGO from '../Logo/1.png'
+import BLOG2 from '../Logo/2.png'
 
 
 const Newdashboard = () => {
@@ -116,7 +117,7 @@ const Newdashboard = () => {
                             <div className="font-semibold text-xl text-justify ">Rank</div>
                           </th>
                           <th className="p-2 whitespace-nowrap">
-                            <div className="font-semibold text-xl text-justify">Name</div>
+                            <div className="font-semibold text-xl text-justify ml-5">Name</div>
                           </th>
                           <th className="p-2 whitespace-nowrap">
                             <div className="font-semibold text-xl">Coins</div>
@@ -130,8 +131,12 @@ const Newdashboard = () => {
                             return (
                               <tr className>
                                 <td className="text-justify">&nbsp;&nbsp;&nbsp;&nbsp;{index + 1}</td>
-                                <td className="">&nbsp;&nbsp;{user?.username}</td>
-                                <td className="text-center">&nbsp;&nbsp;&nbsp;{user?.coins}</td>
+                                <td className=""><div className="flex flex-row align-center"><img
+                                  src={BLOG2}
+                                  alt="IMG"
+                                  className="w-10 h-10 rounded-full ml-9o"
+                                /><div className="mt-2">&nbsp;&nbsp;{user?.username}</div></div></td>
+                                <td className="text-center ">&nbsp;&nbsp;&nbsp;{user?.coins}</td>
                               </tr>
                             )
                           })
