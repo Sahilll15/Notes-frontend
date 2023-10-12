@@ -11,7 +11,7 @@ import { buyNote, getNotes } from "../redux/notes/noteActions";
 // import { get } from "mongoose";
 import { getLogedinUser } from "../redux/auth/authActions";
 import { likeUnlikeNote } from "../redux/likes/likeActions";
-import Loader from "../components/Loader/Loader";
+import Loader from "./Loader/Loader";
 
 
 
