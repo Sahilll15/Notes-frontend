@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Alternates from "../components/Layout/Profile";
 import { Link, NavLink } from "react-router-dom";
 import Edit from "../components/Profile/EditProfile";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
+
   const [repositories, setRepositories] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -163,6 +165,7 @@ const Profile = () => {
       </Alternates>
     </>
   );
+
 };
 
 export default Profile;
