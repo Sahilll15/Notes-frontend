@@ -8,15 +8,16 @@ import MainLayout from "../components/Layout/MainLayout";
 const NotesTable = () => {
   const dispatch = useDispatch();
   const notesAdmin = useSelector((state) => state.note.notesAdmin);
-  const noteAcceptStatusLoading = useSelector((state) => state.note.noteAcceptStatusLoading)
+  const noteAcceptStatusLoading = useSelector(
+    (state) => state.note.noteAcceptStatusLoading
+  );
   useEffect(() => {
     dispatch(getNotesAdmin());
   }, [dispatch]);
 
-
   return (
     <MainLayout>
-    <div className="overflow-x-auto ">
+      {/* <div className="overflow-x-auto ">
       <div className="bg-white min-h-screen flex  font-sans overflow-hidden">
         <div className="min-w-full lg:w-5/6">
           <div className="bg-white shadow-md rounded my-6 mt-20">
@@ -97,7 +98,114 @@ const NotesTable = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div> */}
+
+      <section className="antialiased  text-gray-600 h-screen px-4">
+        <div className="flex flex-col mt-16">
+          <div className="min-w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+            <header className="px-5 py-4 border-b border-gray-100">
+              <h2 className="font-semibold text-gray-800">ADMIN PANEL</h2>
+            </header>
+            <div className="p-3">
+              <div className="overflow-x-auto">
+                <table className="table-auto w-full">
+                  <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                    <tr>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-left">Name</div>
+                      </th>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-left">Subject</div>
+                      </th>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-left">
+                          Note Uploaded
+                        </div>
+                      </th>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-center">Coins</div>
+                      </th>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-center">Status</div>
+                      </th>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-center">Actons</div>
+                      </th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody className="text-sm divide-y divide-gray-100">
+                  {notesAdmin?.length === 0 ? (
+                  <>
+                    <AdminPanelSkeleton />
+                  </>
+                ) : (
+                  notesAdmin?.map((note) => (
+                    <tr>
+                      <td className="p-2 whitespace-nowrap">
+                        <div className="flex items-center">
+                          <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
+                            <img
+                              className="rounded-full"
+                              src=""
+                              width={40}
+                              height={40}
+                              alt="Alex Shatov"
+                            />
+                          </div>
+                          <div className="font-medium text-gray-800">
+                            {note?.author?.username}
+                          </div>
+                        </div>
+                      </td>
+                      <td className="p-2 whitespace-nowrap">
+                        <div className="text-left">{note?.subject?.name || ""}</div>
+                      </td>
+                      <td className="p-2 whitespace-nowrap">
+                        <div className="text-left font-medium text-green-500">
+                          {note?.name}
+                        </div>
+                      </td>
+                      <td className="p-2 whitespace-nowrap">
+                        <div className="text-lg text-center">{note?.author?.coins}</div>
+                      </td>
+                      <td className="py-3 px-6 text-center">
+                        <span
+                          className={`bg-${
+                            note.acceptedStatus ? "green" : "red"
+                          }-200 text-${
+                            note.acceptedStatus ? "green" : "red"
+                          }-600 py-1 px-3 rounded-full text-xs`}
+                        >
+                          {note.acceptedStatus ? "Accepted" : "Not Accepted"}
+                        </span>
+                      </td>
+                      <td className="py-3 px-6 text-center">
+                        <div className="flex gap-4 item-center justify-center">
+                          <ActionIcon icon="edit" note={note}
+
+                          />
+                          <ActionIcon icon="delete" note={note}
+
+                          />
+                          <ActionIcon
+                            icon="accept"
+                            status={note?.acceptedStatus}
+                            note={note}
+                            noteloading={noteAcceptStatusLoading}
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </MainLayout>
   );
 };
