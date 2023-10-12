@@ -40,32 +40,57 @@ const App = () => {
       <Router>
         <ToastContainer />
 
-        {
-          userLoggedIn ? <SideBar /> : null
-        }
         <div >
           <Routes>
-            //loggedinuser routes
-            <Route element={<PrivateRoutes />}>
-              <Route element={<Home />} path="/" />
-              <Route element={<NotesTable />} path="/admin" />
-              <Route element={<Dashoboard />} path="/dashboard" />
-              <Route element={<Nviewer />} path="/nviewer/:noteId" />
-              <Route element={<NotesForm />} path="/addnotes" />
-              <Route element={<NotesTable />} path="/admin" />
-              <Route element={<Room />} path="/room/:roomId" />
-              <Route element={<Video />} path="/video/" />
-              <Route element={<Notification />} path="/notification" />
-              <Route element={<Setting />} path="/setting" />
+            <Route path="/land" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/otp" element={<OtpForm />} />
+
+            <Route
+              path="/"
+              element={
+                <>
+                  <div className="flex">
+                    <SideBar />
+                    <div className="flex-grow">
+                      <PrivateRoutes />
+                    </div>
+                  </div>
+                </>
+              }
+            >
+              <Route path="/setting" element={<Setting />} />
+
+              <Route path="/notification" element={<Notification />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/notes" element={<NotesTable />} />
+              <Route path="/room" element={<Room />} />
+              <Route path="/video" element={<Video />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/addnotes" element={<NotesForm />} />
+              <Route path="/admin" element={<NotesTable />} />
+              <Route path="/dashboard" element={<Dashoboard />} />
 
 
             </Route>
-            //authetication routes
-            <Route element={<Login />} path="/login" />
-            <Route element={<Register />} path="/register" />
-            <Route element={<OtpForm />} path="/otpform" />
-            <Route element={<Profile />} path="/profile" />
-            <Route element={<Landing />} path="/landing" />
+
+            <Route
+              path="/"
+              element={
+                <>
+                  <div className="flex">
+
+                    <div className="flex-grow">
+                      <ToastContainer />
+                      <PrivateRoutes />
+                    </div>
+                  </div>
+                </>
+              }
+            >
+              <Route path="/nviewer/:noteId" element={<Nviewer />} />
+            </Route>
 
 
           </Routes>

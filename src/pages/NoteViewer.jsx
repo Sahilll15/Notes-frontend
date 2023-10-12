@@ -1,26 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../nviewer.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { getSingleNote } from '../redux/notes/noteActions';
 import Comments from '../components/Comments';
 import Alternates from "../components/Layout/HomeLay"
+import { toast } from 'react-toastify';
 
 const Nviewer = () => {
-
+  const user = useSelector((state) => state?.user?.user)
+  const [loader,setloader]=useState(true)
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { noteId } = useParams();
   const singlenote = useSelector((state) => state?.note?.singlenote)
+
   useEffect(() => {
+    const loading =setTimeout(() => {
+      setloader(false)
+    }, 2000);
     dispatch(getSingleNote(
       noteId
     ))
     console.log(singlenote)
   }, [dispatch])
 
+  if (!singlenote?.purchased?.includes(user?._id)) {  
 
 
-  if (!singlenote) {
+    navigate('/')
+    toast.error('Stop cheap methods and purchase notes JERK!')
+
+  }
+
+
+
+  if (loader) {
     return <h1>Loading...</h1>
   }
 
