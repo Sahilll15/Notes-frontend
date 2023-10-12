@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogedinUser } from './redux/auth/authActions';
 import Profile from './pages/Profile';
+import Bookmark from './pages/Bookmark';
 import Landing from './pages/Landing';
 
 import NotesTable from './pages/AdminPanel'
@@ -71,6 +72,7 @@ const App = () => {
               <Route path="/addnotes" element={<NotesForm />} />
               <Route path="/admin" element={<NotesTable />} />
               <Route path="/dashboard" element={<Dashoboard />} />
+              <Route path="/bookmark" element={<Bookmark />} />
 
 
             </Route>
