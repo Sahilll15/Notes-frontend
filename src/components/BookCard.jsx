@@ -45,8 +45,8 @@ const BookCard = ({ note }) => {
   }, [dispatch])
 
   return (
-    <div className="flex flex-row md:flex-row sm:flex-row flex-wrap ml-4 lg:ml-4">
-      <div className="post-card mx-2 mt-6 w-80 bg-white  rounded-lg border border-gray-600">
+    <div className="flex flex-row md:flex-row sm:flex-row flex-wrap ml-4 lg:ml-4 ">
+      <div className="post-card mx-2 mt-6 w-80 bg-white  rounded-lg border bg-black border-gray-600">
         <div className="flex items-center">
           <span className="title text-white mr-2 text-2xl font-semibold">
             {note?.name}
