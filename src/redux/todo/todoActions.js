@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const host = process.env.REACT_APP_API_HOST;
 
 export const createTodo = createAsyncThunk(
     'todo/addTodo',
-    async ({ title, description, deadline }, { rejectWithValue }) => {
+    async ({ title }, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`${host}/api/v1/todo/addTodo`, {
+            const response = await axios.post(`${host}/api/v1/todos/addTodo`, {
                 title,
-                description,
-                deadline
+
             }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
@@ -38,7 +38,7 @@ export const getTodos = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
 
-            const response = await axios.get(`${host}/api/v1/todo/getTodo`, {
+            const response = await axios.get(`${host}/api/v1/todos/getTodo`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
                 }
@@ -65,7 +65,7 @@ export const getTodosByUserId = createAsyncThunk(
     'todo/getTodoByUserId',
     async (userID, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${host}/api/v1/todo/getTodoByUserId/${userID}`, {
+            const response = await axios.get(`${host}/api/v1/todos/getTodoByUserId`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
                 }
@@ -89,13 +89,9 @@ export const getTodosByUserId = createAsyncThunk(
 //updateTodo
 export const updateTodo = createAsyncThunk(
     'todo/updateTodo',
-    async ({ id, title, description, deadline }, { rejectWithValue }) => {
+    async (todoId, { rejectWithValue }) => {
         try {
-            const response = await axios.put(`${host}/api/v1/todo/update/${id}`, {
-                title,
-                description,
-                deadline
-            }, {
+            const response = await axios.put(`${host}/api/v1/todos/update/${todoId}`, null, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
                 }
@@ -103,7 +99,9 @@ export const updateTodo = createAsyncThunk(
 
             if (response.status === 200) {
                 console.log(response.data);
+                toast.success(response.data.message)
                 return response.data;
+
             }
             else {
                 return rejectWithValue(response.data.message)
@@ -121,7 +119,7 @@ export const deleteTodo = createAsyncThunk(
     'todo/deleteTodo',
     async (id, { rejectWithValue }) => {
         try {
-            const response = await axios.delete(`${host}/api/v1/todo/delete/${id}`, {
+            const response = await axios.delete(`${host}/api/v1/todos/delete/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
                 }
@@ -129,6 +127,7 @@ export const deleteTodo = createAsyncThunk(
 
             if (response.status === 200) {
                 console.log(response.data);
+                toast.success(response.data.message)
                 return response.data;
             }
             else {
