@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { login } from '../redux/auth/authActions';
 import BLOGO from '../Logo/1.png'
 import IMG from "../components/Land/abc.png"
+import IMG2 from "../components/images/new2.png"
+
 
 
 
@@ -61,10 +63,10 @@ const Login = () => {
     <div>
       <section className="min-h-screen flex items-stretch text-white ">
         <div
-          className="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
+          className="lg:flex w-1/2 animate-updown hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
           style={{
-            backgroundImage:
-              "url(https://notesbeta.s3.us-east-2.amazonaws.com/cde.png)",
+            backgroundImage:`url(${IMG2})`,
+              
           }}
         >
           <div className="absolute bg-black opacity-60 inset-0 z-0" />
@@ -119,8 +121,7 @@ const Login = () => {
           <div
             className="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center"
             style={{
-              backgroundImage:
-                "url(https://notesbeta.s3.us-east-2.amazonaws.com/abc.png)", alignItems: 'center', justifyContent: 'center', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
+              backgroundImage:`url(${IMG})`, alignItems: 'center', justifyContent: 'center', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
             }}
 
           >
