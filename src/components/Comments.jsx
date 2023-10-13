@@ -32,19 +32,23 @@ const Comments = ({ note }) => {
             <div className="second">
                 
             <div className="flex">
-  <button
-    type="submit"
-    className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
-  >
-    <img width="48" height="48" src="https://img.icons8.com/color/48/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>
-    <span className="sr-only">Icon description</span>
-  </button>
+ 
 
   <button
     type="submit"
-    className="text-red-700 border border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800 dark:hover:bg-red-500"
+    className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
   >
-   <img width="64" height="64" src="https://img.icons8.com/arcade/64/facebook-like.png" alt="facebook-like"/>
+ <i class="fa-regular fa-bookmark fa-2xl"></i>
+    <span className="sr-only">Like</span>
+  </button>
+
+  <br/>
+
+  <button
+    type="submit"
+    className="text-red-700 border h-14 mx-2 border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800 dark:hover:bg-red-500"
+  >
+  <i className="fa-regular fa-heart fa-2xl mx-2"></i>
     <span className="sr-only">Like</span>
   </button>
 </div>
