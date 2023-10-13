@@ -25,6 +25,7 @@ import Room from './pages/Room';
 import Video from './pages/Video';
 import Notification from './pages/Notification';
 import Setting from './pages/Setting';
+import DateForm from './pages/DateForm';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -71,6 +72,8 @@ const App = () => {
               <Route path="/addnotes" element={<NotesForm />} />
               <Route path="/admin" element={<NotesTable />} />
               <Route path="/dashboard" element={<Dashoboard />} />
+              <Route path="/DateForm" element={<DateForm />} />
+
 
 
             </Route>

@@ -29,7 +29,7 @@ const Home = () => {
   return (
     <>
       <Alternate>
-        <div className=' w-full  z-20 top-0 left-0  mt-5 ml-0 sm:ml-0  lg:-ml-16  h-screen'>
+        <div className=' w-full  z-20 top-0 left-0 bg-white  mt-5 ml-0 sm:ml-0  lg:-ml-16  h-screen'>
           <div className='  container mx-auto '>
             <Search search={search} setSearch={setSearch} /><br />
             <QuickFilter />
