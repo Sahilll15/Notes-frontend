@@ -26,7 +26,6 @@ import Video from './pages/Video';
 import Notification from './pages/Notification';
 import Setting from './pages/Setting';
 import DateForm from './pages/DateForm';
-import OldReg from "./pages/OldRegister"
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,7 +47,6 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/otp" element={<OtpForm />} />
-            <Route path="/old" element={<OldReg />} />
 
             <Route
               path="/"
