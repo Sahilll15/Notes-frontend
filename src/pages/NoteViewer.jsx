@@ -9,14 +9,14 @@ import { toast } from 'react-toastify';
 
 const Nviewer = () => {
   const user = useSelector((state) => state?.user?.user)
-  const [loader,setloader]=useState(true)
+  const [loader, setloader] = useState(true)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { noteId } = useParams();
   const singlenote = useSelector((state) => state?.note?.singlenote)
 
   useEffect(() => {
-    const loading =setTimeout(() => {
+    const loading = setTimeout(() => {
       setloader(false)
     }, 2000);
     dispatch(getSingleNote(
@@ -25,11 +25,27 @@ const Nviewer = () => {
     console.log(singlenote)
   }, [dispatch])
 
-  if (!singlenote?.purchased?.includes(user?._id)) {  
 
 
-    navigate('/')
-    toast.error('Stop cheap methods and purchase notes JERK!')
+  if (!singlenote?.purchased?.includes(user?._id)) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="bg-white p-10 rounded-lg shadow-lg">
+          <div className="flex justify-center items-center">
+            <h1 className="text-2xl font-bold">You have not purchased this note</h1>
+          </div>
+          <div className="flex justify-center items-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5"
+              onClick={() => navigate('/')}
+            >
+              Go Back
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+
 
   }
 
