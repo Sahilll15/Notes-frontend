@@ -66,9 +66,9 @@ const App = () => {
               <Route path="/notification" element={<Notification />} />
               <Route path="/" element={<Home />} />
               <Route path="/notes" element={<NotesTable />} />
-              <Route path="/room" element={<Room />} />
+              <Route path="/room/:roomId" element={<Room />} />
               <Route path="/video" element={<Video />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/:username" element={<Profile />} />
               <Route path="/addnotes" element={<NotesForm />} />
               <Route path="/admin" element={<NotesTable />} />
               <Route path="/dashboard" element={<Dashoboard />} />

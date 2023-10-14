@@ -23,7 +23,7 @@ const store = configureStore({
         userDetails: userSlice.reducer,
         impDate: impDateSlice.reducer
     },
-    middleware
+
 })
 
 export default store

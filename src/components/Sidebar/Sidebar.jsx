@@ -3,15 +3,19 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 import { useSelector } from "react-redux";
+import Loader from "../Loader";
 
 export const SideBar = () => {
 
   const user = useSelector((state) => state.user.user)
 
+
+
   const handleLogout = () => {
-    localStorage.removeItem('authtoken')
-    window.location.reload()
-  }
+    localStorage.removeItem('authtoken');
+    window.location.reload();
+  };
+
 
 
 
@@ -132,7 +136,7 @@ export const SideBar = () => {
               </span>
             </div>
           </NavLink>
-          <NavLink to={"/profile"}>
+          <NavLink to={`/profile/${user?.username}`}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-gear"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">

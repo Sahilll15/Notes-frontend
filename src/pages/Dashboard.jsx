@@ -4,21 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.user)
+  const user = useSelector((state) => state?.user?.user)
   const userDetails = useSelector((state) => state.userDetails.userDetails)
   const userDetailsLoading = useSelector((state) => state.userDetails.userDetailsLoading)
   const leaderBoard = useSelector((state) => state.userDetails.leaderBoard)
 
   useEffect(() => {
     if (user) {
-      dispatch(getUserInfo(user?.id))
-
+      console.log('user from user', user)
+      dispatch(getUserInfo())
     }
 
   }, [user])
 
   useEffect(() => {
-    dispatch(getUsersLeaderBoard())
+    console.log('user is', user)
+    // dispatch(getUsersLeaderBoard())
   }, [])
 
 
@@ -31,17 +32,17 @@ const Profile = () => {
         <div className="p-4 ">
           <div className="p-4  border-black-200 border-2 rounded-lg  dark:border-black-700 mt-6">
             <div className="flex-col lg:flex lg:flex-row  gap-4 mb-4">
-              
+
               <div className="flex items-center  justify-left lg:w-3/12 w-full h-28 rounded bg-gray-50 dark:bg-gray-800 mt-2 pl-3">
                 <div className=" flex-col">
                   <h1 className="text-left text-white">
-                    <b>12</b>
+                    <b>{userDetails.rank}</b>
                   </h1>
                   <h3 className="text-gray-400">LEADERBOARD RANK &nbsp; &nbsp; &nbsp;  <i class="fa-solid fa-arrow-trend-up text-green-400 fa-2xl" style={{ color: "#32a11b," }} />
                   </h3>
                 </div>
               </div>
-              
+
               <div className="flex items-center justify-left lg:w-3/12 w-full h-28 rounded bg-gray-50 dark:bg-gray-800 mt-2 pl-3">
                 <div className="flex-col">
                   <h1 className="text-left text-white">
@@ -50,7 +51,7 @@ const Profile = () => {
                   <div className="text-gray-400">NOTES UPLOADED &nbsp; &nbsp; &nbsp; <i class="fa-solid fa-upload text-green-400 fa-2xl"></i></div>
                 </div>
               </div>
-              
+
               <div className="flex items-center justify-left lg:w-3/12 w-full h-28 rounded bg-gray-50 dark:bg-gray-800 mt-2 pl-3">
                 <div className="flex-col">
                   <h1 className="text-left text-white">

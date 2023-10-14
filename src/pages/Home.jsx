@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Navbar from '../components/Navbar';
 import BookCard from '../components/BookCard';
-import Search from '../components/search';
+import Search from '../components/Search';
 import QuickFilter from '../components/QuickFilter';
 import BookCardSkeletion from '../components/skeletons/BookCardSkeletion';
 import Alternate from '../components/Layout/HomeLay';

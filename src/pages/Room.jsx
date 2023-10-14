@@ -13,7 +13,7 @@ const Room = () => {
 
         const serverSecret = "11e25d072a125632cf37fa93ed2ec990";
 
-        const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomId, Date.now().toString(), user?.fullName || 'username');
+        const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomId, Date.now().toString(), user?.username || 'username');
         const zp = ZegoUIKitPrebuilt.create(kitToken);
         zp.joinRoom({
             container: element,
@@ -30,7 +30,7 @@ const Room = () => {
             <center>
                 <div className='container -ml-16 flex justify-center items-center align-middle h-screen ' >
                     <div className='w-screen p-3 pt-3 mt-3'>
-                        <div className='' ref={Mymeeting} />
+                        <div ref={Mymeeting} />
                     </div>
                 </div>
             </center>

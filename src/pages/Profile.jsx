@@ -2,9 +2,20 @@ import React, { useEffect, useState } from "react";
 import Alternates from "../components/Layout/Profile";
 import { Link, NavLink } from "react-router-dom";
 import Edit from "../components/Profile/EditProfile";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserProfile } from "../redux/user/userActions";
+import { useParams } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const Profile = () => {
+
+    const [showLoader, setShowLoader] = useState(true);
+
+
+
+
+
+    const { username } = useParams();
     const skills = [
         "HTML",
         "CSS",
@@ -16,9 +27,10 @@ const Profile = () => {
     ];
 
 
+    const dispatch = useDispatch();
     const [repositories, setRepositories] = useState([]);
     const [loading, setLoading] = useState(true);
-    const user = useSelector((state) => state?.user?.user)
+    const user = useSelector((state) => state?.userDetails?.userProfile)
 
 
     const [githubLink, setGithubLink] = useState(
@@ -30,27 +42,47 @@ const Profile = () => {
 
     const fetchRepos = async () => {
         const githubUsername = user?.githubUsername;
-        try {
-            const response = await fetch(
-                `https://api.github.com/users/${githubUsername}/repos?sort=created&direction=desc`
-            )
-            const data = await response.json()
-            const firstThreeRepos = data.slice(0, 5);
-            setRepositories(firstThreeRepos);
-            setLoading(false);
-        } catch (error) {
-            console.log(error);
+        if (githubUsername !== undefined) {
+            try {
+                const response = await fetch(
+                    `https://api.github.com/users/${githubUsername}/repos?sort=created&direction=desc`
+                )
+                const data = await response.json()
+                const firstThreeRepos = data.slice(0, 5);
+                setRepositories(firstThreeRepos);
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
 
+            }
         }
+
     }
 
 
     useEffect(() => {
         fetchRepos();
+
+    }, [user]);
+
+
+
+    useEffect(() => {
+        dispatch(getUserProfile(username));
+
+    }, [username]);
+
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setShowLoader(false);
+        }, 2000);
+
+        return () => clearTimeout(timeout);
     }, []);
 
-    if (loading) {
-        return <div>Loading...</div>;
+    if (showLoader) {
+        return <Loader />;
     }
 
     return (

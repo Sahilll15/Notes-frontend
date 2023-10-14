@@ -7,7 +7,8 @@ const initialState = {
     userDetails: {},
     leaderBoard: [],
     userDetailsLoading: false,
-    error: ''
+    error: '',
+    userProfile: {}
 }
 
 export const userSlice = createSlice({
@@ -51,7 +52,7 @@ export const userSlice = createSlice({
 
         builder.addCase(getUserProfile.fulfilled, (state, action) => {
             state.userDetailsLoading = false;
-            state.userDetails = action.payload;
+            state.userProfile = action.payload.user;
         })
 
         builder.addCase(getUserProfile.rejected, (state, action) => {

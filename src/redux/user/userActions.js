@@ -8,9 +8,9 @@ const host = process.env.REACT_APP_API_HOST;
 
 export const getUserInfo = createAsyncThunk(
     'user/getUserInfo',
-    async (userId, { rejectWithValue }) => {
+    async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${host}/api/v1/users/getUserInfo/${userId}`, {
+            const response = await axios.get(`${host}/api/v1/users/getUserInfo`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
                 }
@@ -95,7 +95,7 @@ export const editProfile = createAsyncThunk(
                 console.log(response.data);
                 toast.success('Profile Updated Successfully');
                 return response.data;
-                
+
             }
             else {
                 return rejectWithValue(response.data.message)
