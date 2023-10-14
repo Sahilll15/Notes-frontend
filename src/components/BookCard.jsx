@@ -28,8 +28,9 @@ const BookCard = ({ note }) => {
   };
 
   const handleBuyNote = async (noteId) => {
-    await dispatch(buyNote(noteId));
-    await dispatch(getNotes());
+    dispatch(buyNote(noteId));
+    dispatch(getNotes());
+    setShowConfirmationModal(false);
   }
 
   const handlelike = async (noteId) => {
@@ -96,7 +97,7 @@ const BookCard = ({ note }) => {
           ) : (
 
             <button className="border border-black px-4 py-1 rounded-lg bg-white text-black hover:bg-black hover:text-white hover:border-white" onClick={() => {
-              handleBuyNote(note._id)
+              setShowConfirmationModal(true)
             }}>
               {buyNotesLoading ? <Loader /> : 'Buy'}
             </button>
@@ -121,6 +122,7 @@ const BookCard = ({ note }) => {
                     className="px-4 py-2 bg-blue-500 text-white rounded-md"
                     onClick={() => {
                       handleBuyNote(note._id)
+                      dispatch(getNotes())
                     }}
                   >
                     Confirm

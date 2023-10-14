@@ -8,6 +8,11 @@ export const SideBar = () => {
 
   const user = useSelector((state) => state.user.user)
 
+  const handleLogout = () => {
+    localStorage.removeItem('authtoken')
+    window.location.reload()
+  }
+
 
 
 
@@ -114,7 +119,7 @@ export const SideBar = () => {
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-person-circle"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
-               Video Room
+                Video Room
               </span>
             </div>
           </NavLink>
@@ -135,25 +140,40 @@ export const SideBar = () => {
               </span>
             </div>
           </NavLink>
-
-          <NavLink to={"/admin"}>
+          <NavLink to={"/setting"}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-gear"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                Admin
+                Setting
               </span>
             </div>
           </NavLink>
+          {
+            user?.role == 'superuser' && (
+              <>
+                <NavLink to={"/admin"}>
+                  <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                    <i class="bi bi-gear"></i>
+                    <span className="text-[15px] ml-4 text-gray-200 font-bold">
+                      Admin
+                    </span>
+                  </div>
+                </NavLink>
 
-          <NavLink to={"/dateform"}>
-            <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-              <i class="bi bi-gear"></i>
-              <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                Dates
-              </span>
-            </div>
-          </NavLink>
-          
+
+
+                <NavLink to={"/dateform"}>
+                  <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                    <i class="bi bi-gear"></i>
+                    <span className="text-[15px] ml-4 text-gray-200 font-bold">
+                      Dates
+                    </span>
+                  </div>
+                </NavLink>
+              </>
+            )
+
+          }
 
           <div className="my-4 bg-gray-600 h-[1px]" />
 
@@ -162,7 +182,9 @@ export const SideBar = () => {
 
           <div
             className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-
+            onClick={() => {
+              handleLogout()
+            }}
           >
             <i className="bi bi-box-arrow-in-right" />
             <span className="text-[15px] ml-4 text-gray-200 font-bold">
