@@ -1,62 +1,77 @@
 import React from "react";
 
-const QuickFilter = (props) => {
-
+const QuickFilter = ({ filter, setFilter }) => {
   return (
     <div>
-
-<div className="flex my-5">
-            <div className="flex justify-around gap-4 mb-2 w-full">
-            <p
-                className="border border-gray-300 bg-gray-100 w-full text-center rounded-lg p-2 hover:cursor-pointer text-black "
-                 
-               
-              >
-                For You
-              </p>
-              
-              <p
-                className="border border-gray-300 bg-gray-100 w-full text-center rounded-lg p-2 hover:cursor-pointer text-black    "          
-              >
-                Following
-              </p>
-              
-
-            </div>
-          </div>
-
-    <div className="w-full overflow-x-auto mt-1" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }} >
-      <div className="flex text-xs md:text-base lg:justify-center lg:text-base">
-
-      <button className="border mx-2 hover:bg-gray-300 bg-black text-white hover:text-black font-bold py-2 px-4 rounded-lg">
-         All
-        </button>
-        <button className="border mx-2 bg-gray-300 hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-lg">
-         CNS
-        </button>
-
-        <button className="border mx-2 bg-gray-300 hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-lg">
-         EEB
-        </button>
-
-        <button className="border mx-2 bg-gray-300 hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-lg">
-         EEB
-        </button>
-        <button className="border mx-2 bg-gray-300 hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-lg">
-         EEB
-        </button>
-        <button className="border mx-2 bg-gray-300 hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-lg">
-         EEB
-        </button>
-        <button className="border mx-2 bg-gray-300 hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-lg">
-         EEB
-        </button>
-        <button className="border mx-2 bg-gray-300 hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-lg">
-         EEB
-        </button>
+      <div className="w-full overflow-x-auto mt-2" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="flex text-xs md:text-base lg:justify-center lg:text-base">
+          <button
+            className={`border mx-2 py-2 px-4 rounded-lg ${filter === 'ALL' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            onClick={() => setFilter('ALL')}
+          >
+            All
+          </button>
+          <button
+            className={`border mx-2 py-2 px-4 rounded-lg ${filter === 'CNS' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            onClick={() => setFilter('CNS')}
+          >
+            CNS
+          </button>
+          <button
+            className={`border mx-2 py-2 px-4 rounded-lg ${filter === 'EEB' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            onClick={() => setFilter('EEB')}
+          >
+            EEB
+          </button>
+          <button
+            className={`border mx-2 py-2 px-4 rounded-lg ${filter === 'IP' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            onClick={() => setFilter('IP')}
+          >
+            IP
+          </button>
+          <button
+            className={`border mx-2 py-2 px-4 rounded-lg ${filter === 'SE' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            onClick={() => setFilter('SE')}
+          >
+            SE
+          </button>
+          <button
+            className={`border mx-2 py-2 px-4 rounded-lg ${filter === 'ADSA' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            onClick={() => setFilter('ADSA')}
+          >
+            ADSA
+          </button>
+          <button
+            className={`border mx-2 py-2 px-4 rounded-lg ${filter === 'ADEVEOPS' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            onClick={() => setFilter('ADEVEOPS')}
+          >
+            ADEVEOPS
+          </button>
+          <button
+            className={`border mx-2 py-2 px-4 rounded-lg ${filter === 'DEVEOPS' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            onClick={() => setFilter('DEVEOPS')}
+          >
+            DEVEOPS
+          </button>
+        </div>
+        <br />
       </div>
-      <br />
-    </div>
+      <div className="flex my-4">
+        <div className="flex justify-around gap-4 mb-2 w-full">
+          <p
+            className={`border w-full text-center rounded-lg py-2 px-4 ${filter === 'Liked' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-black'}`}
+            onClick={() => setFilter('Liked')}
+          >
+            Liked
+          </p>
+          <p
+            className={`border w-full text-center rounded-lg py-2 px-4 ${filter === 'BookMarked' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-black'}`}
+            onClick={() => setFilter('BookMarked')}
+          >
+            BookMarked
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
