@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getNotes, getFormData, addNote, getNotesAdmin, AcceptRejectNotes, getSingleNote, deleteNote, buyNote } from "./noteActions";
+import { getBookMarkedNotes, bookMarkNotes, searchNote, getNotes, getFormData, addNote, getNotesAdmin, AcceptRejectNotes, getSingleNote, deleteNote, buyNote } from "./noteActions";
 
 const initialState = {
     notes: [],
+    searchNote: [],
+    bookMarkNotes: [],
     loading: false,
     error: "",
     success: false,
@@ -155,6 +157,57 @@ export const noteSlice = createSlice({
         }
         )
 
+        //search notes
+
+        builder.addCase(searchNote.pending, (state, action) => {
+            state.loading = true
+
+        }
+        ).addCase(searchNote.fulfilled, (state, action) => {
+            state.loading = false
+            state.success = true
+            state.searchNote = action.payload.searchData;
+        }
+        ).addCase(searchNote.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+            state.success = false;
+        }
+        )
+        //book mark notes
+        builder.addCase(bookMarkNotes.pending, (state, action) => {
+            state.loading = true
+
+        }
+        ).addCase(bookMarkNotes.fulfilled, (state, action) => {
+            state.loading = false
+            state.success = true
+            state.bookMarkNotes = action.payload;
+        }
+        ).addCase(bookMarkNotes.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+            state.success = false;
+        }
+        )
+
+
+        //get bookmarked notes
+        builder.addCase(getBookMarkedNotes.pending, (state, action) => {
+            state.loading = true
+
+        }
+        ).addCase(getBookMarkedNotes.fulfilled, (state, action) => {
+            state.loading = false
+            state.success = true
+            state.bookMarkNotes = action.payload.notes
+        }
+        ).addCase(getBookMarkedNotes.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+            state.success = false;
+        }
+        )
     }
 })
 

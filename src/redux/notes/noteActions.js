@@ -5,6 +5,82 @@ import { toast } from 'react-toastify'
 const authToken = localStorage.getItem('authtoken');
 const host = process.env.REACT_APP_API_HOST;
 
+
+export const getBookMarkedNotes = createAsyncThunk(
+    'notes/getBookMarkedNotes',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`${host}/api/v1/notes/getBookMarkedNotes`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                console.log(response.data);
+                return response.data;
+            } else {
+                console.log('error');
+                return rejectWithValue(response.data.message);
+            }
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+)
+
+export const bookMarkNotes = createAsyncThunk(
+    'notes/bookMarkNotes',
+    async (noteId, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(`${host}/api/v1/notes/bookmark/${noteId}`, {}, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                toast.success(response.data.message);
+                return response.data;
+            } else {
+                toast.error(response.data.message);
+                return rejectWithValue(response.data.message);
+            }
+        } catch (error) {
+            toast.error(error.response?.data?.message);
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+)
+
+
+export const searchNote = createAsyncThunk(
+    'notes/searchNote',
+    async (searchText, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`${host}/api/v1/notes/search?search=${searchText}`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                console.log(response.data);
+                return response.data;
+            } else {
+                console.log('error');
+                return rejectWithValue(response.data.message);
+            }
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+)
+
+
 export const getNotes = createAsyncThunk(
     'notes/getNotes',
     async (_, { rejectWithValue }) => {
