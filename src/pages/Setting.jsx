@@ -175,7 +175,7 @@ const Setting = () => {
                       </div>
                       <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
-                          GitHub:
+                          GitHub Username <br/> (for example : adityashah7867):
                         </label>
                         {isEditable ? (
                           <input
