@@ -2,23 +2,20 @@ import React, { useEffect, useState } from "react";
 
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
-import { useSelector } from "react-redux";
 import Loader from "../Loader";
+import { getUserInfo, getUsersLeaderBoard } from "../../redux/user/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
 export const SideBar = () => {
+  const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user.user)
-
-
+  const user = useSelector((state) => state.user.user);
+  const userDetails = useSelector((state) => state.userDetails.userDetails);
 
   const handleLogout = () => {
-    localStorage.removeItem('authtoken');
+    localStorage.removeItem("authtoken");
     window.location.reload();
   };
-
-
-
-
 
   return (
     <div>
@@ -33,16 +30,17 @@ export const SideBar = () => {
           <div className="text-gray-100 text-xl">
             <div className="p-2.5 mt-1 flex items-center">
               <img
-
                 src={user?.profile}
-
-                className='w-[40px] h-[40px] rounded-full border'
-
-
+                className="w-[40px] h-[40px] rounded-full border"
               />
               <h1 className="font-bold text-gray-200 text-[15px] ml-3">
                 <div className="flex-col">
-                  <p> {user?.username}</p>
+                  <p>
+                    {" "}
+                    {user?.username} &nbsp;{" "}
+                    <i class="fa-solid fa-coins fa-xl text-yellow-600"></i>&nbsp; &nbsp;
+                    {user?.coins}
+                  </p>
                 </div>
               </h1>
             </div>
@@ -55,15 +53,15 @@ export const SideBar = () => {
               placeholder="Find people"
               name="username"
               className="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
-            //   onChange={(e) =>
-            //     setSearchUsername({
-            //       ...searchUsername,
-            //       [e.target.name]: e.target.value,
-            //     })
-            //   }
-            //   onBlur={
-            //     handleSearchBlur
-            //   }
+              //   onChange={(e) =>
+              //     setSearchUsername({
+              //       ...searchUsername,
+              //       [e.target.name]: e.target.value,
+              //     })
+              //   }
+              //   onBlur={
+              //     handleSearchBlur
+              //   }
             />
           </div>
           <div className="my-2 bg-gray-600 h-[1px]" />
@@ -100,17 +98,16 @@ export const SideBar = () => {
             </div>
           </NavLink>
 
-          <NavLink to={'/notification'}>
-            <div className='p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-500'>
+          <NavLink to={"/notification"}>
+            <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-500">
               <i class="bi bi-bell"></i>
-              <span className='text-[15px] ml-4 font-bold text-gray-200'>
+              <span className="text-[15px] ml-4 font-bold text-gray-200">
                 Important Dates
               </span>
-
             </div>
           </NavLink>
 
-          <NavLink to={'/addnotes'}>
+          <NavLink to={"/addnotes"}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-person-circle"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
@@ -119,7 +116,7 @@ export const SideBar = () => {
             </div>
           </NavLink>
 
-          <NavLink to={'/video'}>
+          <NavLink to={"/video"}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-person-circle"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
@@ -152,42 +149,34 @@ export const SideBar = () => {
               </span>
             </div>
           </NavLink>
-          {
-            user?.role == 'superuser' && (
-              <>
-                <NavLink to={"/admin"}>
-                  <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                    <i class="bi bi-gear"></i>
-                    <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                      Admin
-                    </span>
-                  </div>
-                </NavLink>
+          {user?.role == "superuser" && (
+            <>
+              <NavLink to={"/admin"}>
+                <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                  <i class="bi bi-gear"></i>
+                  <span className="text-[15px] ml-4 text-gray-200 font-bold">
+                    Admin
+                  </span>
+                </div>
+              </NavLink>
 
-
-
-                <NavLink to={"/dateform"}>
-                  <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                    <i class="bi bi-gear"></i>
-                    <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                      Dates
-                    </span>
-                  </div>
-                </NavLink>
-              </>
-            )
-
-          }
+              <NavLink to={"/dateform"}>
+                <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                  <i class="bi bi-gear"></i>
+                  <span className="text-[15px] ml-4 text-gray-200 font-bold">
+                    Dates
+                  </span>
+                </div>
+              </NavLink>
+            </>
+          )}
 
           <div className="my-4 bg-gray-600 h-[1px]" />
-
-
-
 
           <div
             className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
             onClick={() => {
-              handleLogout()
+              handleLogout();
             }}
           >
             <i className="bi bi-box-arrow-in-right" />
@@ -207,11 +196,8 @@ export const SideBar = () => {
             className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow"
           >
             <div id="tabs" className="flex justify-between mx-5">
-              <NavLink to={'/'}>
-                <div
-
-                  className="w-full focus:text-teal-500 hover:text-teal-500  justify-center inline-block text-center pt-2 pb-1"
-                >
+              <NavLink to={"/"}>
+                <div className="w-full focus:text-teal-500 hover:text-teal-500  justify-center inline-block text-center pt-2 pb-1">
                   <svg
                     width={25}
                     height={25}
@@ -264,7 +250,7 @@ export const SideBar = () => {
                 </div>
               </NavLink>
 
-              <NavLink to={'/chat'}>
+              <NavLink to={"/chat"}>
                 <a1
                   href="#"
                   className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
@@ -317,11 +303,13 @@ export const SideBar = () => {
                       </g>
                     </g>
                   </svg>
-                  <span className="tab tab-kategori block text-xs">My Group</span>
+                  <span className="tab tab-kategori block text-xs">
+                    My Group
+                  </span>
                 </a1>
               </NavLink>
 
-              <NavLink to={'/userstatistics'}>
+              <NavLink to={"/userstatistics"}>
                 <a
                   href="#"
                   className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
@@ -357,13 +345,13 @@ export const SideBar = () => {
                       />
                     </g>
                   </svg>
-                  <span className="tab tab-explore block text-xs">Statistics</span>
+                  <span className="tab tab-explore block text-xs">
+                    Statistics
+                  </span>
                 </a>
               </NavLink>
 
-
-
-              <NavLink to={'/boost'}>
+              <NavLink to={"/boost"}>
                 <a
                   href="#"
                   className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
@@ -376,7 +364,7 @@ export const SideBar = () => {
                 </a>
               </NavLink>
 
-              <NavLink to={'/profile'} >
+              <NavLink to={"/profile"}>
                 <a
                   href="#"
                   className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
@@ -432,7 +420,6 @@ export const SideBar = () => {
                   <span className="tab tab-account block text-xs">Profile</span>
                 </a>
               </NavLink>
-
             </div>
           </section>
         </div>
@@ -440,6 +427,5 @@ export const SideBar = () => {
     </div>
   );
 };
-
 
 export default SideBar;

@@ -42,20 +42,20 @@ const Newdashboard = () => {
         <div className="flex-col lg:flex lg:flex-row gap-12 mb-4">
           <div class="flex items-center  justify-center lg:w-4/12  w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
             <i class="fa-solid fa-ranking-star text-yellow-600 fa-xl"></i>
-            <h3 class="text-2xl font-semibold text-gray-900 ml-3">Rank: 12</h3>
+            <h3 class="text-2xl font-semibold text-gray-900 ml-3">Rank: {user?.rank}</h3>
           </div>
 
           <div class="flex items-center  justify-center lg:w-4/12 w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
             <i class="fa-solid fa-cloud-arrow-up fa-xl"></i>
             <h3 class="text-xl font-semibold text-gray-900 ml-3">
-              Notes Uploaded: <p>{userDetails?.notesUploaded}</p>
+              Notes Uploaded: <p>{user?.notesUploaded}</p>
             </h3>
           </div>
 
           <div class="flex items-center  justify-center lg:w-4/12 w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
             <i class="fa-solid fa-coins fa-xl text-yellow-600"></i>
             <h3 class="text-xl font-semibold text-gray-900 ml-3">
-              Current Coins:<p>{userDetails.coins}</p>{" "}
+              Current Coins:<p>{user?.coins}</p>{" "}
             </h3>
           </div>
 
