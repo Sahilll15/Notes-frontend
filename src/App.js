@@ -26,13 +26,28 @@ import Notification from './pages/Notification';
 import Setting from './pages/Setting';
 import DateForm from './pages/DateForm';
 import Dashoboard from './pages/DashBoard';
+import { initialCall } from './redux/auth/authActions';
+import Loader from './components/Loader';
 
 const App = () => {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector((state) => state?.user?.isAuthenticated)
+  const initialLoading = useSelector((state) => state?.user?.initialCallLoading)
   useEffect(() => {
     dispatch(getLogedinUser())
-  }, [])
+  }, [dispatch])
+
+
+  useEffect(() => {
+    dispatch(initialCall())
+  }, [dispatch])
+
+
+  if (initialLoading) {
+    return (
+      <Loader />
+    )
+  }
 
 
   return (
