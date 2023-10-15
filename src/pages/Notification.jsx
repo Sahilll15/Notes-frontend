@@ -38,11 +38,16 @@ const Notification = () => {
 
   return (
     <Alternates>
+      <div className="mt-9 "></div>
       <div className="flex flex-col md:flex-row">
-        {impDates?.length === 0 && <h1 className="text-2xl text-red-500">No Important Dates Found</h1>}
+        
+       
+        {impDates?.length === 0 && <h1 className="text-2xl mt-3 text-red-500">No Important Dates Found</h1>}
         <div className="flex flex-col-reverse ">
+        
+         
           {impDates?.map((imp) => (
-
+            
             <ImpDatesCard imp={imp} />
 
           ))}

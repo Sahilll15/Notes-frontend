@@ -22,8 +22,9 @@ function formatDateTimeInIST(date) {
 const ImpDatesCard = ({ imp }) => {
     return (
         <div>
+            
             <div className="w-full p-4 ">
-                <div className='mt-4'>
+                <div className='-mt-4'>
                     <div className="max-w-md mx-auto bg-white rounded-xl overflow-hidden shadow-sm md:max-w-2xl mt-1  p-6">
                         <div className="font-semibold text-xl mb-2">{imp?.title}</div>
                         <p className="text-gray-700 text-base">

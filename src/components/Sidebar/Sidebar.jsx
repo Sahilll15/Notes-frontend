@@ -16,7 +16,7 @@ export const SideBar = () => {
 
 
   const handleLogout = () => {
-    localStorage.removeItem('authtoken');
+    localStorage.removeItem("authtoken");
     window.location.reload();
   };
 
@@ -50,16 +50,17 @@ export const SideBar = () => {
           <div className="text-gray-100 text-xl">
             <div className="p-2.5 mt-1 flex items-center">
               <img
-
                 src={user?.profile}
-
-                className='w-[40px] h-[40px] rounded-full border'
-
-
+                className="w-[40px] h-[40px] rounded-full border"
               />
               <h1 className="font-bold text-gray-200 text-[15px] ml-3">
                 <div className="flex-col">
-                  <p> {user?.username}</p>
+                  <p>
+                    {" "}
+                    {user?.username} &nbsp;{" "}
+                    <i class="fa-solid fa-coins fa-xl text-yellow-600"></i>&nbsp; &nbsp;
+                    {user?.coins}
+                  </p>
                 </div>
               </h1>
             </div>
@@ -114,17 +115,16 @@ export const SideBar = () => {
             </div>
           </NavLink>
 
-          <NavLink to={'/notification'}>
-            <div className='p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-500'>
+          <NavLink to={"/notification"}>
+            <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-500">
               <i class="bi bi-bell"></i>
-              <span className='text-[15px] ml-4 font-bold text-gray-200'>
+              <span className="text-[15px] ml-4 font-bold text-gray-200">
                 Important Dates
               </span>
-
             </div>
           </NavLink>
 
-          <NavLink to={'/addnotes'}>
+          <NavLink to={"/addnotes"}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-person-circle"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
@@ -133,7 +133,7 @@ export const SideBar = () => {
             </div>
           </NavLink>
 
-          <NavLink to={'/video'}>
+          <NavLink to={"/video"}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
               <i class="bi bi-person-circle"></i>
               <span className="text-[15px] ml-4 text-gray-200 font-bold">
@@ -166,42 +166,34 @@ export const SideBar = () => {
               </span>
             </div>
           </NavLink>
-          {
-            user?.role == 'superuser' && (
-              <>
-                <NavLink to={"/admin"}>
-                  <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                    <i class="bi bi-gear"></i>
-                    <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                      Admin
-                    </span>
-                  </div>
-                </NavLink>
+          {user?.role == "superuser" && (
+            <>
+              <NavLink to={"/admin"}>
+                <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                  <i class="bi bi-gear"></i>
+                  <span className="text-[15px] ml-4 text-gray-200 font-bold">
+                    Admin
+                  </span>
+                </div>
+              </NavLink>
 
-
-
-                <NavLink to={"/dateform"}>
-                  <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                    <i class="bi bi-gear"></i>
-                    <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                      Dates
-                    </span>
-                  </div>
-                </NavLink>
-              </>
-            )
-
-          }
+              <NavLink to={"/dateform"}>
+                <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                  <i class="bi bi-gear"></i>
+                  <span className="text-[15px] ml-4 text-gray-200 font-bold">
+                    Dates
+                  </span>
+                </div>
+              </NavLink>
+            </>
+          )}
 
           <div className="my-4 bg-gray-600 h-[1px]" />
-
-
-
 
           <div
             className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
             onClick={() => {
-              handleLogout()
+              handleLogout();
             }}
           >
             <i className="bi bi-box-arrow-in-right" />
@@ -214,246 +206,86 @@ export const SideBar = () => {
 
       <div className="MobileBtm">
         {/* component */}
-        <div className="w-full  ">
-          {/* <section id="bottom-navigation" class="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white shadow"> // if shown only tablet/mobile*/}
-          <section
-            id="bottom-navigation"
-            className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow"
-          >
-            <div id="tabs" className="flex justify-between mx-5">
-              <NavLink to={'/'}>
-                <div
-
-                  className="w-full focus:text-teal-500 hover:text-teal-500  justify-center inline-block text-center pt-2 pb-1"
-                >
-                  <svg
-                    width={25}
-                    height={25}
-                    viewBox="0 0 42 42"
-                    className="inline-block mb-1"
-                  >
-                    <g
-                      stroke="none"
-                      strokeWidth={1}
-                      fill="none"
-                      fillRule="evenodd"
-                    >
-                      <path
-                        d="M21.0847458,3.38674884 C17.8305085,7.08474576 17.8305085,10.7827427 21.0847458,14.4807396 C24.3389831,18.1787365 24.3389831,22.5701079 21.0847458,27.6548536 L21.0847458,42 L8.06779661,41.3066256 L6,38.5331279 L6,26.2681048 L6,17.2542373 L8.88135593,12.4006163 L21.0847458,2 L21.0847458,3.38674884 Z"
-                        fill="currentColor"
-                        fillOpacity="0.1"
-                      />
-                      <path
-                        d="M11,8 L33,8 L11,8 Z M39,17 L39,36 C39,39.3137085 36.3137085,42 33,42 L11,42 C7.6862915,42 5,39.3137085 5,36 L5,17 L7,17 L7,36 C7,38.209139 8.790861,40 11,40 L33,40 C35.209139,40 37,38.209139 37,36 L37,17 L39,17 Z"
-                        fill="currentColor"
-                      />
-                      <path
-                        d="M22,27 C25.3137085,27 28,29.6862915 28,33 L28,41 L16,41 L16,33 C16,29.6862915 18.6862915,27 22,27 Z"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        fill="currentColor"
-                        fillOpacity="0.1"
-                      />
-                      <rect
-                        fill="currentColor"
-                        transform="translate(32.000000, 11.313708) scale(-1, 1) rotate(-45.000000) translate(-32.000000, -11.313708) "
-                        x={17}
-                        y="10.3137085"
-                        width={30}
-                        height={2}
-                        rx={1}
-                      />
-                      <rect
-                        fill="currentColor"
-                        transform="translate(12.000000, 11.313708) rotate(-45.000000) translate(-12.000000, -11.313708) "
-                        x={-3}
-                        y="10.3137085"
-                        width={30}
-                        height={2}
-                        rx={1}
-                      />
-                    </g>
-                  </svg>
-                  <span className="tab tab-home block text-xs">Home</span>
-                </div>
-              </NavLink>
-
-              <NavLink to={'/chat'}>
-                <a1
-                  href="#"
-                  className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
-                >
-                  <svg
-                    width={25}
-                    height={25}
-                    viewBox="0 0 42 42"
-                    className="inline-block mb-1"
-                  >
-                    <g
-                      stroke="none"
-                      strokeWidth={1}
-                      fill="none"
-                      fillRule="evenodd"
-                    >
-                      <path
-                        d="M14.7118754,20.0876892 L8.03575361,20.0876892 C5.82661462,20.0876892 4.03575361,18.2968282 4.03575361,16.0876892 L4.03575361,12.031922 C4.03575361,8.1480343 6.79157254,4.90780265 10.4544842,4.15995321 C8.87553278,8.5612583 8.1226025,14.3600511 10.9452499,15.5413938 C13.710306,16.6986332 14.5947501,18.3118357 14.7118754,20.0876892 Z M14.2420017,23.8186831 C13.515543,27.1052019 12.7414284,30.2811559 18.0438552,31.7330419 L18.0438552,33.4450645 C18.0438552,35.6542035 16.2529942,37.4450645 14.0438552,37.4450645 L9.90612103,37.4450645 C6.14196811,37.4450645 3.09051926,34.3936157 3.09051926,30.6294627 L3.09051926,27.813861 C3.09051926,25.604722 4.88138026,23.813861 7.09051926,23.813861 L14.0438552,23.813861 C14.1102948,23.813861 14.1763561,23.8154808 14.2420017,23.8186831 Z M20.7553776,32.160536 C23.9336213,32.1190063 23.9061943,29.4103976 33.8698747,31.1666916 C34.7935223,31.3295026 35.9925894,31.0627305 37.3154077,30.4407183 C37.09778,34.8980343 33.4149547,38.4450645 28.9036761,38.4450645 C24.9909035,38.4450645 21.701346,35.7767637 20.7553776,32.160536 Z"
-                        fill="currentColor"
-                        opacity="0.1"
-                      />
-                      <g transform="translate(2.000000, 3.000000)">
-                        <path
-                          d="M8.5,1 C4.35786438,1 1,4.35786438 1,8.5 L1,13 C1,14.6568542 2.34314575,16 4,16 L13,16 C14.6568542,16 16,14.6568542 16,13 L16,4 C16,2.34314575 14.6568542,1 13,1 L8.5,1 Z"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        />
-                        <path
-                          d="M4,20 C2.34314575,20 1,21.3431458 1,23 L1,27.5 C1,31.6421356 4.35786438,35 8.5,35 L13,35 C14.6568542,35 16,33.6568542 16,32 L16,23 C16,21.3431458 14.6568542,20 13,20 L4,20 Z"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        />
-                        <path
-                          d="M23,1 C21.3431458,1 20,2.34314575 20,4 L20,13 C20,14.6568542 21.3431458,16 23,16 L32,16 C33.6568542,16 35,14.6568542 35,13 L35,8.5 C35,4.35786438 31.6421356,1 27.5,1 L23,1 Z"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        />
-                        <path
-                          d="M34.5825451,33.4769886 L38.3146092,33.4322291 C38.8602707,33.4256848 39.3079219,33.8627257 39.3144662,34.4083873 C39.3145136,34.4123369 39.3145372,34.4162868 39.3145372,34.4202367 L39.3145372,34.432158 C39.3145372,34.9797651 38.8740974,35.425519 38.3265296,35.4320861 L34.5944655,35.4768456 C34.048804,35.4833899 33.6011528,35.046349 33.5946085,34.5006874 C33.5945611,34.4967378 33.5945375,34.4927879 33.5945375,34.488838 L33.5945375,34.4769167 C33.5945375,33.9293096 34.0349773,33.4835557 34.5825451,33.4769886 Z"
-                          fill="currentColor"
-                          transform="translate(36.454537, 34.454537) rotate(-315.000000) translate(-36.454537, -34.454537) "
-                        />
-                        <circle
-                          stroke="currentColor"
-                          strokeWidth={2}
-                          cx="27.5"
-                          cy="27.5"
-                          r="7.5"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                  <span className="tab tab-kategori block text-xs">My Group</span>
-                </a1>
-              </NavLink>
-
-              <NavLink to={'/userstatistics'}>
-                <a
-                  href="#"
-                  className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
-                >
-                  <svg
-                    width={25}
-                    height={25}
-                    viewBox="0 0 42 42"
-                    className="inline-block mb-1"
-                  >
-                    <g
-                      stroke="none"
-                      strokeWidth={1}
-                      fill="none"
-                      fillRule="evenodd"
-                    >
-                      <path
-                        d="M20.5890101,0.254646884 C12.8696785,5.50211755 8.0025785,14.258415 14.1941217,18.8708225 C23.16683,25.5550669 13.3362326,40.2698884 33.1021758,38.4149164 C29.6814884,40.8311956 25.5065164,42.2507054 21,42.2507054 C9.40202025,42.2507054 0,32.8486852 0,21.2507054 C0,9.79003409 9.18071714,0.473634138 20.5890101,0.254646884 Z"
-                        fill="currentColor"
-                        opacity="0.1"
-                      />
-                      <path
-                        d="M25.9500282,20.3643496 L22.4308312,38.2677802 C22.3775703,38.5387376 22.1147395,38.7152155 21.8437821,38.6619546 C21.6570955,38.6252584 21.507413,38.4857901 21.4576354,38.3021581 L16.5951895,20.3643496 L20.099732,4.44663907 C20.1385204,4.27046145 20.2692032,4.12883813 20.4417012,4.07604096 C20.7057521,3.99522179 20.9853245,4.14376046 21.0661436,4.40781135 L25.9500282,20.3643496 Z M21.3022963,22.2852638 C22.4068658,22.2852638 23.3022963,21.3898333 23.3022963,20.2852638 C23.3022963,19.1806943 22.4068658,18.2852638 21.3022963,18.2852638 C20.1977268,18.2852638 19.3022963,19.1806943 19.3022963,20.2852638 C19.3022963,21.3898333 20.1977268,22.2852638 21.3022963,22.2852638 Z"
-                        fill="currentColor"
-                        transform="translate(21.272609, 20.629524) rotate(-315.000000) translate(-21.272609, -20.629524) "
-                      />
-                      <circle
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        cx={21}
-                        cy={21}
-                        r={20}
-                      />
-                    </g>
-                  </svg>
-                  <span className="tab tab-explore block text-xs">Statistics</span>
-                </a>
-              </NavLink>
-
-
-
-              <NavLink to={'/boost'}>
-                <a
-                  href="#"
-                  className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
-                >
-                  <i class="fa-solid fa-rocket fa-xl"></i>
-
-                  <span className="tab tab-whishlist block text-xs mt-1">
-                    Boost
-                  </span>
-                </a>
-              </NavLink>
-
-              <NavLink to={'/profile'} >
-                <a
-                  href="#"
-                  className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
-                >
-                  <svg
-                    width={25}
-                    height={25}
-                    viewBox="0 0 42 42"
-                    className="inline-block mb-1"
-                  >
-                    <g
-                      stroke="none"
-                      strokeWidth={1}
-                      fill="none"
-                      fillRule="evenodd"
-                    >
-                      <path
-                        d="M14.7118754,20.0876892 L8.03575361,20.0876892 C5.82661462,20.0876892 4.03575361,18.2968282 4.03575361,16.0876892 L4.03575361,12.031922 C4.03575361,8.1480343 6.79157254,4.90780265 10.4544842,4.15995321 C8.87553278,8.5612583 8.1226025,14.3600511 10.9452499,15.5413938 C13.710306,16.6986332 14.5947501,18.3118357 14.7118754,20.0876892 Z M14.2420017,23.8186831 C13.515543,27.1052019 12.7414284,30.2811559 18.0438552,31.7330419 L18.0438552,33.4450645 C18.0438552,35.6542035 16.2529942,37.4450645 14.0438552,37.4450645 L9.90612103,37.4450645 C6.14196811,37.4450645 3.09051926,34.3936157 3.09051926,30.6294627 L3.09051926,27.813861 C3.09051926,25.604722 4.88138026,23.813861 7.09051926,23.813861 L14.0438552,23.813861 C14.1102948,23.813861 14.1763561,23.8154808 14.2420017,23.8186831 Z M20.7553776,32.160536 C23.9336213,32.1190063 23.9061943,29.4103976 33.8698747,31.1666916 C34.7935223,31.3295026 35.9925894,31.0627305 37.3154077,30.4407183 C37.09778,34.8980343 33.4149547,38.4450645 28.9036761,38.4450645 C24.9909035,38.4450645 21.701346,35.7767637 20.7553776,32.160536 Z"
-                        fill="currentColor"
-                        opacity="0.1"
-                      />
-                      <g transform="translate(2.000000, 3.000000)">
-                        <path
-                          d="M8.5,1 C4.35786438,1 1,4.35786438 1,8.5 L1,13 C1,14.6568542 2.34314575,16 4,16 L13,16 C14.6568542,16 16,14.6568542 16,13 L16,4 C16,2.34314575 14.6568542,1 13,1 L8.5,1 Z"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        />
-                        <path
-                          d="M4,20 C2.34314575,20 1,21.3431458 1,23 L1,27.5 C1,31.6421356 4.35786438,35 8.5,35 L13,35 C14.6568542,35 16,33.6568542 16,32 L16,23 C16,21.3431458 14.6568542,20 13,20 L4,20 Z"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        />
-                        <path
-                          d="M23,1 C21.3431458,1 20,2.34314575 20,4 L20,13 C20,14.6568542 21.3431458,16 23,16 L32,16 C33.6568542,16 35,14.6568542 35,13 L35,8.5 C35,4.35786438 31.6421356,1 27.5,1 L23,1 Z"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        />
-                        <path
-                          d="M34.5825451,33.4769886 L38.3146092,33.4322291 C38.8602707,33.4256848 39.3079219,33.8627257 39.3144662,34.4083873 C39.3145136,34.4123369 39.3145372,34.4162868 39.3145372,34.4202367 L39.3145372,34.432158 C39.3145372,34.9797651 38.8740974,35.425519 38.3265296,35.4320861 L34.5944655,35.4768456 C34.048804,35.4833899 33.6011528,35.046349 33.5946085,34.5006874 C33.5945611,34.4967378 33.5945375,34.4927879 33.5945375,34.488838 L33.5945375,34.4769167 C33.5945375,33.9293096 34.0349773,33.4835557 34.5825451,33.4769886 Z"
-                          fill="currentColor"
-                          transform="translate(36.454537, 34.454537) rotate(-315.000000) translate(-36.454537, -34.454537) "
-                        />
-                        <circle
-                          stroke="currentColor"
-                          strokeWidth={2}
-                          cx="27.5"
-                          cy="27.5"
-                          r="7.5"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                  <span className="tab tab-account block text-xs">Profile</span>
-                </a>
-              </NavLink>
-
-            </div>
-          </section>
+        <div className="w-full">
+  <section
+    id="bottom-navigation"
+    className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow"
+  >
+    <div id="tabs" className="flex justify-between mx-5">
+      <NavLink to={"/"}>
+        <div className="w-full focus:text-teal-500 hover:text-teal-500  justify-center inline-block text-center pt-2 pb-1">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21.4498 10.275L11.9998 3.1875L2.5498 10.275L2.9998 11.625H3.7498V20.25H20.2498V11.625H20.9998L21.4498 10.275ZM5.2498 18.75V10.125L11.9998 5.0625L18.7498 10.125V18.75H14.9999V14.3333L14.2499 13.5833H9.74988L8.99988 14.3333V18.75H5.2498ZM10.4999 18.75H13.4999V15.0833H10.4999V18.75Z" fill="#080341"></path> </g></svg>
+          <span className="tab tab-home block text-xs ">Home</span>
         </div>
+      </NavLink>
+
+      <NavLink to={"/video"}>
+        <a
+          href="#"
+          className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
+        >
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.5 9V15M6.5 12H12.5M16 10L18.5768 8.45392C19.3699 7.97803 19.7665 7.74009 20.0928 7.77051C20.3773 7.79703 20.6369 7.944 20.806 8.17433C21 8.43848 21 8.90095 21 9.8259V14.1741C21 15.099 21 15.5615 20.806 15.8257C20.6369 16.056 20.3773 16.203 20.0928 16.2295C19.7665 16.2599 19.3699 16.022 18.5768 15.5461L16 14M6.2 18H12.8C13.9201 18 14.4802 18 14.908 17.782C15.2843 17.5903 15.5903 17.2843 15.782 16.908C16 16.4802 16 15.9201 16 14.8V9.2C16 8.0799 16 7.51984 15.782 7.09202C15.5903 6.71569 15.2843 6.40973 14.908 6.21799C14.4802 6 13.9201 6 12.8 6H6.2C5.0799 6 4.51984 6 4.09202 6.21799C3.71569 6.40973 3.40973 6.71569 3.21799 7.09202C3 7.51984 3 8.07989 3 9.2V14.8C3 15.9201 3 16.4802 3.21799 16.908C3.40973 17.2843 3.71569 17.5903 4.09202 17.782C4.51984 18 5.07989 18 6.2 18Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+          <span className="tab tab-kategori block  text-xs">
+            Video
+          </span>
+        </a>
+      </NavLink>
+
+      <NavLink to={"/addnotes"}>
+        <a
+          href="#"
+          className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
+        >
+<svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"></circle> <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>          <span className="tab tab-explore block text-xs">
+            ADD 
+          </span>
+        </a>
+      </NavLink>
+
+      <NavLink to={"/dashboard"}>
+        <a
+          href="#"
+          className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
+        >
+          <center>
+          <svg fill="#000000" width="30px" height="30px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M746.667 106.667H1173.33V1493.33H746.667V106.667ZM533.333 533.333H106.667V1493.33H533.333V533.333ZM1920 1706.67H0V1824H1920V1706.67ZM1813.33 746.667H1386.67V1493.33H1813.33V746.667Z"></path> </g></svg>         
+
+          </center>
+
+ <span className="tab tab-whishlist block text-xs mt-1">
+            DASHBOAR0D
+          </span>
+        </a>
+      </NavLink>
+
+      <NavLink to={`/profile/${user?.username}`}>
+        <a
+          href="#"
+          className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
+        >
+          <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle opacity="0.5" cx="12" cy="9" r="3" stroke="#1C274C" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"></circle> <path opacity="0.5" d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+          <span className="tab tab-account block text-xs mt-1">Profile</span>
+        </a>
+      </NavLink>
+
+      {/* New Submission Button */}
+      <NavLink to={"/submission"}>
+        <a
+          href="#"
+          className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
+        >
+
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>file_type_light_todo</title><polygon points="17.866 15.509 17.866 15.509 16.886 16.489 15.906 15.511 15.906 15.511 13.949 13.554 14.926 12.577 16.883 14.534 21.774 9.64 22.754 10.617 17.866 15.509" style={{fill:'green'}}></polygon><rect x="14.454" y="21.443" width="8.303" height="1.383" style={{fill:'$c00000'}} ></rect><path d="M2,5.74V29.449H26.909V5.74ZM25.477,28.189,3.394,28.131,3.417,7.157H25.494ZM6.151,10.951v5.534h5.534V10.951ZM10.3,15.1H7.534V12.334H10.3Zm-4.151,4.22v5.534h5.534V19.323ZM10.3,23.474H7.534V20.709H10.3ZM30,2.551V26.24H28.569L28.549,4l-22.4-.029V2.551H30Z"></path></g></svg>
+          <span className="tab tab-submission block text-xs mt-1">To-Do</span>
+        </a>
+      </NavLink>
+    </div>
+  </section>
+</div>
+
       </div>
     </div>
   );
 };
-
 
 export default SideBar;
