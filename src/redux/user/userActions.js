@@ -132,3 +132,31 @@ export const seachUser = createAsyncThunk(
         }
     }
 )
+
+
+export const lottery = createAsyncThunk(
+    'user/lottery',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(`${host}/api/v1/transfer/lottery`, {}, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('authtoken')}`
+                }
+            })
+
+            if (response.status === 200) {
+                console.log(response.data);
+                toast.success(response.data.message);
+                return response.data;
+            }
+            else {
+                toast.error(response.data.message)
+                return rejectWithValue(response.data.message)
+
+            }
+        } catch (error) {
+            toast.error(error.response.data.message)
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+)

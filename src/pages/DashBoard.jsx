@@ -100,7 +100,9 @@ const Dashboard = () => {
             <div className="relative flex flex-col rounded-xl bg-gray-200 bg-clip-border my-4">
               <div className="p-6">
                 <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
-                  <Lottery />
+                  <Lottery onClick={() => {
+                    alert('clicked')
+                  }} />
                 </h5>
               </div>
             </div>
