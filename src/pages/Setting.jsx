@@ -175,7 +175,7 @@ const Setting = () => {
                       </div>
                       <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
-                          GitHub Username <br/> (for example : adityashah7867):
+                          GitHub Username <br /> (for example : adityashah7867):
                         </label>
                         {isEditable ? (
                           <input
@@ -220,12 +220,24 @@ const Setting = () => {
                       </div>
                       <div className="mt-6 text-center">
                         {isEditable ? (
-                          <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
-                            type="submit"
-                          >
-                            Save
-                          </button>
+                          <>
+
+                            <button
+                              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
+                              type="submit"
+                            >
+                              Save
+                            </button>
+                            <button
+                              onClick={() => {
+                                setIsEditable(false)
+                              }}
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full mr-2"
+                              type="submit"
+                            >
+                              Cancle
+                            </button>
+                          </>
                         ) : (
                           <button
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
