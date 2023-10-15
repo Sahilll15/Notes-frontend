@@ -12,9 +12,6 @@ const Profile = () => {
     const [showLoader, setShowLoader] = useState(true);
 
 
-
-
-
     const { username } = useParams();
     const skills = [
         "HTML",
@@ -69,8 +66,7 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(getUserProfile(username));
-
-    }, [username]);
+    }, [dispatch, username]);
 
 
     useEffect(() => {
@@ -79,7 +75,7 @@ const Profile = () => {
         }, 2000);
 
         return () => clearTimeout(timeout);
-    }, []);
+    }, [username]);
 
     if (showLoader) {
         return <Loader />;

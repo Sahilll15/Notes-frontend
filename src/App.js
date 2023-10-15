@@ -12,7 +12,6 @@ import NotesForm from './pages/NotesForm';
 import OtpForm from './pages/OtpForm';
 import Navbar from './components/Navbar';
 
-import Dashoboard from './pages/Newdashboard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogedinUser } from './redux/auth/authActions';
@@ -26,6 +25,7 @@ import Video from './pages/Video';
 import Notification from './pages/Notification';
 import Setting from './pages/Setting';
 import DateForm from './pages/DateForm';
+import Dashoboard from './pages/DashBoard';
 
 const App = () => {
   const dispatch = useDispatch();

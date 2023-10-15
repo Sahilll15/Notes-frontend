@@ -1,129 +1,171 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import DashLay from "../components/Layout/Dash";
 import { getUserInfo, getUsersLeaderBoard } from "../redux/user/userActions";
 import { useDispatch, useSelector } from "react-redux";
+import Lottery from "../components/Lottery";
+import SendMoneyCard from "../components/SendMoney";
+import { NavLink } from "react-router-dom";
 
-const Profile = () => {
+
+const Dashboard = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state?.user?.user)
-  const userDetails = useSelector((state) => state.userDetails.userDetails)
-  const userDetailsLoading = useSelector((state) => state.userDetails.userDetailsLoading)
-  const leaderBoard = useSelector((state) => state.userDetails.leaderBoard)
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  }
+
+  const closeModal = () => {
+    setModalOpen(false);
+  }
+  const user = useSelector((state) => state.user.user);
+  const userDetails = useSelector((state) => state.userDetails.userDetails);
+  const userDetailsLoading = useSelector(
+    (state) => state.userDetails.userDetailsLoading
+  );
+  const leaderBoard = useSelector((state) => state.userDetails.leaderBoard);
 
   useEffect(() => {
     if (user) {
-      console.log('user from user', user)
-      dispatch(getUserInfo())
+      dispatch(getUserInfo(user?.id));
     }
-
-  }, [user])
+  }, [user]);
 
   useEffect(() => {
-    console.log('user is', user)
-    // dispatch(getUsersLeaderBoard())
-  }, [])
-
-
+    dispatch(getUsersLeaderBoard());
+  }, []);
 
   return (
-    <div className="bg-black">
-      <div>
+    <div>
+      <DashLay>
+        <div>{/* send coins , Bookmarked , your notes */}</div>
 
+        <div className="flex-col lg:flex lg:flex-row gap-12 mb-4">
+          <div class="flex items-center  justify-center lg:w-4/12  w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
+            <i class="fa-solid fa-ranking-star text-yellow-600 fa-xl"></i>
+            <h3 class="text-2xl font-semibold text-gray-900 ml-3">Rank: 12</h3>
+          </div>
 
-        <div className="p-4 ">
-          <div className="p-4  border-black-200 border-2 rounded-lg  dark:border-black-700 mt-6">
-            <div className="flex-col lg:flex lg:flex-row  gap-4 mb-4">
+          <div class="flex items-center  justify-center lg:w-4/12 w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
+            <i class="fa-solid fa-cloud-arrow-up fa-xl"></i>
+            <h3 class="text-xl font-semibold text-gray-900 ml-3">
+              Notes Uploaded: <p>{userDetails?.notesUploaded}</p>
+            </h3>
+          </div>
 
-              <div className="flex items-center  justify-left lg:w-3/12 w-full h-28 rounded bg-gray-50 dark:bg-gray-800 mt-2 pl-3">
-                <div className=" flex-col">
-                  <h1 className="text-left text-white">
-                    <b>{userDetails.rank}</b>
-                  </h1>
-                  <h3 className="text-gray-400">LEADERBOARD RANK &nbsp; &nbsp; &nbsp;  <i class="fa-solid fa-arrow-trend-up text-green-400 fa-2xl" style={{ color: "#32a11b," }} />
-                  </h3>
-                </div>
-              </div>
+          <div class="flex items-center  justify-center lg:w-4/12 w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
+            <i class="fa-solid fa-coins fa-xl text-yellow-600"></i>
+            <h3 class="text-xl font-semibold text-gray-900 ml-3">
+              Current Coins:<p>{userDetails.coins}</p>{" "}
+            </h3>
+          </div>
 
-              <div className="flex items-center justify-left lg:w-3/12 w-full h-28 rounded bg-gray-50 dark:bg-gray-800 mt-2 pl-3">
-                <div className="flex-col">
-                  <h1 className="text-left text-white">
-                    <b>{userDetails?.notesUploaded}</b>
-                  </h1>
-                  <div className="text-gray-400">NOTES UPLOADED &nbsp; &nbsp; &nbsp; <i class="fa-solid fa-upload text-green-400 fa-2xl"></i></div>
-                </div>
-              </div>
+          <div class="flex items-center  justify-center lg:w-4/12 w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
+            <i class="fa-regular fa-thumbs-up fa-xl fa-fade"></i>
+            <h3 class="text-2xl font-semibold text-gray-900 ml-3">
+              Total Likes:{userDetails.totalLikes}
+            </h3>
+          </div>
+        </div>
 
-              <div className="flex items-center justify-left lg:w-3/12 w-full h-28 rounded bg-gray-50 dark:bg-gray-800 mt-2 pl-3">
-                <div className="flex-col">
-                  <h1 className="text-left text-white">
-                    <b>{userDetails.coins}</b>
-                  </h1>
-                  <h3 className="text-gray-400">CURRENT COINS &nbsp; &nbsp; &nbsp;  <i class="fa-solid fa-coins text-orange-400 fa-2xl"></i> </h3>
-                </div>
-              </div>
-              <div className="flex items-center justify-left lg:w-3/12 w-full h-28 rounded bg-gray-50 dark:bg-gray-800 mt-2 pl-3">
-                <div className="flex-col">
-                  <h1 className="text-left text-white">
-                    <b>{userDetails.totalLikes}</b>
-                  </h1>
-                  <h3 className="text-gray-400">TOTAL LIKES  &nbsp; &nbsp; &nbsp;   <i class="fa-solid fa-thumbs-up fa-bounce fa-2xl text-blue-500"></i></h3>
-                  <h3></h3>
-                </div>
+        {modalOpen && (
+          <div id="myModal" className="modal">
+            <div className="modal-content ">
+              <span className="close cursor-pointer bg-white p-3" onClick={closeModal}>&times;</span>
+              <SendMoneyCard />
+            </div>
+          </div>
+        )}
+
+        <div className="flex justify-center py-3">
+          <div className="flex flex-col items-center sm:flex-row mb-9">
+            <div className="relative flex flex-col rounded-xl bg-gradient-to-r from-yellow-100 to-yellow-500 bg-clip-border cursor-pointer text-yellow-900 shadow-md mx-4"
+              onClick={openModal}>
+              <div className="p-6">
+                <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
+                  Send Coins
+                </h5>
+
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800 ">
-                <h1 className="text-white"><i class="fa-solid fa-money-bill"></i>  &nbsp; SEND COINS</h1>
-                <p className="text-2xl text-gray-400 dark:text-gray-500"></p>
+
+            <div className="relative flex flex-col rounded-xl bg-gradient-to-r mx-4 my-4 from-green-200 to-green-600 bg-clip-border text-green-900 shadow-md">
+              <div className="p-6">
+                <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
+                  Your Notes
+                </h5>
               </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500" />
-                <h1 className="text-white"><i class="fa-solid fa-circle-plus  fa-lg" />   &nbsp; UPLOAD NOTES</h1>
-                <p />
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500" />
-                <h1 className="text-white"><i class="fa-solid fa-bookmark fa-lg" />   &nbsp; BOOKMARKED</h1>
-                <p />
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500" />
-                <h1 className="text-white"><i class="fa-solid fa-crown fa-lg" />   &nbsp; YOUR NOTES</h1>
-                <p />
+            </div>
+
+            <div className="relative flex flex-col rounded-xl bg-gray-200 bg-clip-border my-4">
+              <div className="p-6">
+                <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
+                  <Lottery />
+                </h5>
               </div>
             </div>
           </div>
-          <br />
-          <center>
-            <div className="border border-white bg-gray-800">
-              <table className="table-fixed text-white w-80 lg:w-5/6  text-center mx-5 my-5 bg-gray-800">
-                <thead>
-                  <tr>
-                    <th>RANK</th>
-                    <th>NAME</th>
-                    <th>COINS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    leaderBoard?.map((user, index) => {
-                      return (
-                        <tr className>
-                          <td>{index + 1}</td>
-                          <td>{user?.username}</td>
-                          <td>{user?.coins}</td>
-                        </tr>
-                      )
-                    })
-                  }
-                </tbody>
-              </table>
 
-            </div>
-          </center>
         </div>
-      </div>
+
+        <div>
+          <div>
+            <div className="flex flex-col justify-center h-full ">
+              {/* Table */}
+              <div className="w-full rounded-lg   mx-auto bg-slate-100 shadow-lg  border  border-gray-200">
+                <header className="px-5 border-b border-gray-100">
+                  <h2 className="font-semibold text-center text-gray-800">
+                    LEADERBOARD
+                  </h2>
+                </header>
+                <div className="p-3">
+                  <div className="overflow-x-auto">
+                    <table className="table-auto w-full">
+                      <thead className="text-xs font-semibold uppercase text-gray-400 bg-white">
+                        <tr>
+                          <th className="p-2 whitespace-nowrap">
+                            <div className="font-semibold text-left">Rank</div>
+                          </th>
+                          <th className="p-2 whitespace-nowrap">
+                            <div className="font-semibold text-left">Name</div>
+                          </th>
+                          <th className="p-2 whitespace-nowrap">
+                            <div className="font-semibold text-left">Coins</div>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-sm divide-y divide-gray-100">
+                        {leaderBoard?.map((user, index) => {
+                          return (
+                            <tr key={user.id}>
+                              <td>{index + 1}</td>
+                              <td>
+                                <NavLink to={`/profile/${user.username}`} className="cursor:pointer">
+                                  {user.username}
+                                </NavLink>
+                              </td>
+                              <td>{user.coins}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <br />
+        <br /> <br />
+        <br /> <br />
+        <br />
+
+      </DashLay>
+
     </div>
   );
-}
+};
 
-export default Profile;
+export default Dashboard;
