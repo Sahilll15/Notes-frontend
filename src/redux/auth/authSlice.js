@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { register, login, resetPassword, getLogedinUser } from './authActions'
+import { initialCall, register, login, resetPassword, getLogedinUser } from './authActions'
 
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
     error: "",
     success: false,
     token: "",
+    initialCallLoading: false
 
 }
 
@@ -72,6 +73,21 @@ export const authSlice = createSlice({
         }
         ).addCase(getLogedinUser.rejected, (state, action) => {
             state.loading = false
+            state.error = action.payload
+        }
+        )
+
+        //initialcall
+        builder.addCase(initialCall.pending, (state, action) => {
+            state.initialCallLoading = true
+        }
+        ).addCase(initialCall.fulfilled, (state, action) => {
+            state.initialCallLoading = false
+            state.success = true
+
+        }
+        ).addCase(initialCall.rejected, (state, action) => {
+            state.initialCallLoading = false
             state.error = action.payload
         }
         )

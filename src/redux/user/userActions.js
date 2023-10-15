@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 
 
 // http://localhost:4000/api/v1/users/getUserInfo/6501e34bc36bdc85aed140c4
+
+
 const host = process.env.REACT_APP_API_HOST;
 
 export const getUserInfo = createAsyncThunk(
@@ -96,6 +98,31 @@ export const editProfile = createAsyncThunk(
                 toast.success('Profile Updated Successfully');
                 return response.data;
 
+            }
+            else {
+                return rejectWithValue(response.data.message)
+            }
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+)
+
+
+
+export const seachUser = createAsyncThunk(
+    'user/searchUser',
+    async (username, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`${host}/api/v1/users/searchUser?username=${username}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('authtoken')}`
+                }
+            })
+
+            if (response.status === 200) {
+                console.log(response.data);
+                return response.data;
             }
             else {
                 return rejectWithValue(response.data.message)

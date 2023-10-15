@@ -12,7 +12,6 @@ import NotesForm from './pages/NotesForm';
 import OtpForm from './pages/OtpForm';
 import Navbar from './components/Navbar';
 
-import Dashoboard from './pages/Newdashboard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogedinUser } from './redux/auth/authActions';
@@ -26,13 +25,29 @@ import Video from './pages/Video';
 import Notification from './pages/Notification';
 import Setting from './pages/Setting';
 import DateForm from './pages/DateForm';
+import Dashboard from './pages/DashBoard';
+import { initialCall } from './redux/auth/authActions';
+import Loader from './components/Loader';
 
 const App = () => {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector((state) => state?.user?.isAuthenticated)
+  const initialLoading = useSelector((state) => state?.user?.initialCallLoading)
   useEffect(() => {
     dispatch(getLogedinUser())
-  }, [])
+  }, [dispatch])
+
+
+  useEffect(() => {
+    dispatch(initialCall())
+  }, [dispatch])
+
+
+  if (initialLoading) {
+    return (
+      <Loader />
+    )
+  }
 
 
   return (
@@ -71,7 +86,7 @@ const App = () => {
               <Route path="/profile/:username" element={<Profile />} />
               <Route path="/addnotes" element={<NotesForm />} />
               <Route path="/admin" element={<NotesTable />} />
-              <Route path="/dashboard" element={<Dashoboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/DateForm" element={<DateForm />} />
 
 

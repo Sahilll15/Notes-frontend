@@ -2,20 +2,40 @@ import React, { useEffect, useState } from "react";
 
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
+import { useSelector, useDispatch } from "react-redux";
 import Loader from "../Loader";
-import { getUserInfo, getUsersLeaderBoard } from "../../redux/user/userActions";
-import { useDispatch, useSelector } from "react-redux";
+import { seachUser } from "../../redux/user/userActions";
+import { getUserProfile } from "../../redux/user/userActions";
 
 export const SideBar = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user)
+  const [username, setUsername] = useState('')
 
-  const user = useSelector((state) => state.user.user);
-  const userDetails = useSelector((state) => state.userDetails.userDetails);
+  const searchedUser = useSelector((state) => state?.userDetails?.searchedUser)
+
 
   const handleLogout = () => {
     localStorage.removeItem("authtoken");
     window.location.reload();
   };
+
+
+  const handleSearchBlur = () => {
+    console.log(username)
+    setUsername('')
+  }
+
+
+  useEffect(() => {
+    if (username !== '') {
+      dispatch(seachUser(username))
+      dispatch(getUserProfile(username))
+    }
+  }, [username])
+
+
+
 
   return (
     <div>
@@ -53,32 +73,29 @@ export const SideBar = () => {
               placeholder="Find people"
               name="username"
               className="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
-              //   onChange={(e) =>
-              //     setSearchUsername({
-              //       ...searchUsername,
-              //       [e.target.name]: e.target.value,
-              //     })
-              //   }
-              //   onBlur={
-              //     handleSearchBlur
-              //   }
+              onChange={(e) =>
+                setUsername(e.target.value)
+              }
+              onBlur={
+                handleSearchBlur
+              }
             />
           </div>
           <div className="my-2 bg-gray-600 h-[1px]" />
-          {/* {searchedUser?.map((user) => (
-            <NavLink to='/profile'>
+          {searchedUser?.map((user) => (
+            <NavLink to={`/profile/${user?.username}`}>
               <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <img
-                  src={user?.avatar?.url}
+                  src={user?.profile}
                   alt=""
                   className="w-[40px] h-[40px] rounded-full border border-blue-400"
                 />
                 <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                  USER NAME
+                  {user?.username}
                 </span>
               </div>
             </NavLink>
-          ))} */}
+          ))}
 
           <NavLink to={"/"}>
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">

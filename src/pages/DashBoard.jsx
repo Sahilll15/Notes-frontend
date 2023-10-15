@@ -4,9 +4,10 @@ import { getUserInfo, getUsersLeaderBoard } from "../redux/user/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import Lottery from "../components/Lottery";
 import SendMoneyCard from "../components/SendMoney";
+import { NavLink } from "react-router-dom";
 
 
-const Newdashboard = () => {
+const Dashboard = () => {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -38,24 +39,24 @@ const Newdashboard = () => {
     <div>
       <DashLay>
         <div>{/* send coins , Bookmarked , your notes */}</div>
-        
+
         <div className="flex-col lg:flex lg:flex-row gap-12 mb-4">
           <div class="flex items-center  justify-center lg:w-4/12  w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
             <i class="fa-solid fa-ranking-star text-yellow-600 fa-xl"></i>
-            <h3 class="text-2xl font-semibold text-gray-900 ml-3">Rank: {user?.rank}</h3>
+            <h3 class="text-2xl font-semibold text-gray-900 ml-3">Rank: 12</h3>
           </div>
 
           <div class="flex items-center  justify-center lg:w-4/12 w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
             <i class="fa-solid fa-cloud-arrow-up fa-xl"></i>
             <h3 class="text-xl font-semibold text-gray-900 ml-3">
-              Notes Uploaded: <p>{user?.notesUploaded}</p>
+              Notes Uploaded: <p>{userDetails?.notesUploaded}</p>
             </h3>
           </div>
 
           <div class="flex items-center  justify-center lg:w-4/12 w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
             <i class="fa-solid fa-coins fa-xl text-yellow-600"></i>
             <h3 class="text-xl font-semibold text-gray-900 ml-3">
-              Current Coins:<p>{user?.coins}</p>{" "}
+              Current Coins:<p>{userDetails.coins}</p>{" "}
             </h3>
           </div>
 
@@ -68,45 +69,45 @@ const Newdashboard = () => {
         </div>
 
         {modalOpen && (
-      <div id="myModal" className="modal">
-        <div className="modal-content ">
-          <span className="close cursor-pointer bg-white p-3" onClick={closeModal}>&times;</span>
-          <SendMoneyCard/>
-        </div>
-      </div>
-       )}
+          <div id="myModal" className="modal">
+            <div className="modal-content ">
+              <span className="close cursor-pointer bg-white p-3" onClick={closeModal}>&times;</span>
+              <SendMoneyCard />
+            </div>
+          </div>
+        )}
 
         <div className="flex justify-center py-3">
-      <div className="flex flex-col items-center sm:flex-row mb-9">
-        <div className="relative flex flex-col rounded-xl bg-gradient-to-r from-yellow-100 to-yellow-500 bg-clip-border cursor-pointer text-yellow-900 shadow-md mx-4"
-        onClick={openModal}>
-          <div className="p-6">
-            <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
-              Send Coins
-            </h5>
-            
+          <div className="flex flex-col items-center sm:flex-row mb-9">
+            <div className="relative flex flex-col rounded-xl bg-gradient-to-r from-yellow-100 to-yellow-500 bg-clip-border cursor-pointer text-yellow-900 shadow-md mx-4"
+              onClick={openModal}>
+              <div className="p-6">
+                <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
+                  Send Coins
+                </h5>
+
+              </div>
+            </div>
+
+            <div className="relative flex flex-col rounded-xl bg-gradient-to-r mx-4 my-4 from-green-200 to-green-600 bg-clip-border text-green-900 shadow-md">
+              <div className="p-6">
+                <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
+                  Your Notes
+                </h5>
+              </div>
+            </div>
+
+            <div className="relative flex flex-col rounded-xl bg-gray-200 bg-clip-border my-4">
+              <div className="p-6">
+                <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
+                  <Lottery />
+                </h5>
+              </div>
+            </div>
           </div>
+
         </div>
 
-        <div className="relative flex flex-col rounded-xl bg-gradient-to-r mx-4 my-4 from-green-200 to-green-600 bg-clip-border text-green-900 shadow-md">
-          <div className="p-6">
-            <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
-              Your Notes
-            </h5>
-          </div>
-        </div>
-
-        <div className="relative flex flex-col rounded-xl bg-gray-200 bg-clip-border my-4">
-          <div className="p-6">
-            <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
-              <Lottery />
-            </h5>
-          </div>
-        </div>
-      </div>
-     
-    </div>
-   
         <div>
           <div>
             <div className="flex flex-col justify-center h-full ">
@@ -136,10 +137,14 @@ const Newdashboard = () => {
                       <tbody className="text-sm divide-y divide-gray-100">
                         {leaderBoard?.map((user, index) => {
                           return (
-                            <tr className>
-                              <td>&nbsp;&nbsp;&nbsp;&nbsp;{index + 1}</td>
-                              <td>&nbsp;&nbsp;{user?.username}</td>
-                              <td>&nbsp;&nbsp;&nbsp;{user?.coins}</td>
+                            <tr key={user.id}>
+                              <td>{index + 1}</td>
+                              <td>
+                                <NavLink to={`/profile/${user.username}`} className="cursor:pointer">
+                                  {user.username}
+                                </NavLink>
+                              </td>
+                              <td>{user.coins}</td>
                             </tr>
                           );
                         })}
@@ -150,17 +155,17 @@ const Newdashboard = () => {
               </div>
             </div>
           </div>
-         
+
         </div>
         <br />
         <br /> <br />
         <br /> <br />
         <br />
-      
+
       </DashLay>
-     
+
     </div>
   );
 };
 
-export default Newdashboard;
+export default Dashboard;

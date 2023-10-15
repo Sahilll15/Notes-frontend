@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Alternates from "../components/Layout/Profile";
 import { Link, NavLink } from "react-router-dom";
-import Edit from "../components/Profile/EditProfile";
+
 import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../redux/user/userActions";
 import { useParams } from "react-router-dom";
@@ -10,9 +10,6 @@ import Loader from "../components/Loader";
 const Profile = () => {
 
     const [showLoader, setShowLoader] = useState(true);
-
-
-
 
 
     const { username } = useParams();
@@ -69,8 +66,7 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(getUserProfile(username));
-
-    }, [username]);
+    }, [dispatch, username]);
 
 
     useEffect(() => {
@@ -79,7 +75,7 @@ const Profile = () => {
         }, 2000);
 
         return () => clearTimeout(timeout);
-    }, []);
+    }, [username]);
 
     if (showLoader) {
         return <Loader />;

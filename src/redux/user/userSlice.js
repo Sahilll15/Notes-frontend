@@ -1,14 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-import { getUserInfo, getUsersLeaderBoard, getUserProfile, editProfile } from './userActions'
+import { seachUser, getUserInfo, getUsersLeaderBoard, getUserProfile, editProfile } from './userActions'
 
 const initialState = {
     userDetails: {},
     leaderBoard: [],
+    searchedUser: [],
     userDetailsLoading: false,
     error: '',
-    userProfile: {}
+    userProfile: {},
+
 }
 
 export const userSlice = createSlice({
@@ -72,6 +74,22 @@ export const userSlice = createSlice({
         })
 
         builder.addCase(editProfile.rejected, (state, action) => {
+            state.userDetailsLoading = false;
+            state.error = action.payload;
+        })
+
+
+        //search user
+        builder.addCase(seachUser.pending, (state, action) => {
+            state.userDetailsLoading = true;
+        })
+
+        builder.addCase(seachUser.fulfilled, (state, action) => {
+            state.userDetailsLoading = false;
+            state.searchedUser = action.payload.user;
+        })
+
+        builder.addCase(seachUser.rejected, (state, action) => {
             state.userDetailsLoading = false;
             state.error = action.payload;
         })
