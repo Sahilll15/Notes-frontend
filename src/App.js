@@ -58,7 +58,7 @@ const App = () => {
 
         <div >
           <Routes>
-            <Route path="/land" element={<Landing />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/otp" element={<OtpForm />} />
@@ -79,7 +79,7 @@ const App = () => {
               <Route path="/setting" element={<Setting />} />
 
               <Route path="/notification" element={<Notification />} />
-              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/notes" element={<NotesTable />} />
               <Route path="/room/:roomId" element={<Room />} />
               <Route path="/video" element={<Video />} />

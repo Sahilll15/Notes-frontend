@@ -68,17 +68,16 @@ const Nviewer = () => {
 
 
   return (
-    <Alternates >
+   
       <div className="lg:flex md:flex-row -mt-16" style={{ color: 'white' }}>
-        <div className="lg:w-2/3 md:w-full bg-lightgray p-4">
+        <div className="lg:w-2/3 sm:w-full md:w-full bg-lightgray p-4">
           <h1 className="text-3xl font-bold mt-16 text-left">{singlenote?.name} </h1>
           <h3 className="text-3xl font-bold text-left">-by {singlenote?.author?.username}</h3>
 
           <iframe
-            className="iframe mt-10"
+            className="iframe mt-10 sm:min-w-full h-[35rem] lg:h-[50rem]"
             src={singlenote?.file + `#toolbar=0`}
             width="100%"
-            height="800"
 
           ></iframe>
         </div>
@@ -113,7 +112,7 @@ const Nviewer = () => {
         </div>
       </div>
 
-    </Alternates>
+   
   );
 }
 

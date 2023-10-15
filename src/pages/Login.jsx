@@ -49,7 +49,7 @@ const Login = () => {
       const response = await dispatch(login(formdata));
 
       if (response.meta.requestStatus === "fulfilled") {
-        navigate('/');
+        navigate('/home');
         window.location.reload();
 
       }
