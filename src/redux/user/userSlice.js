@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-import { seachUser, getUserInfo, getUsersLeaderBoard, getUserProfile, editProfile } from './userActions'
+import { lottery, seachUser, getUserInfo, getUsersLeaderBoard, getUserProfile, editProfile } from './userActions'
 
 const initialState = {
     userDetails: {},
@@ -93,6 +93,27 @@ export const userSlice = createSlice({
             state.userDetailsLoading = false;
             state.error = action.payload;
         })
+
+
+        //lottery
+        builder.addCase(lottery.pending, (state, action) => {
+            state.userDetailsLoading = true;
+        })
+
+
+        builder.addCase(lottery.fulfilled, (state, action) => {
+            state.userDetailsLoading = false;
+        })
+
+        builder.addCase(lottery.rejected, (state, action) => {
+            state.userDetailsLoading = false;
+            state.error = action.payload;
+        })
+
+
+
+
+
 
 
 
