@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Alternates from "../components/Layout/Profile";
 import { Link, NavLink } from "react-router-dom";
-import Edit from "../components/Profile/EditProfile";
+
 import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../redux/user/userActions";
 import { useParams } from "react-router-dom";
