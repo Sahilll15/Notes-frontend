@@ -58,7 +58,7 @@ const App = () => {
 
         <div >
           <Routes>
-            <Route path="/land" element={<Landing />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/otp" element={<OtpForm />} />
