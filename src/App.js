@@ -25,7 +25,7 @@ import Video from './pages/Video';
 import Notification from './pages/Notification';
 import Setting from './pages/Setting';
 import DateForm from './pages/DateForm';
-import Dashoboard from './pages/DashBoard';
+import Dashboard from './pages/DashBoard';
 import { initialCall } from './redux/auth/authActions';
 import Loader from './components/Loader';
 
@@ -86,7 +86,7 @@ const App = () => {
               <Route path="/profile/:username" element={<Profile />} />
               <Route path="/addnotes" element={<NotesForm />} />
               <Route path="/admin" element={<NotesTable />} />
-              <Route path="/dashboard" element={<Dashoboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/DateForm" element={<DateForm />} />
 
 
