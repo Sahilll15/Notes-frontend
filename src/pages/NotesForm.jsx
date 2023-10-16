@@ -101,7 +101,7 @@ const NotesForm = () => {
           Add Notes & Contribute to the Community!!
         </h2>
       </div>
-      <form className="mt-8 space-y-3">
+      <form className="mt-8 space-y-3" onSubmit={handlesubmit}>
         <div className="space-y-2">
           <label className="block text-sm font-bold text-gray-500 tracking-wide">
             Name
