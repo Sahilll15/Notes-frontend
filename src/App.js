@@ -28,6 +28,7 @@ import DateForm from './pages/DateForm';
 import Dashboard from './pages/DashBoard';
 import { initialCall } from './redux/auth/authActions';
 import Loader from './components/Loader';
+import Ai from './pages/Ai';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -88,6 +89,7 @@ const App = () => {
               <Route path="/admin" element={<NotesTable />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/DateForm" element={<DateForm />} />
+              <Route path='/ai' element={<Ai />} />
 
 
 
