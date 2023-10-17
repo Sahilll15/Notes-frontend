@@ -5,7 +5,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
-import { useAuth } from '../context/authContext';
 import { useDispatch, useSelector } from "react-redux"
 import { login } from '../redux/auth/authActions';
 import BLOGO from '../Logo/1.png'
@@ -65,8 +64,8 @@ const Login = () => {
         <div
           className="lg:flex w-1/2 animate-updown hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
           style={{
-            backgroundImage:`url(${IMG2})`,
-              
+            backgroundImage: `url(${IMG2})`,
+
           }}
         >
           <div className="absolute bg-black opacity-60 inset-0 z-0" />
@@ -121,7 +120,7 @@ const Login = () => {
           <div
             className="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center"
             style={{
-              backgroundImage:`url(${IMG})`, alignItems: 'center', justifyContent: 'center', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
+              backgroundImage: `url(${IMG})`, alignItems: 'center', justifyContent: 'center', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
             }}
 
           >

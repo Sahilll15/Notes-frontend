@@ -5,14 +5,12 @@ import axios from 'axios';
 import PasswordResetForm from '../components/PasswordResetForm';
 import { NavLink } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useAuth } from '../context/authContext';
 import { resetPassword } from '../redux/auth/authActions'
 import { useDispatch, useSelector } from 'react-redux';
 
 
 
 const OtpForm = () => {
-  const { sendOtp } = useAuth();
   const dispatch = useDispatch();
 
   const [formdata, setFormdata] = useState({ email: '' });
@@ -24,14 +22,10 @@ const OtpForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = await sendOtp(formdata.email);
+
     dispatch(resetPassword);
-    if (success) {
-      setOtpSent(true);
-    }
-    else {
-      toast.error('OTP sending failed!');
-    }
+
+
   };
 
 

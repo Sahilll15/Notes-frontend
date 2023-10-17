@@ -4,7 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import logo from "../logoOld.png";
 import "react-toastify/dist/ReactToastify.css";
-import { useAuth } from "../context/authContext";
 import { register } from "../redux/auth/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import BLOGO from "../Logo/1.png";
@@ -161,7 +160,7 @@ const Register = () => {
                 className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto"
                 onSubmit={handleSubmit}
               >
-                 <div className="pb-2 pt-4">
+                <div className="pb-2 pt-4">
                   <input
                     type="text"
                     onChange={onChange}
@@ -173,7 +172,7 @@ const Register = () => {
                   />
                 </div>
                 <div>
-                
+
                   <input
                     type="email"
                     onChange={onChange}
@@ -185,9 +184,9 @@ const Register = () => {
                     required
                   />
                 </div>
-               
+
                 <div>
-                  
+
                   <select
                     onChange={onChange}
                     name="Department"
@@ -207,7 +206,7 @@ const Register = () => {
                 </div>
 
                 <div className="pb-2 pt-4">
-               
+
                   <input
                     type="password"
                     onChange={onChange}
@@ -220,13 +219,13 @@ const Register = () => {
                 </div>
                 <div className="pb-2 pt-4">
                   <input
-                   type="password"
-                   onChange={onChange}
-                   name="cpassword"
-                   id="cpassword"
-                   placeholder="CONFIRM PASSWORD"
-                   className="bg-gray-50 border -mt-2 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   required
+                    type="password"
+                    onChange={onChange}
+                    name="cpassword"
+                    id="cpassword"
+                    placeholder="CONFIRM PASSWORD"
+                    className="bg-gray-50 border -mt-2 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
                   />
                 </div>
                 <div className="flex items-start">

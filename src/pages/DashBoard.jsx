@@ -43,7 +43,7 @@ const Dashboard = () => {
         <div className="flex-col lg:flex lg:flex-row gap-12 mb-4">
           <div class="flex items-center  justify-center lg:w-4/12  w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
             <i class="fa-solid fa-ranking-star text-yellow-600 fa-xl"></i>
-            <h3 class="text-2xl font-semibold text-gray-900 ml-3">Rank: 12</h3>
+            <h3 class="text-2xl font-semibold text-gray-900 ml-3">Rank: {userDetails.rank}</h3>
           </div>
 
           <div class="flex items-center  justify-center lg:w-4/12 w-full h-28 rounded-xl bg-gray-50  mt-2 pl-3">
@@ -100,9 +100,7 @@ const Dashboard = () => {
             <div className="relative flex flex-col rounded-xl bg-gray-200 bg-clip-border my-4">
               <div className="p-6">
                 <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
-                  <Lottery onClick={() => {
-                    alert('clicked')
-                  }} />
+                  <Lottery />
                 </h5>
               </div>
             </div>
