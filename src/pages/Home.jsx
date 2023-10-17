@@ -19,7 +19,8 @@ const Home = () => {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('');
 
-  const filteredNotes = filter === 'BookMarked' ? bookMarkedNotes : searchedNotes.length > 0 && filter !== 'ALL' ? searchedNotes : notes;
+  // const filteredNotes = searchedNotes ? searchedNotes : notes;
+  const filteredNotes = filter === 'BookMarked' ? bookMarkedNotes : searchedNotes && filter !== 'ALL' ? searchedNotes : notes;
 
   useEffect(() => {
     dispatch(getNotes());
