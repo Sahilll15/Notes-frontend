@@ -268,7 +268,7 @@ export const SideBar = () => {
               </NavLink>
 
               {/* New Submission Button */}
-              <NavLink to={"/submission"}>
+              <NavLink to={"/notification"}>
                 <a
                   href="#"
                   className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
