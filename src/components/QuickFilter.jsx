@@ -14,7 +14,7 @@ const QuickFilter = ({ filter, setFilter }) => {
             Liked
           </p>
           <p
-            className={`border w-full text-center rounded-lg py-2 px-4 ${filter === 'All Notes' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-black'}`}
+            className={`border w-full text-center rounded-lg py-2 px-4 ${filter === 'ALL' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-black'}`}
             onClick={() => setFilter('ALL')}
           >
             All Notes
