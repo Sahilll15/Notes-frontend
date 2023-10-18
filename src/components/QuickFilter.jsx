@@ -4,7 +4,7 @@ import "./Filter.css"
 const QuickFilter = ({ filter, setFilter }) => {
   return (
     <div>
-      
+
       <div className="flex my-4 p-2">
         <div className="flex justify-around gap-4 mb-2 w-full">
           <p

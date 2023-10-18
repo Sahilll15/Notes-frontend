@@ -52,21 +52,32 @@ const BookCard = ({ note }) => {
             {note?.name}
           </span>
         </div>
-        <p className="text-gray-400 text-base">
-          Subject : {note?.subject?.name}
-        </p>
+        <div className="flex gap-4">
+          <p className="text-gray-400 text-base">
+            Subject : {note?.subject?.name}
+          </p>
+          <p className="text-gray-400 text-base">
+            Module : {note?.module}
+          </p>
+        </div>
+
         <p className="text-gray-500 text-lg">
           {note?.desc || "No Desc"}
         </p>
 
-        {/* <span className="text-gray-400">by {note.author.username}</span> */}
+
         <div className="image-preview max-h-36 max-w-36 rounded-full mb-4">
           <img src={note?.subject?.Image} alt="image" className="w-full h-full rounded-lg" />
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex  gap-4 items-center">
           <span className="datetime text-gray-400">
             {new Date(note?.uploadedAt).toLocaleDateString()}
           </span>
+
+          <NavLink to={`/profile/${note.author.username}`} className="flex gap-2">
+            <img className="h-6" src={note.author.profile} alt="" />
+            <span className="text-white ">by {note.author.username}</span>
+          </NavLink>
 
         </div>
 
@@ -134,49 +145,50 @@ const BookCard = ({ note }) => {
 
         </div>
       </div>
-      {showCommentModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50  ">
-          <div className="bg-white p-8 border border-black rounded-lg shadow-md w-1/2">
+      {
+        showCommentModal && (
+          <div className="fixed inset-0 flex items-center justify-center z-50  ">
+            <div className="bg-white p-8 border border-black rounded-lg shadow-md w-1/2">
 
-            <p className="text-lg font-semibold text-black mb-5">
-              <span className="text-blue-500"> {note?.name} </span>
+              <p className="text-lg font-semibold text-black mb-5">
+                <span className="text-blue-500"> {note?.name} </span>
 
-              note Comments</p>
-            {
-              commentsById.length === 0 && <h1 className="text-2xl">
-                No Comments Yet
-              </h1>
+                note Comments</p>
+              {
+                commentsById.length === 0 && <h1 className="text-2xl">
+                  No Comments Yet
+                </h1>
 
-            }
+              }
 
-            {Array.isArray(commentsById) &&
-              commentsById?.map((comment) => (
-                <div key={comment?._id} className="mb-4 p-2 border rounded-lg shadow-md bg-white hover:shadow-lg">
-                  <div className="flex flex-row justify-between">
-                    <div className="flex flex-col">
-                      <span className="text-sm font-semibold text-gray-700">{comment?.user?.username}</span>
-                      <span className="text-sm font-semibold text-gray-700">{comment?.comment}</span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-semibold text-gray-500">{new Date(comment?.createdAt).toLocaleDateString()}</span>
+              {Array.isArray(commentsById) &&
+                commentsById?.map((comment) => (
+                  <div key={comment?._id} className="mb-4 p-2 border rounded-lg shadow-md bg-white hover:shadow-lg">
+                    <div className="flex flex-row justify-between">
+                      <div className="flex flex-col">
+                        <span className="text-sm font-semibold text-gray-700">{comment?.user?.username}</span>
+                        <span className="text-sm font-semibold text-gray-700">{comment?.comment}</span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-xs font-semibold text-gray-500">{new Date(comment?.createdAt).toLocaleDateString()}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
 
 
-            <div className="flex justify-end mt-4">
-              <button
-                className="px-4 py-2 mr-2 border  rounded-lg bg-red-500 text-white"
-                onClick={() => setShowCommentModal(false)}
-              >
-                Cancel
-              </button>
+              <div className="flex justify-end mt-4">
+                <button
+                  className="px-4 py-2 mr-2 border  rounded-lg bg-red-500 text-white"
+                  onClick={() => setShowCommentModal(false)}
+                >
+                  Cancel
+                </button>
 
+              </div>
             </div>
           </div>
-        </div>
-      )
+        )
       }
     </div >
 
