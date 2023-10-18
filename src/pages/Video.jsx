@@ -16,7 +16,7 @@ const Video = () => {
     return (
         <MainLayout>
             <form onSubmit={handleSubmit}>
-                <div className='pt-10 '>
+                <div className='align-middle justify-center pt-36 '>
                     <div className="container mx-auto flex justify-center items-center align-middle ">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 p-6  bg-white shadow-xl border-2 rounded-lg mx-5  ">
                             <div className="md:rounded-lg md:flex md:justify-center md:items-center md:flex-col">
