@@ -33,16 +33,16 @@ const Search = ({ search, setSearch }) => {
                 name=""
               />
 
-              <button class="absolute top-4 right-16 border-l pl-4"
+              {/* <button class="absolute top-4 right-16 border-l pl-4"
                 type="submit">
                 <i class="fa fa-paper-plane text-gray-500 hover:text-green-500 hover:cursor-pointer"></i>
-              </button>
+              </button> */}
 
               <span className="absolute top-4 right-5 border-l pl-4">
-                <i
+                {/* <i
                   className="fa fa-filter text-gray-500 hover:text-green-500 hover:cursor-pointer"
                   onClick={openFilterModal}
-                ></i>
+                ></i> */}
               </span>
 
             </div>
