@@ -50,7 +50,7 @@ const Home = () => {
           <QuickFilter filter={filter} setFilter={setFilter} />
           <div className='flex flex-wrap justify-center'>
             {
-              filter === 'BookMarked' ? <h1 className='text-black text-center text-2xl mb-10'>BookMarked Notes</h1> : null
+              filter === 'BookMarked' ? <h1 className='text-black text-center text-2xl mb-10'>BookMarked Notes </h1> : null
             }
             {
               filteredNotes?.length === 0 ? <h1 className='text-black text-2xl'>No Notes To Display</h1> : (

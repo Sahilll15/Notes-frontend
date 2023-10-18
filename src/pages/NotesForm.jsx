@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFormData, addNote } from "../redux/notes/noteActions";
 import { getNotes } from "../redux/notes/noteActions";
 import { toast } from "react-toastify";
-import Alternates from "../components/Layout/MainLayout"
+import Alternates from "../components/Layout/Setting"
 
 const NotesForm = () => {
   const dispatch = useDispatch();
@@ -93,8 +93,8 @@ const NotesForm = () => {
 
   return (
     <Alternates>
-      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-no-repeat bg-cover relative items-center">
-        <div className="w-full p-4 bg-white z-10">
+      <div className="min-h-screen flex items-center w-full justify-center py-12 px-4 lg:mr-12 bg-no-repeat bg-cover relative ">
+        <div className="w-full p-4 bg-white rounded-3xl px-10 mr-20 z-10">
           <div className="text-center">
             <h2 className="mt-5 text-2xl font-bold text-gray-900">
               Add Notes & Contribute to the Community!!
@@ -193,6 +193,9 @@ const NotesForm = () => {
               <label className="block text-sm font-bold text-gray-500 tracking-wide">
                 Attach Document
               </label>
+              <p className="text-sm text-gray-600">
+              <span>File type: pdf</span>
+            </p>
               <div className="flex items-center justify-center w-full">
                 <label className="flex flex-col rounded-lg border-4 border-dashed w-full h-40 p-10 group text-center bg-gray-100 hover:bg-gray-200 transition-colors">
                   <div className="h-full w-full text-center flex flex-col items-center justify-center">
@@ -226,9 +229,7 @@ const NotesForm = () => {
                 </label>
               </div>
             </div>
-            <p className="text-sm text-gray-600">
-              <span>File type: pdf</span>
-            </p>
+           
             <div>
               <button
                 type="submit"
