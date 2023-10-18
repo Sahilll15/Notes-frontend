@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNote } from "../context/notesContext";
 import { useDispatch, useSelector } from "react-redux";
 import { getFormData, addNote } from "../redux/notes/noteActions";
 import { getNotes } from "../redux/notes/noteActions";
