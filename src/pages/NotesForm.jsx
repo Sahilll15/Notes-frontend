@@ -80,6 +80,15 @@ const NotesForm = () => {
     }
 
     await dispatch(addNote(formdata));
+    setFormdata({
+      name: "",
+      subject: "",
+      module: "",
+      type: "",
+      desc: "",
+      branch: "",
+      file: null,
+    });
     await dispatch(getNotes());
     console.log(formdata);
   };

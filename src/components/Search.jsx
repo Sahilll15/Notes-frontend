@@ -13,7 +13,7 @@ const Search = ({ search, setSearch }) => {
     setIsFilterModalOpen(false);
   };
 
-
+  
 
 
   return (
