@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLogedinUser } from './redux/auth/authActions';
 import Profile from './pages/Profile';
 import Landing from './pages/Landing';
+import Generalchat from './pages/Generalchat';
 
 import NotesTable from './pages/AdminPanel'
 import SideBar from './components/Sidebar/Sidebar';
@@ -88,6 +89,7 @@ const App = () => {
               <Route path="/addnotes" element={<NotesForm />} />
               <Route path="/admin" element={<NotesTable />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/Generalchat" element={<Generalchat />} />
               <Route path="/DateForm" element={<DateForm />} />
               <Route path='/ai' element={<Ai />} />
 

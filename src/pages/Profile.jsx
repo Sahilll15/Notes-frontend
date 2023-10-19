@@ -89,7 +89,7 @@ const Profile = () => {
                         {/* Left side - 1/3 */}
                         <div className="w-full md:w-1/3 p-4">
                             <div className="mt-5">
-                                <div className="max-w-md mx-auto bg-white px-6 py-3 rounded-xl overflow-hidden md:max-w-2xl mt-10 ">
+                                <div className="max-w-md mx-auto bg-white px-6 py-3  rounded-xl overflow-hidden md:max-w-2xl mt-10 ">
                                     <NavLink to='/setting'>
                                         <p className="text-right">EDIT</p>
                                     </NavLink>
