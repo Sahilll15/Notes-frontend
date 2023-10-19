@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 const host = process.env.REACT_APP_API_HOST;
 
@@ -18,6 +19,7 @@ export const transferCoins = createAsyncThunk(
 
             if (response.status === 200) {
                 console.log(response.data);
+                toast.success(response.data.message)
                 return response.data;
             }
             else {
