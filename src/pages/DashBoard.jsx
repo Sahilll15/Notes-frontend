@@ -13,11 +13,11 @@ const Dashboard = () => {
   const openSendCoinsModal = () => {
     setIsSendCoinsModalOpen(true);
   };
-  
+
   const closeSendCoinsModal = () => {
     setIsSendCoinsModalOpen(false);
   };
-  
+
   const user = useSelector((state) => state.user.user);
   const userDetails = useSelector((state) => state.userDetails.userDetails);
   const userDetailsLoading = useSelector(
@@ -68,13 +68,13 @@ const Dashboard = () => {
           </div>
         </div>
 
-       
+
 
         <div className="flex justify-center py-3">
           <div className="flex flex-col items-center sm:flex-row mb-9">
             <div className="relative flex flex-col rounded-xl bg-gradient-to-r from-yellow-100 to-yellow-500 bg-clip-border cursor-pointer text-yellow-900 shadow-md mx-4"
-               onClick={openSendCoinsModal}
-               >
+              onClick={openSendCoinsModal}
+            >
               <div className="p-6">
                 <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal">
                   Send Coins
@@ -156,23 +156,23 @@ const Dashboard = () => {
         <br /> <br />
         <br />
         {isSendCoinsModalOpen && (
-  <div className="fixed inset-0 flex items-center backdrop-blur-sm justify-center z-50">
-    <div className="modal-container">
-    <div className="modal bg-gray-50 p-8 rounded-lg shadow-lg sm:w-[16rem] md:w-[36rem] lg:w-[52rem]">
+          <div className="fixed inset-0 flex items-center backdrop-blur-sm justify-center z-50">
+            <div className="modal-container">
+              <div className="modal bg-gray-50 p-8 rounded-lg shadow-lg sm:w-[16rem] md:w-[36rem] lg:w-[52rem]">
 
-        <button className="modal-close text-right top-4 right-4 text-gray-700" onClick={closeSendCoinsModal}>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-        <h2 className="text-2xl font-bold mb-4">Send Coins</h2>
-        <div className="modal-body">
-          <SendMoneyCard />
-        </div>
-      </div>
-    </div>
-  </div>
-)}
+                <button className="modal-close text-right top-4 right-4 text-gray-700" onClick={closeSendCoinsModal}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                <h2 className="text-2xl font-bold mb-4">Send Coins</h2>
+                <div className="modal-body">
+                  <SendMoneyCard />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
       </DashLay>
 

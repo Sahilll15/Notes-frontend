@@ -7,8 +7,9 @@ export const transferCoins = createAsyncThunk(
     'coins/transferCoins',
     async ({ recieverId, coins }, { rejectWithValue }) => {
         try {
+
             const response = await axios.post(`${host}/api/v1/transfer/transfercoins/${recieverId}`, {
-                coins
+                coins: Number(coins)
             }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
