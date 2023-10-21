@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 const host = process.env.REACT_APP_API_HOST;
 
@@ -7,8 +8,9 @@ export const transferCoins = createAsyncThunk(
     'coins/transferCoins',
     async ({ recieverId, coins }, { rejectWithValue }) => {
         try {
+
             const response = await axios.post(`${host}/api/v1/transfer/transfercoins/${recieverId}`, {
-                coins
+                coins: Number(coins)
             }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('authtoken')}`
@@ -17,6 +19,7 @@ export const transferCoins = createAsyncThunk(
 
             if (response.status === 200) {
                 console.log(response.data);
+                toast.success(response.data.message)
                 return response.data;
             }
             else {

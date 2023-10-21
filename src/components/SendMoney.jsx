@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getUsersLeaderBoard } from '../redux/user/userActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { transferCoins } from '../redux/coins/coinsActions';
+
 
 const SendMoneyCard = () => {
-  const [recipientName, setRecipientName] = useState('');
-  const [amount, setAmount] = useState('');
+  const dispatch = useDispatch();
+  const [recieverId, setRecieverId] = useState('');
+  const [coins, setAmount] = useState(0);
 
+  const leaderBoard = useSelector((state) => state.userDetails.leaderBoard);
   const handleSend = () => {
-    console.log(`Sending ${amount} to ${recipientName}`);
+    console.log(`Sending ${coins} to ${recieverId}`);
+    console.log(typeof (coins))
+    dispatch(transferCoins({ recieverId, coins }));
   }
+
 
   return (
     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
@@ -15,15 +24,28 @@ const SendMoneyCard = () => {
       </div>
       <div className="p-4">
         <div className="mb-4">
-          <label htmlFor="recipientName" className="block text-gray-700 text-sm font-bold mb-2">Recipient Name</label>
-          <input
+          <label htmlFor="recieverId" className="block text-gray-700 text-sm font-bold mb-2">Recipient Name</label>
+          <select
             type="text"
-            id="recipientName"
+            id="recieverId"
+            name='recieverId'
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Recipient Name"
-            value={recipientName}
-            onChange={(e) => setRecipientName(e.target.value)}
-          />
+            value={recieverId}
+            onChange={(e) => setRecieverId(e.target.value)}
+          >
+            <option>Select User</option>
+            {
+
+              leaderBoard?.map((user, index) => {
+
+                return (
+
+                  <option key={user.id} value={user.id}>{user.username}</option>
+                )
+              })
+            }
+          </select>
         </div>
         <div className="mb-4">
           <label htmlFor="amount" className="block text-gray-700 text-sm font-bold mb-2">Amount</label>
@@ -32,7 +54,8 @@ const SendMoneyCard = () => {
             id="amount"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Amount"
-            value={amount}
+            name='coins'
+            value={coins}
             onChange={(e) => setAmount(e.target.value)}
           />
         </div>
