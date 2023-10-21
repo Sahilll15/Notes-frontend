@@ -42,10 +42,33 @@ const Register = () => {
   };
 
   const validation = () => {
+    if (formdata.username.length < 3) {
+      toast.error("Username must be at least 3 characters long");
+      return false;
+    }
+
+    if (formdata.password.length < 8) {
+      toast.error("Password must be at least 8 characters long");
+      return false;
+    }
+
     if (formdata.password !== formdata.cpassword) {
       toast.error("Passwords do not match");
       return false;
     }
+
+    if (!/^[A-Za-z0-9]+$/.test(formdata.username)) {
+      toast.error("Username can only contain letters and numbers");
+      return false;
+    }
+
+    if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(formdata.password)) {
+      toast.error("Password must be strong: at least one uppercase letter, one lowercase letter, one digit, and one special character");
+      return false;
+    }
+
+
+
     return true;
   };
 
@@ -91,7 +114,7 @@ const Register = () => {
               </p>
             </div>
             <div className="bottom-0 absolute p-4 text-center right-0 left-0 flex justify-center space-x-4">
-             
+
             </div>
           </div>
           <div
@@ -231,7 +254,7 @@ const Register = () => {
                   </button>
                 </div>
                 <div className="p-4 text-center right-0 left-0 flex justify-center space-x-4 mt-16 lg:hidden ">
-                 
+
                 </div>
                 <div className="mt-12 text-sm font-display font-semibold text-white text-center">
                   Already have an account ? &nbsp;
