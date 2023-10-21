@@ -12,7 +12,7 @@ import Loader from "../components/Loader/Loader";
 
 
 
-const BookCard = ({ note }) => {
+const BookCard = ({ note, setreRender }) => {
   const [showCommentModal, setShowCommentModal] = useState(false);
   const dispatch = useDispatch();
   const currentuser = useSelector((state) => state?.user?.user);
@@ -28,9 +28,12 @@ const BookCard = ({ note }) => {
   };
 
   const handleBuyNote = async (noteId) => {
-    dispatch(buyNote(noteId));
-    dispatch(getNotes());
+    await dispatch(buyNote(noteId));
     setShowConfirmationModal(false);
+    await dispatch(getNotes());
+    window.location.reload()
+    setreRender(true)
+
   }
 
   const handlelike = async (noteId) => {
@@ -133,7 +136,7 @@ const BookCard = ({ note }) => {
                     className="px-4 py-2 bg-blue-500 text-white rounded-md"
                     onClick={() => {
                       handleBuyNote(note._id)
-                      dispatch(getNotes())
+
                     }}
                   >
                     Confirm

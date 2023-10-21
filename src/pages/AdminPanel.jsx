@@ -11,10 +11,21 @@ const NotesTable = () => {
   const noteAcceptStatusLoading = useSelector(
     (state) => state.note.noteAcceptStatusLoading
   );
+  const user = useSelector((state) => state?.user?.user)
   useEffect(() => {
     dispatch(getNotesAdmin());
   }, [dispatch]);
 
+  if (user?.role === 'user') {
+    return (
+      <MainLayout>
+        <div className="flex flex-col items-center justify-center h-screen">
+          <h1 className="text-3xl font-bold text-gray-700">You are not authorized to view this page</h1>
+        </div>
+      </MainLayout>
+    )
+
+  }
   return (
     <MainLayout>
 

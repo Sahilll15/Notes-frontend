@@ -18,13 +18,14 @@ const Home = () => {
 
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('');
+  const [reRender, setreRender] = useState(false)
 
   // const filteredNotes = searchedNotes ? searchedNotes : notes;
   const filteredNotes = filter === 'BookMarked' ? bookMarkedNotes : searchedNotes && filter !== 'ALL' ? searchedNotes : notes;
 
   useEffect(() => {
     dispatch(getNotes());
-  }, [dispatch]);
+  }, [dispatch, reRender]);
 
   useEffect(() => {
     if (search !== null) {
@@ -41,7 +42,7 @@ const Home = () => {
     } else if (filter !== '') {
       dispatch(searchNote(filter));
     }
-  }, [dispatch, filter]);
+  }, [dispatch, filter, reRender]);
 
   return (
     <Alternate>
@@ -58,7 +59,7 @@ const Home = () => {
                 noteLoading ? <BookCardSkeletion /> : (
                   filteredNotes?.length === 0 ? <h1 className='text-white text-2xl'>No Notes To Display</h1> : (
                     filteredNotes?.map((note, index) => (
-                      <BookCard note={note} key={index} />
+                      <BookCard note={note} key={index} setreRender={setreRender} />
                     ))
                   )
                 )

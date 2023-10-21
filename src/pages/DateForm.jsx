@@ -5,10 +5,13 @@ import { getNotes } from "../redux/notes/noteActions";
 import { toast } from "react-toastify";
 import Alternates from "../components/Layout/MainLayout"
 import { createImpDate } from "../redux/impDates/impDateActions";
+import MainLayout from "../components/Layout/MainLayout";
 
 const NotesForm = () => {
   const dispatch = useDispatch();
   const impDateLoading = useSelector((state) => state?.impDate?.impDateLoading)
+  const user = useSelector((state) => state?.user?.user)
+
   const [formdata, setFormData] = useState({
     title: "",
     description: "",
@@ -30,6 +33,17 @@ const NotesForm = () => {
     dispatch(getFormData());
     dispatch(getNotes());
   }, [dispatch]);
+
+  if (user?.role === 'user') {
+    return (
+      <MainLayout>
+        <div className="flex flex-col items-center justify-center h-screen">
+          <h1 className="text-3xl font-bold text-gray-700">You are not authorized to view this page</h1>
+        </div>
+      </MainLayout>
+    )
+
+  }
 
   return (
     <Alternates>
