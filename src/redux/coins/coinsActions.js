@@ -26,6 +26,7 @@ export const transferCoins = createAsyncThunk(
                 return rejectWithValue(response.data.message)
             }
         } catch (error) {
+            toast.error(error.response.data.message)
             return rejectWithValue(error.response?.data?.message);
         }
     }
