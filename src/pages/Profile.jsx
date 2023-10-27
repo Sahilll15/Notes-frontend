@@ -97,7 +97,7 @@ const Profile = () => {
                                     <div class="flex justify-start">
                                         <img
                                             class="w-32 h-32 mt-8 rounded-full"
-                                            src="https://safesiren.vercel.app/static/media/login.665ff9176f5ac11ac2e6.png"
+                                            src={user?.profile}
                                             alt="Profile Image"
                                         />
                                     </div>
