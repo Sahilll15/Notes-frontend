@@ -115,7 +115,7 @@ const Profile = () => {
                                         </p>
                                     </div>
                                 </div>
-                                <div className="max-w-md mx-auto border-2 bg-white rounded-xl  overflow-hidden md:max-w-2xl mt-8 p-8">
+                                <div className="max-w-md mx-auto border-2 bg-white rounded-xl mb-5 overflow-hidden md:max-w-2xl mt-8 p-8">
                                     <div className="mb-4">
                                         <label className="block text-gray-700 text-sm font-bold mb-2">
                                             Skills:
@@ -132,8 +132,17 @@ const Profile = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="bg-blue-600 hover:bg-blue-700 flex gap-2 text-white py-2 px-4 m-5 rounded">
+                                    <a href="https://cv-host.netlify.app" target="_blank" className="flex gap-2 text-center justify-center mx-auto">
+                                        <h1 className="text-xl">Create Your Resume</h1>
+                                        <h1 className="text-xs mt-2">(by resume builder)</h1>
+                                    </a>
+                                </div>
                             </div>
+
+
                         </div>
+
                         {/* Right side - 2/3 */}
                         <div className="w-full md:w-2/3 p-4">
                             <div className="mt-5">
