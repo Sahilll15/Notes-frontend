@@ -78,7 +78,6 @@ const App = () => {
               }
             >
               <Route path="/setting" element={<Setting />} />
-
               <Route path="/notification" element={<Notification />} />
               <Route path="/home" element={<Home />} />
               <Route path="/notes" element={<NotesTable />} />

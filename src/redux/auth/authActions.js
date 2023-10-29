@@ -90,6 +90,32 @@ export const login = createAsyncThunk(
 )
 
 
+export const sendResetPasswordEmail = createAsyncThunk(
+    'auth/sendResetPasswordEmail',
+    async (data, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(
+                `${host}/api/v1/users/reset_email`,
+                {
+                    email: data.email,
+                }
+            );
+            if (response.status === 200) {
+                console.log(response.data);
+                toast.success(response.data.message);
+                return response;
+            } else {
+                console.log('error');
+                toast.error(response.data.message);
+                return rejectWithValue(response.data.message);
+            }
+        } catch (error) {
+            toast.error(error.response?.data?.message);
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+)
+
 export const resetPassword = createAsyncThunk(
     'auth/resetPassword',
     async (data, { rejectWithValue }) => {
@@ -98,12 +124,14 @@ export const resetPassword = createAsyncThunk(
                 `${host}/api/v1/users/reset_password`,
                 {
                     email: data.email,
+                    otpCode: data.otpCode,
+                    password: data.password,
                 }
             );
             if (response.status === 200) {
                 console.log(response.data);
                 toast.success(response.data.message);
-                return response.data.user;
+                return response;
             } else {
                 console.log('error');
                 toast.error(response.data.message);
