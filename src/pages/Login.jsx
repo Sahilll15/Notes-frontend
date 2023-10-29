@@ -158,7 +158,7 @@ const Login = () => {
                 </NavLink>
               </div>
 
-              <div className=' text-indigo-600 hover:cursor-pointer'  >Resend verification email?</div>
+              {/* <div className=' text-indigo-600 hover:cursor-pointer'  >Resend verification email?</div> */}
 
             </form>
           </div>
