@@ -39,6 +39,17 @@ const PasswordResetForm = ({ email }) => {
       toast.error('Passwords do not match');
       return false;
     }
+    if (formdata.password.length < 8) {
+      toast.error('Password must be at least 8 characters long');
+      return false;
+    }
+
+    
+
+    if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(formdata.password)) {
+      toast.error("Password must be strong: at least one uppercase letter, one lowercase letter, one digit, and one special character");
+      return false;
+    }
     return true;
   };
 
@@ -47,7 +58,6 @@ const PasswordResetForm = ({ email }) => {
     if (!validation()) {
       return;
     }
-    alert('laodisad')
     const response = await dispatch(resetPassword(formdata));
     if (response?.payload?.status === 200) {
       navigate('/login');
