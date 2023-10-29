@@ -25,6 +25,17 @@ const Dashboard = () => {
   );
   const leaderBoard = useSelector((state) => state.userDetails.leaderBoard);
 
+
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+
+  const currentLeaderboardData = leaderBoard?.slice(startIndex, endIndex);
+
   useEffect(() => {
     if (user) {
       dispatch(getUserInfo(user?.id));
@@ -104,9 +115,9 @@ const Dashboard = () => {
 
         <div>
           <div>
-            <div className="flex flex-col justify-center h-full ">
+            <div className="flex flex-col justify-center  ">
               {/* Table */}
-              <div className="w-full rounded-lg   mx-auto bg-slate-100 shadow-lg  border  border-gray-200">
+              <div className="w-full rounded-lg mx-auto bg-slate-100 shadow-lg border border-gray-200">
                 <header className="px-5 border-b border-gray-100">
                   <h2 className="font-semibold text-center text-gray-800">
                     LEADERBOARD
@@ -129,10 +140,10 @@ const Dashboard = () => {
                         </tr>
                       </thead>
                       <tbody className="text-sm divide-y divide-gray-100">
-                        {leaderBoard?.map((user, index) => {
+                        {currentLeaderboardData.map((user, index) => {
                           return (
                             <tr key={user.id}>
-                              <td>{index + 1}</td>
+                              <td>{startIndex + index + 1}</td>
                               <td>
                                 <NavLink to={`/profile/${user.username}`} className="cursor:pointer">
                                   {user.username}
@@ -143,40 +154,97 @@ const Dashboard = () => {
                           );
                         })}
                       </tbody>
+
                     </table>
+                    <div className="items-center flex justify-center">
+
+                      {
+                        startIndex === 0 ?
+                          null
+                          :
+                          <>
+
+                            <button
+                              onClick={() => setCurrentPage(1)}
+                              disabled={startIndex === 0}
+                              className="mr-2 px-4 py-1 bg-black text-white rounded-md"
+                            >
+                              First
+                            </button>
+                            <button
+                              onClick={() => setCurrentPage(currentPage - 1)}
+                              disabled={currentPage === 1}
+                              className="mr-2 px-4 py-1 bg-black text-white rounded-md"
+                            >
+                              Previous
+                            </button>
+                          </>
+                      }
+
+
+                      {
+                        endIndex >= leaderBoard?.length ?
+                          null
+                          :
+                          <button
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={endIndex >= leaderBoard?.length}
+                            className="px-4 py-1 bg-black text-white rounded-md"
+                          >
+                            Next
+                          </button>
+                      }
+
+                    </div>
+                    <div className="items-center justify-center flex ">
+                      {
+                        endIndex >= leaderBoard?.length ? (
+                          <p className="text-gray-500">Showing {startIndex + 1} - {leaderBoard?.length} of {leaderBoard?.length} results</p>
+                        ) : (
+                          <p className="text-gray-500">Showing {startIndex + 1} - {endIndex} of {leaderBoard?.length} results</p>
+                        )
+                      }
+                    </div>
+
                   </div>
+
                 </div>
               </div>
             </div>
           </div>
 
         </div>
-        <br />
-        <br /> <br />
-        <br /> <br />
-        <br />
-        {isSendCoinsModalOpen && (
-          <div className="fixed inset-0 flex items-center backdrop-blur-sm justify-center z-50">
-            <div className="modal-container">
-              <div className="modal bg-gray-50 p-8 rounded-lg shadow-lg sm:w-[16rem] md:w-[36rem] lg:w-[52rem]">
 
-                <button className="modal-close text-right top-4 right-4 text-gray-700" onClick={closeSendCoinsModal}>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-                <h2 className="text-2xl font-bold mb-4">Send Coins</h2>
-                <div className="modal-body">
-                  <SendMoneyCard />
+
+
+        <br />
+        <br /> <br />
+        <br /> <br />
+        <br />
+        {
+          isSendCoinsModalOpen && (
+            <div className="fixed inset-0 flex items-center backdrop-blur-sm justify-center z-50">
+              <div className="modal-container">
+                <div className="modal bg-gray-50 p-8 rounded-lg shadow-lg sm:w-[16rem] md:w-[36rem] lg:w-[52rem]">
+
+                  <button className="modal-close text-right top-4 right-4 text-gray-700" onClick={closeSendCoinsModal}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                  <h2 className="text-2xl font-bold mb-4">Send Coins</h2>
+                  <div className="modal-body">
+                    <SendMoneyCard />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )
+        }
 
-      </DashLay>
+      </DashLay >
 
-    </div>
+    </div >
   );
 };
 
