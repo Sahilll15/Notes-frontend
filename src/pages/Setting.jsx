@@ -9,14 +9,17 @@ const Setting = () => {
   //get the user from the redux
   const user = useSelector((state) => state.user.user)
 
-  const [profile, setProfile] = useState(user?.profile);
+  const [p,setP]= useState(null)
+
   const [formData, setFormData] = useState({
-    username: user?.username,
+    username: user?.username || "No Username",
     email: user?.email || "No Email",
     bio: user?.Bio || "No Bio",
+    profile: user?.profile || "No Profile",
     github: user?.githubUsername || "No GitHub",
     department: user?.Department || "Add Department",
   });
+  
   const skills = [
     "HTML",
     "CSS",
@@ -37,7 +40,13 @@ const Setting = () => {
   };
 
   const handlePictureChange = (e) => {
-    setProfile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    setP(selectedFile);
+  
+    setFormData({
+      ...formData,
+      profile: selectedFile, // Update the profile URL in formData
+    });
   };
 
 
@@ -48,7 +57,9 @@ const Setting = () => {
     dispatch(editProfile(formData))
 
   };
-
+  useEffect(() => {
+    console.log(p)
+  }, [p])
   useEffect(() => {
     dispatch(getLogedinUser())
   }, [])
@@ -70,7 +81,7 @@ const Setting = () => {
                     <div className="md:flex-shrink-0">
                       <img
                         className=" h-64 w-full object-cover md:w-48 "
-                        src={profile}
+                        src={p ? URL.createObjectURL(p) : user.profile}
                         alt="Profile"
                       />
                     </div>
@@ -79,15 +90,18 @@ const Setting = () => {
                         {user?.username}
                       </div>
                       <div className="mt-4">
-                        <label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full cursor-pointer">
+                        {isEditable?(<>
+                          <label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full cursor-pointer">
                           Change Picture
                           <input
                             type="file"
                             accept="image/*"
+                            name="profile"
                             style={{ display: "none" }}
                             onChange={handlePictureChange}
                           />
                         </label>
+                        </>):(<></>)}
                       </div>
                     </div>
                   </div>
