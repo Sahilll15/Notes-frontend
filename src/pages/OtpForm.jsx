@@ -16,13 +16,19 @@ const OtpForm = () => {
   const sendResetOtpLoading = useSelector((state) => state.user.sendResetOtpLoading);
   const [formdata, setFormdata] = useState({ email: '' });
   const [otpSent, setOtpSent] = useState(false);
+  const user = useSelector((state) => state.user.user);
   const onChange = (e) => {
     setFormdata({ ...formdata, [e.target.name]: e.target.value });
   };
 
 
   const handleSubmit = async (e) => {
+   
     e.preventDefault();
+    if(formdata.email !== user.email){
+      toast.error('Email does not match with your account');
+      return;
+    } 
     const response = await dispatch(sendResetPasswordEmail(formdata));
     if (response.payload.status === 200) {
       setOtpSent(true);
