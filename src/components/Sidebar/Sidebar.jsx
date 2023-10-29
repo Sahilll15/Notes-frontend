@@ -7,8 +7,10 @@ import Loader from "../Loader";
 import { seachUser } from "../../redux/user/userActions";
 import { getUserProfile } from "../../redux/user/userActions";
 import { getLogedinUser } from "../../redux/auth/authActions";
+import { useNavigate } from "react-router-dom";
 
 export const SideBar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user)
   const [username, setUsername] = useState('')
@@ -189,6 +191,17 @@ export const SideBar = () => {
 
           <div className="my-4 bg-gray-600 h-[1px]" />
 
+          <div
+            className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+            onClick={() => {
+              navigate('/otp')
+            }}
+          >
+            <i className="bi bi-box-arrow-in-right" />
+            <span className="text-[15px] ml-4 text-gray-200 font-bold">
+              Reset Password
+            </span>
+          </div>
           <div
             className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
             onClick={() => {

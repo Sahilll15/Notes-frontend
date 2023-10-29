@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { initialCall, register, login, resetPassword, getLogedinUser } from './authActions'
+import { initialCall, register, login, resetPassword, getLogedinUser, sendResetPasswordEmail } from './authActions'
 
 
 const initialState = {
@@ -12,7 +12,8 @@ const initialState = {
     error: "",
     success: false,
     token: "",
-    initialCallLoading: false
+    initialCallLoading: false,
+    sendResetOtpLoading: false
 
 }
 
@@ -48,15 +49,18 @@ export const authSlice = createSlice({
         //reset password
         builder.addCase(resetPassword.pending, (state, action) => {
             state.loading = true
+            state.sendResetOtpLoading = true
         }
         ).addCase(resetPassword.fulfilled, (state, action) => {
             state.loading = false
             state.success = true
+            state.sendResetOtpLoading = false
             toast.success(action.payload.message)
         }
         ).addCase(resetPassword.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
+            state.sendResetOtpLoading = false
             toast.error(action.payload)
         }
         )
@@ -89,6 +93,26 @@ export const authSlice = createSlice({
         ).addCase(initialCall.rejected, (state, action) => {
             state.initialCallLoading = false
             state.error = action.payload
+        }
+        )
+
+        //send reset otp
+        builder.addCase(sendResetPasswordEmail.pending, (state, action) => {
+            state.loading = true
+            state.sendResetOtpLoading = true
+        }
+        ).addCase(sendResetPasswordEmail.fulfilled, (state, action) => {
+            state.loading = false
+            state.success = true
+            state.sendResetOtp = true
+            state.sendResetOtpLoading = false
+
+        }
+        ).addCase(sendResetPasswordEmail.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload
+            state.sendResetOtpLoading = false
+
         }
         )
 

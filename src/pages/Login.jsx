@@ -73,7 +73,7 @@ const Login = () => {
             </p>
           </div>
           <div className="bottom-0 absolute p-4 text-center right-0 left-0 flex justify-center space-x-4">
-            
+
           </div>
         </div>
         <div
@@ -132,7 +132,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
-                <a href="#">Forgot your password?</a>
+                <NavLink to={'/otp'}>Forgot your password?</NavLink>
               </div>
               <div className="px-4 pb-2 pt-4">
                 <button className="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none">
@@ -148,8 +148,8 @@ const Login = () => {
                 </button>
               </div>
               <div className="p-4 text-center right-0 left-0 flex justify-center space-x-4 mt-16 lg:hidden ">
-                
-               
+
+
               </div>
               <div className="mt-12 text-sm font-display font-semibold text-white text-center">
                 Don't have an account ? &nbsp;
@@ -158,7 +158,7 @@ const Login = () => {
                 </NavLink>
               </div>
 
-              <div className=' text-indigo-600 hover:cursor-pointer'  >Resend verification email?</div>
+              {/* <div className=' text-indigo-600 hover:cursor-pointer'  >Resend verification email?</div> */}
 
             </form>
           </div>

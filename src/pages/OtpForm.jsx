@@ -5,7 +5,7 @@ import axios from 'axios';
 import PasswordResetForm from '../components/PasswordResetForm';
 import { NavLink } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
-import { resetPassword } from '../redux/auth/authActions'
+import { resetPassword, sendResetPasswordEmail } from '../redux/auth/authActions'
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const OtpForm = () => {
   const dispatch = useDispatch();
 
+  const sendResetOtpLoading = useSelector((state) => state.user.sendResetOtpLoading);
   const [formdata, setFormdata] = useState({ email: '' });
   const [otpSent, setOtpSent] = useState(false);
   const onChange = (e) => {
@@ -22,10 +23,10 @@ const OtpForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    dispatch(resetPassword);
-
-
+    const response = await dispatch(sendResetPasswordEmail(formdata));
+    if (response.payload.status === 200) {
+      setOtpSent(true);
+    }
   };
 
 
@@ -63,7 +64,7 @@ const OtpForm = () => {
                     type="submit"
                     className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:text-black dark:hover:bg-blue-700"
                   >
-                    Send OTP
+                    {sendResetOtpLoading ? 'Sending OTP...' : 'Send OTP'}
                   </button>
 
 
