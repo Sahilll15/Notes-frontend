@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-import { lottery, seachUser, getUserInfo, getUsersLeaderBoard, getUserProfile, editProfile } from './userActions'
+import { lottery, removeSkills, seachUser, getUserInfo, getUsersLeaderBoard, getUserProfile, editProfile, getUserSkills, addSkills } from './userActions'
 
 const initialState = {
     userDetails: {},
@@ -10,6 +10,7 @@ const initialState = {
     userDetailsLoading: false,
     error: '',
     userProfile: {},
+    skills: []
 
 }
 
@@ -19,6 +20,10 @@ export const userSlice = createSlice({
     reducers: {
         clearUserDetails: (state) => {
             state.userDetails = {}
+        },
+
+        addSkills: (state, payload) => {
+            state.skills = payload.payload;
         }
     },
     extraReducers: (builder) => {
@@ -112,9 +117,58 @@ export const userSlice = createSlice({
 
 
 
+        //get user skills
+
+        builder.addCase(getUserSkills.pending, (state, action) => {
+            state.userDetailsLoading = true;
+        })
 
 
+        builder.addCase(getUserSkills.fulfilled, (state, action) => {
+            state.userDetailsLoading = false;
+            state.skills = action.payload.skills;
+        })
 
+        builder.addCase(getUserSkills.rejected, (state, action) => {
+            state.userDetailsLoading = false;
+            state.error = action.payload;
+        })
+
+
+        //add skills
+
+        builder.addCase(addSkills.pending, (state, action) => {
+            state.userDetailsLoading = true;
+        })
+
+
+        builder.addCase(addSkills.fulfilled, (state, action) => {
+            state.userDetailsLoading = false;
+            console.log(action.payload)
+            state.skills = action.payload.skills;
+        })
+
+        builder.addCase(addSkills.rejected, (state, action) => {
+            state.userDetailsLoading = false;
+            state.error = action.payload;
+        })
+
+        //remove skills
+
+        builder.addCase(removeSkills.pending, (state, action) => {
+            state.userDetailsLoading = true;
+        })
+
+
+        builder.addCase(removeSkills.fulfilled, (state, action) => {
+            state.userDetailsLoading = false;
+            state.skills = action.payload.skills;
+        })
+
+        builder.addCase(removeSkills.rejected, (state, action) => {
+            state.userDetailsLoading = false;
+            state.error = action.payload;
+        })
 
 
 

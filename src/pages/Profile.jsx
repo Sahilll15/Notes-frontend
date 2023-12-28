@@ -3,7 +3,7 @@ import Alternates from "../components/Layout/Profile";
 import { Link, NavLink } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { getUserProfile } from "../redux/user/userActions";
+import { getUserProfile, getUserSkills } from "../redux/user/userActions";
 import { useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 
@@ -11,20 +11,17 @@ const Profile = () => {
 
     const [showLoader, setShowLoader] = useState(true);
 
+    const dispatch = useDispatch();
 
     const { username } = useParams();
-    const skills = [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React",
-        "Node.js",
-        "Python",
-        "SQL",
-    ];
+
+    useEffect(() => {
+        dispatch(getUserSkills())
+    }, [dispatch])
 
 
-    const dispatch = useDispatch();
+    const skills = useSelector((state) => state?.user?.user?.skills);
+
     const [repositories, setRepositories] = useState([]);
     const [loading, setLoading] = useState(true);
     const user = useSelector((state) => state?.userDetails?.userProfile)

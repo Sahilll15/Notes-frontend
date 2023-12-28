@@ -2,14 +2,20 @@ import React, { useEffect, useState } from "react";
 import Alternates from "../components/Layout/Setting";
 import { useSelector, useDispatch } from 'react-redux'
 import { getLogedinUser } from "../redux/auth/authActions";
-import { editProfile } from "../redux/user/userActions";
+import { editProfile, getUserSkills, addSkills, removeSkills } from "../redux/user/userActions";
+import { AiOutlineDelete } from 'react-icons/ai';
+
+
+
 const Setting = () => {
   const dispatch = useDispatch();
   const [isEditable, setIsEditable] = useState(false);
   //get the user from the redux
   const user = useSelector((state) => state.user.user)
+  const [SkillsInput, setSkillsInput] = useState(false);
+  const [skill, setSkill] = useState('')
 
-  const [p,setP]= useState(null)
+  const [p, setP] = useState(null)
 
   const [formData, setFormData] = useState({
     username: user?.username || "No Username",
@@ -19,16 +25,8 @@ const Setting = () => {
     github: user?.githubUsername || "No GitHub",
     department: user?.Department || "Add Department",
   });
-  
-  const skills = [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "React",
-    "Node.js",
-    "Python",
-    "SQL",
-  ];
+
+
 
   const toggleEdit = (e) => {
     e.preventDefault();
@@ -42,7 +40,7 @@ const Setting = () => {
   const handlePictureChange = (e) => {
     const selectedFile = e.target.files[0];
     setP(selectedFile);
-  
+
     setFormData({
       ...formData,
       profile: selectedFile, // Update the profile URL in formData
@@ -60,14 +58,20 @@ const Setting = () => {
   useEffect(() => {
     console.log(p)
   }, [p])
+
   useEffect(() => {
     dispatch(getLogedinUser())
-  }, [])
+    dispatch(getUserSkills())
+  }, [dispatch])
 
+
+  const skills = useSelector((state) => state?.user?.user?.skills);
 
   if (!user) {
     return <div>Loading...</div>
   }
+
+
 
   return (
     <Alternates>
@@ -90,18 +94,18 @@ const Setting = () => {
                         {user?.username}
                       </div>
                       <div className="mt-4">
-                        {isEditable?(<>
+                        {isEditable ? (<>
                           <label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full cursor-pointer">
-                          Change Picture
-                          <input
-                            type="file"
-                            accept="image/*"
-                            name="profile"
-                            style={{ display: "none" }}
-                            onChange={handlePictureChange}
-                          />
-                        </label>
-                        </>):(<></>)}
+                            Change Picture
+                            <input
+                              type="file"
+                              accept="image/*"
+                              name="profile"
+                              style={{ display: "none" }}
+                              onChange={handlePictureChange}
+                            />
+                          </label>
+                        </>) : (<></>)}
                       </div>
                     </div>
                   </div>
@@ -112,15 +116,61 @@ const Setting = () => {
                       Skills:
                     </label>
                     <div className="flex flex-wrap">
-                      {skills.map((skill, index) => (
+                      {skills?.map((skill, index) => (
                         <div
                           key={index}
-                          className="bg-blue-100 text-blue-700 px-3 py-2 rounded-full m-1"
+                          className="bg-blue-100 text-blue-700 px-3 py-2 rounded-full m-1 flex gap-2"
                         >
                           {skill}
+                          <span className="mt-1"
+                            onClick={() => {
+                              dispatch(removeSkills(skill))
+                              dispatch(getUserSkills())
+                            }
+                            }
+                          ><AiOutlineDelete /></span>
                         </div>
                       ))}
+                      <div
+                        className={`flex items-center ${SkillsInput ? 'bg-red-100' : 'bg-blue-100'} text-blue-700 px-3 py-2 rounded-full m-1 hover:bg-blue-200 cursor-pointer`}
+                        onClick={() => {
+                          setSkillsInput(!SkillsInput);
+                        }}
+                      >
+                        {SkillsInput ? <span>&#10006;</span> : <span className="mr-2">&#43;</span>}
+                      </div>
+
                     </div>
+
+                    {SkillsInput ? (
+                      <div className="flex flex-wrap">
+                        <input
+                          type="text"
+                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-1"
+                          placeholder="Add Skills with a comma"
+                          name="skills"
+                          value={skill}
+                          onChange={(e) => {
+                            setSkill(e.target.value)
+                          }}
+                        />
+                        <button
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
+                          onClick={async () => {
+                            await dispatch(addSkills(skill)).then(async () => {
+                              await dispatch(getUserSkills())
+                            })
+                            setSkill('')
+                            setSkillsInput(false)
+
+                          }}
+                        >
+                          Add
+                        </button>
+                      </div>
+                    ) : null}
+
+
                   </div>
                 </div>
               </div>
@@ -268,8 +318,8 @@ const Setting = () => {
             </div>
           </div>
         </form>
-      </div>
-    </Alternates>
+      </div >
+    </Alternates >
   );
 };
 

@@ -8,6 +8,98 @@ import { toast } from "react-toastify";
 
 const host = process.env.REACT_APP_API_HOST;
 
+
+export const removeSkills = createAsyncThunk(
+    'user/removeSkills',
+
+    async (skills, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(`${host}/api/v1/skills/removeSkills`, {
+                skills
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('authtoken')}`
+                }
+            }
+            )
+            if (response.status === 200) {
+                console.log(response.data);
+                toast.success(response.data.message);
+                return response.data;
+            }
+            else {
+                toast.error(response.data.message)
+                return rejectWithValue(response.data.message)
+            }
+
+        }
+        catch (error) {
+            toast.error(error.response?.data?.message)
+            return rejectWithValue(error.response?.data?.message);
+        }
+
+    }
+)
+
+
+
+export const getUserSkills = createAsyncThunk(
+    'user/getUserSkills',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`${host}/api/v1/skills/getSkills`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('authtoken')}`
+                }
+            })
+
+            if (response.status === 200) {
+                console.log(response.data);
+                return response.data;
+            }
+            else {
+                return rejectWithValue(response.data.message)
+            }
+
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+)
+
+
+export const addSkills = createAsyncThunk(
+    'user/addSkills',
+    async (skills, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(`${host}/api/v1/skills/createSkills`, {
+                skills
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('authtoken')}`
+                }
+            })
+
+            if (response.status === 200) {
+                console.log(response.data);
+                toast.success(response.data.message);
+                return response.data;
+            }
+            else {
+                toast.error(response.data.message)
+                return rejectWithValue(response.data.message)
+            }
+
+        }
+        catch (error) {
+            toast.error(error.response?.data?.message)
+            return rejectWithValue(error.response?.data?.message);
+        }
+    }
+)
+
+
+
 export const getUserInfo = createAsyncThunk(
     'user/getUserInfo',
     async (_, { rejectWithValue }) => {
